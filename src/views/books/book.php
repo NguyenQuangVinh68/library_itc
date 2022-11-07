@@ -1,3 +1,9 @@
+<?php 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+?>
+
 <div class="container mt-5">
     <h3>TẤT CẢ SÁCH TRONG THƯ VIỆN</h3>
     <table class="table table-borderless table-hover">
@@ -37,7 +43,7 @@
                     <td><?php echo $set['gia']; ?></td>
                     <td><a href="index.php?controller=book&action=editbookform&id=<?php echo $set['masach']; ?>"> <button class="btn btn-primary">Sửa</button> </a></td>
                     <!-- <td><a href="#"> <button class="btn btn-danger">Xoa</button> </a></td> -->
-                    <?php echo "<td><a class='btn btn-danger' onclick='confirmation(".'"'.$set['masach'].'"'.")'>Xoa</a></td>"?>
+                    <?php echo "<td><a class='btn btn-danger' onclick='confirmation(".'"'.$set['masach'].'"'.")'>Xóa</a></td>"?>
                 </tr>
             <?php
             endwhile;

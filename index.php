@@ -14,49 +14,74 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./src/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="src/assets/css/bootstrap.css">
 
-    <link rel="stylesheet" href="./src/assets/vendors/iconly/bold.css">
+    <link rel="stylesheet" href="src/assets/vendors/iconly/bold.css">
 
-    <link rel="stylesheet" href="./src/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="./src/assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="./src/assets/css/app.css">
-    <link rel="shortcut icon" href="./src/assets/images/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="src/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="src/assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="src/assets/css/app.css">
+    <link rel="shortcut icon" href="src/assets/images/favicon.svg" type="image/x-icon">
     <title>Library</title>
 </head>
 
 <body>
-    <div id="app">
-        <?php
+<?php 
+        if (!isset($_SESSION['admin'])) :
+    ?>
+    <?php 
+        include "./src/views/login/login.php";
 
-        include_once("./src/views/include/header.php");
-        ?>
+        $ctrl = 'dashboard';
+        if (isset($_GET['controller'])) {
+            $ctrl = $_GET['controller'];
+        }
+        include "./src/controllers/" . $ctrl . ".php";
+
+        else :
+    ?>
+    
+    
+    <div id="app">
+        <!-- Header left -->
+        <?php include_once("./src/views/include/header.php"); ?>
+        
+        
+        <!-- Main -->
         <div id="main">
+            <!-- Header top -->
+            <?php include_once("./src/views/include/header-top.php"); ?>
+
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
+            
             <?php
-            $ctrl = 'dashboard';
-            if (isset($_GET['controller'])) {
-                $ctrl = $_GET['controller'];
-            }
-            include "./src/controllers/" . $ctrl . ".php";
-            include_once("./src/views/include/footer.php");
+                $ctrl = 'dashboard';
+                if (isset($_GET['controller'])) {
+                    $ctrl = $_GET['controller'];
+                }
+                include "./src/controllers/" . $ctrl . ".php";
             ?>
+    
+
         </div>
+        <!-- Footer -->
+
+        <?php include_once("./src/views/include/footer.php"); ?>
+    
+
     </div>
 
+    <?php endif; ?>
 
-    <script src="./src/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="./src/assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="src/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="src/assets/js/bootstrap.bundle.min.js"></script>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script src="./src/assets/vendors/apexcharts/apexcharts.js"></script>
-    <script src="./src/assets/js/pages/dashboard.js"></script>
-
     <script src="src/assets/vendors/apexcharts/apexcharts.js"></script>
     <script src="src/assets/js/pages/dashboard.js"></script>
 
@@ -64,13 +89,14 @@ session_start();
     <script>
         function confirmation(masach) {
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Bạn có chắc chưa?',
+                text: "Bạn không thể hoàn tác!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'OK, Xóa đi',
+                cancelButtonText: "Giữ lại"
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = `index.php?controller=book&action=deletebook&id=${masach}`;
@@ -79,6 +105,7 @@ session_start();
         }
     </script>
 </body>
+
 </body>
 
 </html>

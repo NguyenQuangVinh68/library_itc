@@ -10,6 +10,13 @@
                 </div>
             </div>
         </div>
+        <?php 
+            if (isset($_SESSION['tenadm'])) :
+        ?>
+        <div class="admin-info text-center">
+            <?php echo '<h6>Admin: '.$_SESSION['tenadm'].'</h6>'; ?>
+        </div>
+        <?php endif; ?>
         <div class="sidebar-menu">
             <ul class="menu">
                 <li class="sidebar-title fs-3">Menu</li>
@@ -43,12 +50,19 @@
                     </a>
                     <ul class=" submenu ">
                         <li class=" submenu-item ">
-                            <a href=" index.php?controller=history">Trả sách</a>
+                            <a href="index.php?controller=history">Trả sách</a>
                         </li>
                         <li class="submenu-item ">
                             <a href="index.php?controller=book&action=findstudent">Đăng kí mượn</a>
                         </li>
                     </ul>
+
+                    <li class="sidebar-item ">
+                    <a href="?controller=login&action=logout" class='sidebar-link'>
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Đăng xuất</span>
+                    </a>
+                </li>
                 </li>
             </ul>
         </div>

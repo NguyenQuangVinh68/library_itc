@@ -1,3 +1,9 @@
+<?php 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+?>
+
 <div class="page-heading">
     <h5>Thống kê sơ lược</h5>
 </div>
