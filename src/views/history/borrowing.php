@@ -1,7 +1,7 @@
 <div class="container mt-5">
-    <h3>NHẬT KÍ SINH VIÊN MƯỢN SÁCH</h3>
+    <h3 class="my-4 text-center">NHẬT KÍ SINH VIÊN MƯỢN SÁCH</h3>
     <table class="table table-bordered ">
-        <thead class="table-success">
+        <thead class="table-success fw-bold">
             <tr>
                 <td>Mã sv</td>
                 <td>Mã sách</td>
@@ -23,11 +23,11 @@
                     <td><?php echo $set['masach']; ?></td>
                     <td><?php echo $set['nhande']; ?></td>
                     <td><?php echo $set['ngaymuon']; ?></td>
-                    <td><?php echo $set['hentra']; ?></td>
+                    <td><?php echo $set['ngaytra']; ?></td>
                     <td><?php echo $set['maadm']; ?></td>
-                    <td><a href="index.php?controller=history&action=confirmreturn&masach=<?php echo $set['masach'] ?>&masv=<?php echo $set['masv'] ?>"> <button class="btn btn-primary">Trả</button> </a></td>
+                    <td><a class="btn btn-primary" href="index.php?controller=history&action=confirmreturn&masach=<?php echo $set['masach'] ?>&masv=<?php echo $set['masv'] ?>">trả</a></td>
                     <!-- <td><a href="#"> <button class="btn btn-danger">Xoa</button> </a></td> -->
-                    <?php echo "<td><a class='btn btn-danger' onclick='confirmation2(".'"'.$set['masach'].'"'.")'>Báo Mất</a></td>"?>
+                    <?php echo "<td><a class='btn btn-danger' onclick='confirmation2(" . '"' . $set['masach'] . '"' . ")'>mất</a></td>" ?>
                 </tr>
             <?php
             endwhile;

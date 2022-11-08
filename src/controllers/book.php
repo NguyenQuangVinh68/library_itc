@@ -68,7 +68,6 @@ switch ($action) {
         // unset($_SESSION['masv']);
         // unset($_SESSION['tensv']);
         $_SESSION['books'] = array();
-        print_r($_SESSION['books']);
         include_once("./src/views/books/findstudent.php");
         break;
 
