@@ -1,12 +1,17 @@
-<?php 
-class HistoryModel{
+<?php
+class HistoryModel
+{
     public function __construct()
     {
     }
     public function getBorrowList()
     {
         $db = new ConnectModel();
-        $sql = "SELECT * FROM danhsachmuon limit 5";
+        $sql = "SELECT d.masv, d.ngaymuon, d.ngaytra, d.maadm, c.masach, c.nhande 
+                FROM danhsachmuon d  
+                INNER JOIN chitietmuon c
+                ON c.mamuon = d.mamuon
+                LIMIT 5";
         $result = $db->getList($sql);
         return $result;
     }
@@ -19,5 +24,3 @@ class HistoryModel{
         return $result;
     }
 }
-
-?>

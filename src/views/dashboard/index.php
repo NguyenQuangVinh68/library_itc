@@ -1,7 +1,7 @@
-<?php 
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 ?>
 
 <div class="page-heading">
@@ -99,6 +99,10 @@
             </tr>
         </thead>
         <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
             <?php
             $BookModel = new HistoryModel();
             $month = date('m');
@@ -111,7 +115,7 @@
                     <td><?php echo $item['masach'] ?></td>
                     <td><?php echo $item['nhande'] ?></td>
                     <td><?php echo $item['ngaymuon'] ?></td>
-                    <td><?php echo $item['hentra'] ?></td>
+                    <td><?php echo $item['ngaytra'] ?></td>
                     <td><?php echo $item['maadm'] ?></td>
                 </tr>
             <?php endwhile; ?>

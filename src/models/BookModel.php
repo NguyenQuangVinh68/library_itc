@@ -4,6 +4,7 @@ class BookModel
     public function __construct()
     {
     }
+
     public function getAllBook()
     {
         $db = new ConnectModel();
@@ -11,6 +12,7 @@ class BookModel
         $result = $db->getList($sql);
         return $result;
     }
+
     public function getDanhSachMuon($month)
     {
         $db = new ConnectModel();
@@ -27,6 +29,14 @@ class BookModel
         return $result;
     }
 
+    public function getBookById($masach)
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT masach, nhande, tacgia,anhbia FROM sach WHERE masach = '$masach'";
+
+        return $db->getInstance($sql);
+    }
+
     function insertBookByCSV($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia)
     {
         $db = new ConnectModel();
@@ -36,17 +46,14 @@ class BookModel
         return $result;
     }
 
-    public function insertBorrowLish($table, $data)
-    {
-        $db = new ConnectModel();
-        return $db->insert($table, $data);
-    }
+
     public function importBook($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia)
     {
         $db = new ConnectModel();
         $query = "INSERT INTO sach(masach, nhande, tacgia, theloai, bosuutap, chuyennganh, anhbia, thongtinxb, vitri, soluong, gia) VALUES (null, '$nhande', '$tacgia', '$theloai', '$bosuutap', '$chuyennganh', '$anhbia', '$thongtinxb', '$vitri', $soluong, $gia)";
         $db->exec($query);
     }
+
     public function getBookID($id)
     {
         $db = new ConnectModel();
@@ -55,6 +62,7 @@ class BookModel
         $set = $result->fetch();
         return $set;
     }
+
     public function updateBook($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia)
     {
         $db = new ConnectModel();
@@ -73,10 +81,33 @@ class BookModel
         WHERE masach = '$masach'";
         $db->exec($query);
     }
+
     public function deleteBook($masach)
     {
         $db = new ConnectModel();
         $query = "DELETE FROM sach WHERE masach = '$masach'";
         $db->exec($query);
+    }
+
+
+    // quản lý hoạt động
+
+    public function getBorrowByCodeStudent($codeStudent)
+    {
+        $db  = new ConnectModel();
+        $sql = "SELECT mamuon FROM danhsachmuon WHERE masv = '$codeStudent' ORDER BY mamuon DESC LIMIT 1";
+        return $db->getInstance($sql);
+    }
+
+    public function insertBorrow($table, $data)
+    {
+        $db = new ConnectModel();
+        return $db->insert($table, $data);
+    }
+
+    public function insertBorrowDetailt($table, $data)
+    {
+        $db = new ConnectModel();
+        return $db->insert($table, $data);
     }
 }

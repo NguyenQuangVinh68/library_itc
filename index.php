@@ -22,14 +22,14 @@ session_start();
     <link rel="stylesheet" href="src/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="src/assets/css/app.css">
     <link rel="shortcut icon" href="src/assets/images/favicon.svg" type="image/x-icon">
-    <title>Library</title>
+    <title>Admin Library</title>
 </head>
 
 <body>
-<?php 
-        if (!isset($_SESSION['admin'])) :
+    <?php
+    if (!isset($_SESSION['admin'])) :
     ?>
-    <?php 
+        <?php
         include "./src/views/login/login.php";
 
         $ctrl = 'dashboard';
@@ -38,42 +38,35 @@ session_start();
         }
         include "./src/controllers/" . $ctrl . ".php";
 
-        else :
-    ?>
-    
-    
-    <div id="app">
-        <!-- Header left -->
-        <?php include_once("./src/views/include/header.php"); ?>
-        
-        
-        <!-- Main -->
-        <div id="main">
-            <!-- Header top -->
-            <?php include_once("./src/views/include/header-top.php"); ?>
+    else :
+        ?>
 
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
-            
-            <?php
+
+        <div id="app" class="w-100">
+            <!-- Header left -->
+            <?php include_once("./src/views/include/header.php"); ?>
+
+
+            <!-- Main -->
+            <div id="main">
+                <!-- Header top -->
+                <?php include_once("./src/views/include/header-top.php"); ?>
+
+                <?php
                 $ctrl = 'dashboard';
                 if (isset($_GET['controller'])) {
                     $ctrl = $_GET['controller'];
                 }
                 include "./src/controllers/" . $ctrl . ".php";
-            ?>
-    
+                ?>
+
+
+            </div>
+            <!-- Footer -->
+            <?php include_once("./src/views/include/footer.php"); ?>
+
 
         </div>
-        <!-- Footer -->
-
-        <?php include_once("./src/views/include/footer.php"); ?>
-    
-
-    </div>
 
     <?php endif; ?>
 

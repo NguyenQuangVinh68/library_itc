@@ -10,7 +10,7 @@ class StudentModel
         $db = new ConnectModel();
         $sql = "SELECT masv, tensv 
                 FROM sinhvien
-                WHERE masv = $studentCode";
+                WHERE masv = '$studentCode'";
         return $db->getInstance($sql);
     }
 }

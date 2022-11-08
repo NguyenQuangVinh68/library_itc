@@ -10,12 +10,12 @@
                 </div>
             </div>
         </div>
-        <?php 
-            if (isset($_SESSION['tenadm'])) :
+        <?php
+        if (isset($_SESSION['tenadm'])) :
         ?>
-        <div class="admin-info text-center">
-            <?php echo '<h6>Admin: '.$_SESSION['tenadm'].'</h6>'; ?>
-        </div>
+            <div class="admin-info text-center">
+                <?php echo '<h6>Admin: ' . $_SESSION['tenadm'] . '</h6>'; ?>
+            </div>
         <?php endif; ?>
         <div class="sidebar-menu">
             <ul class="menu">
@@ -57,7 +57,7 @@
                         </li>
                     </ul>
 
-                    <li class="sidebar-item ">
+                <li class="sidebar-item ">
                     <a href="?controller=login&action=logout" class='sidebar-link'>
                         <i class="bi bi-box-arrow-right"></i>
                         <span>Đăng xuất</span>
