@@ -35,7 +35,14 @@
                 <div class="col-lg-3 col-md-3 col-3 "><?php echo $value['nhande'] ?></div>
                 <div class="col-lg-3 col-md-3 col-3"><?php echo $value['tacgia'] ?></div>
                 <div class="col-lg-3 col-md-3 col-3">
-                    <img src="<?php echo $value['anhbia'] ?>" alt="" class="w-25">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <img src="<?php echo $value['anhbia'] ?>" alt="" class="w-50">
+                        </div>
+                        <div>
+                            <a href="index.php?controller=book&action=remove_borrowbooks&masach=<?php echo $value['masach']  ?>" class="btn btn-danger">X</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr>

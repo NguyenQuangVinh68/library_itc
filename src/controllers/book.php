@@ -105,18 +105,25 @@ switch ($action) {
                         "tacgia" => $result["tacgia"],
                         "anhbia" => $result["anhbia"],
                     );
-
                     $_SESSION['books'][$result["masach"]] = $item;
+                } else {
+                    echo '<script> alert("Mã sách không tồn tại, hoặc số lượng sách cho mượn đã hết"); </script>';
                 }
             }
-            include_once("./src/views/books/borrowbook.php");
         } else {
             echo '<script> alert("Số lượng sách mượn vượt quá giới hạn là 3"); </script>';
-            include_once("./src/views/books/borrowbook.php");
         }
+
+        include_once("./src/views/books/borrowbook.php");
         break;
 
+    case "remove_borrowbooks":
+        if (isset($_GET['masach'])) {
+            unset($_SESSION['books'][$_GET['masach']]);
+        }
+        include_once("./src/views/books/borrowbook.php");
 
+        break;
     case "borrow_action":
 
         if (isset($_SESSION['masv'])) {
@@ -152,13 +159,16 @@ switch ($action) {
                         $dataDetail = array(
                             "mamuon" => $codeBorrow['mamuon'],
                             "masach" => $value['masach'],
-                            "soluong" => "1",
+                            "soluong" => 1,
                             "nhande" => $value['nhande']
                         );
-                        $book->insertBorrowDetailt($tableDetail, $dataDetail);
+                        // $book->insertBorrowDetailt($tableDetail, $dataDetail);
+                        $insertSuccess = $book->insertBorrowDetailt($tableDetail, $dataDetail);
+                        $book->updateStockInBook($value['masach'], 1);
                     }
                 }
             }
+            echo $insertSuccess ? '<script> alert("Mượn sách thành công"); </script>' : '<script> alert("Mượn sách thất bại"); </script>';
 
             unset($_SESSION['books']);
             unset($_SESSION['masv']);

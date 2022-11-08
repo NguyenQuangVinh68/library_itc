@@ -32,7 +32,7 @@ class BookModel
     public function getBookById($masach)
     {
         $db = new ConnectModel();
-        $sql = "SELECT masach, nhande, tacgia,anhbia FROM sach WHERE masach = '$masach'";
+        $sql = "SELECT masach, nhande, tacgia,anhbia FROM sach WHERE masach = '$masach' AND soluong > 0";
 
         return $db->getInstance($sql);
     }
@@ -61,6 +61,13 @@ class BookModel
         $result = $db->getList($sql);
         $set = $result->fetch();
         return $set;
+    }
+
+    public function updateStockInBook($masach, $soluong)
+    {
+        $db = new ConnectModel();
+        $sql =  "UPDATE sach SET soluong = soluong - $soluong WHERE masach = '$masach'";
+        $db->exec($sql);
     }
 
     public function updateBook($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia)
