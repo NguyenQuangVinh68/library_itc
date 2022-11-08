@@ -74,7 +74,7 @@ session_start();
     <script src="src/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="src/assets/js/bootstrap.bundle.min.js"></script>
 
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.7/sweetalert2.all.min.js"></script>
     <script src="src/assets/vendors/apexcharts/apexcharts.js"></script>
     <script src="src/assets/js/pages/dashboard.js"></script>
 

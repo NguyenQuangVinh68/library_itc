@@ -25,9 +25,9 @@
                     <td><?php echo $set['ngaymuon']; ?></td>
                     <td><?php echo $set['ngaytra']; ?></td>
                     <td><?php echo $set['maadm']; ?></td>
-                    <td><a class="btn btn-primary" href="index.php?controller=history&action=confirmreturn&masach=<?php echo $set['masach'] ?>&masv=<?php echo $set['masv'] ?>">trả</a></td>
+                    <td><a class="btn btn-primary w-100" href="index.php?controller=history&action=confirmreturn&masach=<?php echo $set['masach'] ?>&masv=<?php echo $set['masv'] ?>">trả</a></td>
                     <!-- <td><a href="#"> <button class="btn btn-danger">Xoa</button> </a></td> -->
-                    <?php echo "<td><a class='btn btn-danger' onclick='confirmation2(" . '"' . $set['masach'] . '"' . ")'>mất</a></td>" ?>
+                    <?php echo "<td><a class='btn btn-danger w-100' onclick='confirmation2(" . '"' . $set['masach'] . '"' . ")'>mất</a></td>" ?>
                 </tr>
             <?php
             endwhile;
