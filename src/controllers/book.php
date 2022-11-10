@@ -65,8 +65,6 @@ switch ($action) {
 
 
     case "findstudent":
-        // unset($_SESSION['masv']);
-        // unset($_SESSION['tensv']);
         $_SESSION['books'] = array();
         include_once("./src/views/books/findstudent.php");
         break;
@@ -91,13 +89,17 @@ switch ($action) {
     case "findbook":
         // do hệ thống thêm vào và load lại trang thì lần nhấn tìm tiếp theo hàm count mới bắt đầu đếm
         $limitBorrowBook = 3;
-        if (count($_SESSION['books']) < $limitBorrowBook) {
+        $book = new BookModel();
+
+        // kiểm tra sách mượn và sách trả để tiến hành cho mượn tiếp hoặc không 
+        $rowBorrow = $totalborrow = $book->totalborrowByStudent($_SESSION['masv']);
+        $rowReturn = $totalborrow = $book->totalreturnByStudent($_SESSION['masv']);
+        $totalBorrow = $rowBorrow - $rowReturn;
+
+        if ($totalBorrow < $limitBorrowBook  && ($totalBorrow + count($_SESSION['books'])) < $limitBorrowBook) {
             if (isset($_SERVER['REQUEST_METHOD']) == "post") {
-
                 $masach = $_POST['masach'];
-                $book = new BookModel();
                 $result = $book->getBookById($masach);
-
                 if ($result) {
                     $item = array(
                         "masach" => $result["masach"],
@@ -111,9 +113,8 @@ switch ($action) {
                 }
             }
         } else {
-            echo '<script> alert("Số lượng sách mượn vượt quá giới hạn là 3"); </script>';
+            echo '<script> alert("Mỗi sinh viên chỉ được mượn tối đa 3 quyển sách"); </script>';
         }
-
         include_once("./src/views/books/borrowbook.php");
         break;
 
@@ -160,7 +161,7 @@ switch ($action) {
                             "mamuon" => $codeBorrow['mamuon'],
                             "masach" => $value['masach'],
                             "soluong" => 1,
-                            "nhande" => $value['nhande']
+                            "nhande" => $value['nhande'],
                         );
                         // $book->insertBorrowDetailt($tableDetail, $dataDetail);
                         $insertSuccess = $book->insertBorrowDetailt($tableDetail, $dataDetail);

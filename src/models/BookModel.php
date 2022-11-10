@@ -99,6 +99,27 @@ class BookModel
 
     // quản lý hoạt động
 
+    public function totalborrowByStudent($codeStudent)
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT * 
+                FROM danhsachmuon DS
+                INNER JOIN chitietmuon CT
+                ON DS.mamuon = CT.mamuon 
+                WHERE DS.masv = '$codeStudent'";
+        $row = $db->getList($sql);
+        return count($row->fetchAll());
+    }
+    public function totalreturnByStudent($codeStudent)
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT * 
+                FROM danhsachtra
+                WHERE masv = '$codeStudent'";
+        $row = $db->getList($sql);
+        return count($row->fetchAll());
+    }
+
     public function getBorrowByCodeStudent($codeStudent)
     {
         $db  = new ConnectModel();
