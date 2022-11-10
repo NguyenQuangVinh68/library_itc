@@ -96,6 +96,22 @@ session_start();
                 }
             })
         }
+        function confirmation2(masach,mamuon) {
+            Swal.fire({
+                title: 'Cuốn sâch này đã mất?',
+                text: "Bạn không thể hoàn tác!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'OK, Đã mất đi',
+                cancelButtonText: "Hủy lệnh"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = `index.php?controller=history&action=losebook&masach=${masach}&mamuon=${mamuon}`;
+                }
+            })
+        }
     </script>
 </body>
 

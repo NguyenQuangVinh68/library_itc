@@ -55,14 +55,21 @@
                         <li class="submenu-item ">
                             <a href="index.php?controller=book&action=findstudent">Đăng kí mượn</a>
                         </li>
+                        <li class="submenu-item ">
+                            <a href="index.php?controller=history&action=lated">Đã quá hạn</a>
+                        </li>
                     </ul>
-
+                <li class="sidebar-item ">
+                    <a href="?controller=chart" class='sidebar-link'>
+                        <i class="bi bi-bar-chart-line-fill"></i>
+                        <span>Thống kê</span>
+                    </a>
+                </li>
                 <li class="sidebar-item ">
                     <a href="?controller=login&action=logout" class='sidebar-link'>
                         <i class="bi bi-box-arrow-right"></i>
                         <span>Đăng xuất</span>
                     </a>
-                </li>
                 </li>
             </ul>
         </div>

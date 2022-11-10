@@ -85,7 +85,7 @@ error_reporting(E_ALL);
 </div>
 
 <div class="my-5">
-    <h5>LỊCH SỬ MƯỢN TRONG THÁNG</h5>
+    <h5>LỊCH SỬ MƯỢN GẦN NHẤT</h5>
 
     <table class="table table-bordered ">
         <thead class="table-success">
@@ -122,7 +122,7 @@ error_reporting(E_ALL);
         </tbody>
     </table>
 
-    <h5>LỊCH SỬ TRẢ TRONG THÁNG</h5>
+    <h5>LỊCH SỬ TRẢ GẦN NHẤT</h5>
     <table class="table table-bordered ">
         <thead class="table-danger">
             <tr>
@@ -149,16 +149,34 @@ error_reporting(E_ALL);
         </tbody>
     </table>
 
-    <h5>LỊCH SỬ BÁO MẤT TRONG THÁNG</h5>
+    <h5>LỊCH SỬ BÁO MẤT GẦN NHẤT</h5>
     <table class="table table-bordered ">
         <thead class="table-secondary">
             <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
+                <th>Mã sách</th>
+                <th>Nhan đề</th>
+                <th>Mã sinh viên</th>
+                <th>Ngày mượn</th>
+                <th>Ngày báo mất</th>
+                <th>Tiền đóng phạt</th>
+                <th>Mã thủ thư</th>
             </tr>
         </thead>
         <tbody>
+        <?php
+            $result = $BookModel->getLoseBook();
+            while ($item = $result->fetch()) :
+            ?>
+                <tr>
+                    <td><?php echo $item['masach'] ?></td>
+                    <td><?php echo $item['nhande'] ?></td>
+                    <td><?php echo $item['masv'] ?></td>
+                    <td><?php echo $item['ngaymuon'] ?></td>
+                    <td><?php echo $item['ngaybaomat'] ?></td>
+                    <td><?php echo $item['tienphat'] ?></td>
+                    <td><?php echo $item['maadm'] ?></td>
+                </tr>
+            <?php endwhile; ?>
         </tbody>
     </table>
     <!-- con footer phía dưới bên trong -->
