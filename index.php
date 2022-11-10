@@ -45,8 +45,6 @@ session_start();
         <div id="app" class="w-100">
             <!-- Header left -->
             <?php include_once("./src/views/include/header.php"); ?>
-
-
             <!-- Main -->
             <div id="main">
                 <!-- Header top -->
@@ -59,17 +57,11 @@ session_start();
                 }
                 include "./src/controllers/" . $ctrl . ".php";
                 ?>
-
-
             </div>
             <!-- Footer -->
             <?php include_once("./src/views/include/footer.php"); ?>
-
-
         </div>
-
     <?php endif; ?>
-
 
     <script src="src/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="src/assets/js/bootstrap.bundle.min.js"></script>
@@ -96,7 +88,8 @@ session_start();
                 }
             })
         }
-        function confirmation2(masach,mamuon) {
+
+        function confirmation2(masach, mamuon) {
             Swal.fire({
                 title: 'Cuốn sâch này đã mất?',
                 text: "Bạn không thể hoàn tác!",

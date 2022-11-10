@@ -33,7 +33,6 @@ class BookModel
     {
         $db = new ConnectModel();
         $sql = "SELECT masach, nhande, tacgia,anhbia FROM sach WHERE masach = '$masach' AND soluong > 0";
-
         return $db->getInstance($sql);
     }
 
@@ -137,5 +136,18 @@ class BookModel
     {
         $db = new ConnectModel();
         return $db->insert($table, $data);
+    }
+
+    public function getIdBookFromListBorrow($masach, $masv)
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT ds.masv, ds.tensv, ct.masach 
+                FROM danhsachmuon ds
+                INNER JOIN chitietmuon ct
+                ON ds.mamuon = ct.mamuon
+                WHERE ct.masach = '$masach'
+                AND ds.masv = '$masv'";
+
+        return $db->getInstance($sql);
     }
 }

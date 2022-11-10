@@ -101,13 +101,19 @@ switch ($action) {
                 $masach = $_POST['masach'];
                 $result = $book->getBookById($masach);
                 if ($result) {
-                    $item = array(
-                        "masach" => $result["masach"],
-                        "nhande" => $result["nhande"],
-                        "tacgia" => $result["tacgia"],
-                        "anhbia" => $result["anhbia"],
-                    );
-                    $_SESSION['books'][$result["masach"]] = $item;
+                    // kiểm tra xem mã sách đã tồn tại trong danh sách mượn chưa
+                    $exist_masach = $book->getIdBookFromListBorrow($result['masach'], $_SESSION['masv']);
+                    if ($exist_masach) {
+                        echo '<script> alert("Sách đã mượn rồi!!!"); </script>';
+                    } else {
+                        $item = array(
+                            "masach" => $result["masach"],
+                            "nhande" => $result["nhande"],
+                            "tacgia" => $result["tacgia"],
+                            "anhbia" => $result["anhbia"],
+                        );
+                        $_SESSION['books'][$result["masach"]] = $item;
+                    }
                 } else {
                     echo '<script> alert("Mã sách không tồn tại, hoặc số lượng sách cho mượn đã hết"); </script>';
                 }
@@ -126,9 +132,7 @@ switch ($action) {
 
         break;
     case "borrow_action":
-
         if (isset($_SESSION['masv'])) {
-
             // tính toán ngày mượn và ngày trả
             $daysBorrowLimit = 14;
             $monthReturnBooks = date("m");
