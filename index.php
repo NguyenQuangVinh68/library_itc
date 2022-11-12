@@ -45,8 +45,6 @@ session_start();
         <div id="app" class="w-100">
             <!-- Header left -->
             <?php include_once("./src/views/include/header.php"); ?>
-
-
             <!-- Main -->
             <div id="main">
                 <!-- Header top -->
@@ -59,17 +57,11 @@ session_start();
                 }
                 include "./src/controllers/" . $ctrl . ".php";
                 ?>
-
-
             </div>
             <!-- Footer -->
             <?php include_once("./src/views/include/footer.php"); ?>
-
-
         </div>
-
     <?php endif; ?>
-
 
     <script src="src/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="src/assets/js/bootstrap.bundle.min.js"></script>
@@ -93,6 +85,23 @@ session_start();
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = `index.php?controller=book&action=deletebook&id=${masach}`;
+                }
+            })
+        }
+
+        function confirmation2(masach, mamuon) {
+            Swal.fire({
+                title: 'Cuốn sâch này đã mất?',
+                text: "Bạn không thể hoàn tác!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'OK, Đã mất đi',
+                cancelButtonText: "Hủy lệnh"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = `index.php?controller=history&action=losebook&masach=${masach}&mamuon=${mamuon}`;
                 }
             })
         }
