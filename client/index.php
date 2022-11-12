@@ -29,6 +29,7 @@ session_start();
         <?php
         include_once "./src/views/include/header.php";
         // include_once "./src/views/include/main.php";
+        include_once "./src/views/book_detail.php";
         include_once "./src/views/include/footer.php";
         ?>
     </div>
