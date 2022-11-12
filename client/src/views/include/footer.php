@@ -1,14 +1,10 @@
 <!-- Start footer -->
-<footer id="mu-footer" role="contentinfo">
-    <div class="container">
-        <div class="mu-footer-area">
-            <div class="mu-social-media">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-google-plus"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-            </div>
-            <p class="mu-copyright">&copy; Copyright <a rel="nofollow" href="http://markups.io">markups.io</a>. All right reserved.</p>
+<footer class="py-5" style="background-color:#0c4470;">
+    <div class="container-fluid p-0">
+        <div class="text-center text-white">
+            <p class="mb-0 text-capitalize">thư viện cao đẳng công nghệ thông tin tp.HCM - ITC</p>
+            <p class="mb-0"><a href="" class="text-white">info@itc.edu.vn</a></p>
+            <p class="mb-0">&copy; Copyright by MyTeam</p>
         </div>
     </div>
 </footer>
