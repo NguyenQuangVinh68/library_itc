@@ -41,9 +41,5 @@
         #title_search {
             font-size: 18px;
         }
-
-        .fs-5 {
-            font-size: 16px !important;
-        }
     }
 </style>
