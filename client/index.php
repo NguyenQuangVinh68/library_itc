@@ -28,6 +28,7 @@ session_start();
     <div id="app">
         <?php
         include_once "./src/views/include/header.php";
+        // include_once "./src/views/include/main.php";
         include_once "./src/views/include/footer.php";
         ?>
     </div>

@@ -85,12 +85,4 @@
   background-color: #105083;
 }
 
-@media only screen and (max-width: 390px) {
-  #title_search {
-    font-size: 18px;
-  }
 
-  .fs-5 {
-    font-size: 16px !important;
-  }
-}
