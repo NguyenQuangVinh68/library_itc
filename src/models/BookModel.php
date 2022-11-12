@@ -1,4 +1,7 @@
 <?php
+
+use LDAP\Connection;
+
 class BookModel
 {
     public function __construct()
@@ -149,5 +152,13 @@ class BookModel
                 AND ds.masv = '$masv'";
 
         return $db->getInstance($sql);
+    }
+
+    public function updateBorrowNumber($masach, $soluong)
+    {
+        $db = new ConnectModel();
+        $sql = "UPDATE sach SET soluongmuon = soluongmuon + $soluong WHERE masach = $masach";
+        echo $sql;
+        return $db->exec($sql);
     }
 }

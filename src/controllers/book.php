@@ -170,6 +170,7 @@ switch ($action) {
                         // $book->insertBorrowDetailt($tableDetail, $dataDetail);
                         $insertSuccess = $book->insertBorrowDetailt($tableDetail, $dataDetail);
                         $book->updateStockInBook($value['masach'], 1);
+                        $book->updateBorrowNumber($value['masach'], 1);
                     }
                 }
             }
