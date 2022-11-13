@@ -29,9 +29,10 @@ switch ($action) {
                 $vitri = $csv[8];
                 $soluong = $csv[9];
                 $gia = $csv[10];
+                $soluongmuon = $csv[11];
 
                 $book = new BookModel();
-                $result = $book->insertBookByCSV($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia);
+                $result = $book->insertBookByCSV($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia, $soluongmuon);
             }
             echo "<script>alert('Thêm vào database thành công!')</script>";
         }
