@@ -1,7 +1,8 @@
 <header class="container-fluid p-0 ">
     <div class=" bg-white text-dark">
         <div class="row  py-3 px-5 w-100">
-            <div class="col-lg-5 col-md-5 col-5">
+            <div class="col-lg-5 col-md-5 col-5 brand">
+                <img src="./src/assets/images/logo_brand.png" alt="">
                 <h3 class="text-dark">ITC Library</h3>
             </div>
             <div class="col-lg-2 col-md-2 col-2"></div>
@@ -16,7 +17,7 @@
                         else :
                     ?>
                     <li class="nav-item user">
-                        <?php echo '<a class="nav-link text-dark fw-bold" href=""><span class="text-primary">Xin chào</span> '.$_SESSION['tenuser'].'</a>';?>
+                        <?php echo '<a class="nav-link text-white fw-bold" href=""><span class="text-dark">Xin chào</span> '.$_SESSION['tenuser'].'</a>';?>
                         <i class="fas fa-caret-down"></i>
                         <ul class="user-action-list">
                             <li class="user-action-item">
@@ -59,8 +60,21 @@
 
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700;800&display=swap');
+.brand {
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    align-items: center;
+}
+
+.brand img {
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+}
+
 .nav-item.user {
-    background-color: #fff;
+    background-color: #49b2df;
     filter: brightness(95%);
     border-radius: 20px;
     padding-right: 10px;
@@ -84,7 +98,7 @@
 
     width: 100%;
     height: auto;
-    background-color: #fff;
+    background-color: #49b2df;
     list-style: none;
     box-shadow: 0 5px 5px #333;
     display: none;
@@ -101,8 +115,8 @@
 }
 
 .user-action-list .user-action-item:hover a {
-    background-color: #ffa500;
-    color: #Fff;
+    background-color: #0c4673;
+    color: #fff;
     border-radius: 5px;
 }
 
