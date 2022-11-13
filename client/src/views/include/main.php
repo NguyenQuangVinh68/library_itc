@@ -1,5 +1,5 @@
 <!-- category -->
-<div class="banner text-white">
+<div class="banner">
     <div class="d-flex align-items-center justify-content-center" style="height: 450px;">
         <div>
             <h1 id="title_search">Find items in libraries near you</h1>
