@@ -1,9 +1,19 @@
+<?php
+    function active($currect_page){
+    $url_array =  explode('/', $_SERVER['REQUEST_URI']) ;
+    $url = end($url_array);  
+    if($currect_page == $url){
+        echo 'active'; //class name in css 
+    } 
+    }
+?>
+
 <header class="container-fluid p-0 ">
     <div class=" bg-white text-dark">
         <div class="row  py-3 px-5 w-100">
             <div class="col-lg-5 col-md-5 col-5 brand">
                 <img src="./src/assets/images/logo_brand.png" alt="">
-                <h3 class="text-dark">ITC Library</h3>
+                <div class="text-dark">ITC Library</div>
             </div>
             <div class="col-lg-2 col-md-2 col-2"></div>
             <div class="col-lg-5 col-md-5 col-5">
@@ -21,7 +31,7 @@
                         <i class="fas fa-caret-down"></i>
                         <ul class="user-action-list">
                             <li class="user-action-item">
-                                <a href="index.php?controller=login&action=logout">Đổi mật khẩu</a>
+                                <a href="index.php?controller=password&action=changepassword">Đổi mật khẩu</a>
                             </li>
                             <li class="user-action-item">
                                 <a href="index.php?controller=login&action=logout">Đăng xuất</a>
@@ -38,22 +48,22 @@
         <div class=" bg-info ">
             <div class=" container-fluid px-5 "
                 style="background: linear-gradient(206.57deg, #0f5b97c4 0%, #0C4470 100%);border-bottom: 2px solid #fff;">
-                <ul class="nav py-2">
-                    <li class="nav-item pe-5 ">
-                        <a class="nav-link p-0 fs-5 text-white active" aria-current="page" href="index.php">Trang
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link menu-nav-link <?php active('') || active('index.php');?>" aria-current="page" href="">Trang
                             Chủ</a>
                     </li>
-                    <li class="nav-item pe-5 ">
-                        <a class="nav-link p-0 fs-5 text-white" href="index.php?controller=book">Tìm Sách</a>
+                    <li class="nav-item">
+                        <a class="nav-link menu-nav-link <?php active('index.php?controller=book');?>" href="index.php?controller=book">Tìm Sách</a>
                     </li>
-                    <li class="nav-item pe-5 ">
-                        <a class="nav-link p-0 fs-5 text-white" href="#">BXH</a>
+                    <li class="nav-item">
+                        <a class="nav-link menu-nav-link" href="#">BXH</a>
                     </li>
                     <?php
                         if(isset($_SESSION['user'])):
                     ?>
-                    <li class="nav-item pe-5 ">
-                        <a class="nav-link p-0 fs-5 text-white" href="">Yêu Thích</a>
+                    <li class="nav-item">
+                        <a class="nav-link menu-nav-link" href="">Yêu Thích</a>
                     </li>
                     <?php
                         endif; 
@@ -66,7 +76,7 @@
 
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700;800&display=swap');
 .brand {
     font-family: 'JetBrains Mono', monospace;
     display: flex;
@@ -77,6 +87,34 @@
     margin-right: 10px;
     width: 50px;
     height: 50px;
+    border: 1px solid #333;
+    border-radius: 50%;
+}
+
+.brand .text-dark {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.nav-item .nav-link.menu-nav-link {
+    display: block;
+    padding: 10px 20px;
+    color: #fff;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+}
+
+.nav-item .nav-link.menu-nav-link:hover {
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+
+
+.nav-item .nav-link.menu-nav-link.active,
+.nav-item .nav-link.menu-nav-link:hover {
+    background: #45a9d4;
+    color: #333;
 }
 
 .nav-item.user {
@@ -135,6 +173,7 @@
     display: block;
     transition: display linear 1s;
 }
+
 
 @media only screen and (max-width: 390px) {
     #title_search {
