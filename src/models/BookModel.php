@@ -161,4 +161,19 @@ class BookModel
         echo $sql;
         return $db->exec($sql);
     }
+
+    // chart
+
+    public function getBookByMonth()
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT s.nhande,month(ds.ngaymuon) as ngaymuon,ct.tong 
+                FROM danhsachmuon ds 
+                INNER JOIN (SELECT mamuon, masach, COUNT(soluong) as tong from chitietmuon GROUP BY masach) ct 
+                ON ds.mamuon = ct.mamuon 
+                INNER JOIN sach s
+                ON s.masach = ct.masach 
+                WHERE month(ds.ngaymuon) = 11";
+        return  $db->getList($sql);
+    }
 }
