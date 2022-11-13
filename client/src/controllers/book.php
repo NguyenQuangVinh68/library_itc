@@ -52,4 +52,10 @@ switch ($action) {
         }
         echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=book&action=bookdetail&id=$masach'/>";
         break;
+    case 'top5':
+        include "./src/views/bxh.php";
+        break;
+    case 'mylikebook':
+        include "./src/views/mylikebook.php";
+        break;
 }

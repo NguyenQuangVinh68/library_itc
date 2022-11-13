@@ -56,14 +56,24 @@
                     <li class="nav-item">
                         <a class="nav-link menu-nav-link <?php active('index.php?controller=book');?>" href="index.php?controller=book">Tìm Sách</a>
                     </li>
+<<<<<<< HEAD
                     <li class="nav-item">
                         <a class="nav-link menu-nav-link" href="#">BXH</a>
+=======
+                    <li class="nav-item pe-5 ">
+                        <a class="nav-link p-0 fs-5 text-white" href="index.php?controller=book&action=top5">BXH</a>
+>>>>>>> conganh
                     </li>
                     <?php
                         if(isset($_SESSION['user'])):
                     ?>
+<<<<<<< HEAD
                     <li class="nav-item">
                         <a class="nav-link menu-nav-link" href="">Yêu Thích</a>
+=======
+                    <li class="nav-item pe-5 ">
+                        <a class="nav-link p-0 fs-5 text-white" href="index.php?controller=book&action=mylikebook">Yêu Thích</a>
+>>>>>>> conganh
                     </li>
                     <?php
                         endif; 
