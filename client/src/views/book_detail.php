@@ -29,7 +29,7 @@ $set = $h->getDetailInformation($id);
             <ul>
                 <li>Số lượng trên kệ: <?php echo $set['soluong']; ?></li>
                 <li>Vị trí: Kệ <?php echo $set['vitri']; ?></li>
-                <li>Số lượt mượn: <?php echo $set['soluotmuon']; ?></li>
+                <li>Số lượt mượn: <?php echo $set['soluongmuon']; ?></li>
             </ul>
             <div class="text-center">
                 <a href=""><button class="btn btn-danger">Đăng kí mượn</button></a>
