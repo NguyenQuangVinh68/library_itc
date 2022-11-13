@@ -1,50 +1,39 @@
-<section>
-    <div class="container my-5">
-        <div class="row">
-            <!-- hình book detail -->
-            <div class="col-lg-4 col-md-4 col-sm-4 mb-3">
-                <div class="card border-0  align-items-end img_detail">
-                    <div class="card-body p-0 ">
-                        <img src="https://coverart.oclc.org/ImageWebSvc/oclc/+-+9826578756_140.jpg?allowDefault=false&client=WorldcatOrgUI" alt="">
-                        <div class="d-flex justify-content-center gap-2 mt-3">
-                            <button type="button" class="btn btn-outline-primary "><i class="fa-regular fa-thumbs-up  "></i></button>
-                            <button type="button" class="btn btn-outline-primary"><i class="fa-regular fa-thumbs-up  "></i></button>
-                            <button type="button" class="btn btn-outline-primary"><i class="fa-regular fa-thumbs-up  "></i></button>
-                        </div>
-                    </div>
+<?php 
+$h = new BookModel();
+$id = $_GET['id'];
+$set = $h->getDetailInformation($id);
+?>
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-8">
+            <div class="row">
+                <div class="col-3">
+                    <img width="100%" src="<?php echo $set['anhbia']; ?>" style="box-shadow: -2px -3px 7px #333"/>
                 </div>
+                <div class="col-9">
+                    <h5 class="titlebook"><?php echo $set['nhande']; ?></h5>
+                    <p>Thông tin xuất bản: <span style="font-style: italic;"><?php echo $set['thongtinxb']; ?></span></p>
+                    <p>Tác giả: <span style="font-weight: bold;"><?php echo $set['tacgia']; ?></span></p>
+                    <p>Bộ sưu tập: <span style="font-weight: bold;"><?php echo $set['bosuutap']; ?></span></p>
 
-            </div>
-            <!-- content books detail -->
-            <div class="col-lg-8 col-md-8 col-sm-8">
-                <div class="text-left">
-                    <div class="d-flex gap-4">
-                        <h5>Tiêu đề</h5>
-                        <p>rating average</p>
-                    </div>
-                    <h6>Authors</h6>
-                    <h6>Thông tin xuất bản</h6>
-                    <h6>Thể loại</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio doloribus suscipit recusandae amet tempore a natus excepturi dolores est eius!</p>
+                    <button class="btn btn-second" style="border: 1px solid #333;"><i class="fa-regular fa-heart"></i></button>
+                    <button class="btn btn-warning"><i class="fa-solid fa-heart" style="color: red"></i></button>
                 </div>
+            </div>
+            
+        </div>
+        <div class="col-4 " style="box-shadow: -1px -1px 7px #333">
+            <div class="w-100 text-center " style="background-color:rgb(14, 101, 152); height: 35px; color: #fff; margin-top: 10px">
+                <h5 style="line-height: 35px;">THÔNG TIN MƯỢN SÁCH</h5>
+            </div>
+            <ul>
+                <li>Số lượng trên kệ: <?php echo $set['soluong']; ?></li>
+                <li>Vị trí: Kệ <?php echo $set['vitri']; ?></li>
+                <li>Số lượt mượn: <?php echo $set['soluotmuon']; ?></li>
+            </ul>
+            <div class="text-center">
+                <a href=""><button class="btn btn-danger">Đăng kí mượn</button></a>
             </div>
         </div>
-
-        <!-- comment -->
     </div>
-</section>
-
-
-<style>
-    .img_detail img {
-        width: 142px;
-        height: 171px;
-
-    }
-
-    @media only screen and (max-width: 568px) {
-        .img_detail {
-            align-items: center !important;
-        }
-    }
-</style>
+</div>
