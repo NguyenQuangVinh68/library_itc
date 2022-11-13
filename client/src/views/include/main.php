@@ -4,10 +4,10 @@
         <div>
             <h1 id="title_search">Find items in libraries near you</h1>
             <div>
-                <form action="">
+                <form action="index.php?controller=book&action=onsearch" method="post">
                     <div class="d-flex justify-content-center align-items-center mt-3">
-                        <input type="text" class=" form-control border-bottom border-0 p-2 w-75 " placeholder="Search anything" required autofocus>
-                        <i class="fa-solid fa-magnifying-glass fs-3  rounded p-2 " style="background-color: #2075ba;"></i>
+                        <input type="text" name="txtSearch" class=" form-control border-bottom border-0 p-2 w-75 " placeholder="Search anything" required autofocus>
+                        <button class="btn btn-primary" style="background-color: #2075ba;"><i class="fa-solid fa-magnifying-glass fs-3  rounded " ></i></button>
                     </div>
                 </form>
             </div>

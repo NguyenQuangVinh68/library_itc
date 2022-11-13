@@ -47,11 +47,17 @@
                         <a class="nav-link p-0 fs-5 text-white" href="index.php?controller=book">Tìm Sách</a>
                     </li>
                     <li class="nav-item pe-5 ">
-                        <a class="nav-link p-0 fs-5 text-white" href="#">Sách Chuyên Ngành</a>
+                        <a class="nav-link p-0 fs-5 text-white" href="#">BXH</a>
                     </li>
+                    <?php
+                        if(isset($_SESSION['user'])):
+                    ?>
                     <li class="nav-item pe-5 ">
                         <a class="nav-link p-0 fs-5 text-white" href="">Yêu Thích</a>
                     </li>
+                    <?php
+                        endif; 
+                    ?>
                 </ul>
             </div>
         </div>
