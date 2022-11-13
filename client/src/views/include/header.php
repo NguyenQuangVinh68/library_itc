@@ -50,20 +50,20 @@
                 style="background: linear-gradient(206.57deg, #0f5b97c4 0%, #0C4470 100%);border-bottom: 2px solid #fff;">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link menu-nav-link <?php active('') || active('index.php');?>" aria-current="page" href="">Trang
+                        <a class="nav-link menu-nav-link <?php active('') || active('index.php');?>" aria-current="page" href="index.php">Trang
                             Chủ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link menu-nav-link <?php active('index.php?controller=book');?>" href="index.php?controller=book">Tìm Sách</a>
                     </li>
-                    <li class="nav-item pe-5 ">
-                        <a class="nav-link p-0 fs-5 text-white" href="index.php?controller=book&action=top5">BXH</a>
+                    <li class="nav-item ">
+                        <a class="nav-link menu-nav-link <?php active('index.php?controller=book&action=top5');?>" href="index.php?controller=book&action=top5">BXH</a>
                     </li>
                     <?php
                         if(isset($_SESSION['user'])):
                     ?>
-                    <li class="nav-item pe-5 ">
-                        <a class="nav-link p-0 fs-5 text-white" href="index.php?controller=book&action=mylikebook">Yêu Thích</a>
+                    <li class="nav-item ">
+                        <a class="nav-link menu-nav-link <?php active('index.php?controller=book&action=mylikebook');?>" href="index.php?controller=book&action=mylikebook">Yêu Thích</a>
                     </li>
                     <?php
                         endif; 
