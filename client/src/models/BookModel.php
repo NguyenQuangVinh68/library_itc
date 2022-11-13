@@ -83,5 +83,11 @@ class BookModel{
         $result = $db->exec($select);
         return $result;
     }
+    public function getSumLike($masach){
+        $db = new ConnectModel();
+        $select = "select count(masv)as sl from yeuthich where masach='$masach'";
+        $result = $db->getInstance($select);
+        return $result;
+    }
 }
 ?>

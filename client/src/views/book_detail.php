@@ -45,6 +45,11 @@ $set = $h->getDetailInformation($id);
                 <li>Số lượng trên kệ: <?php echo $set['soluong']; ?></li>
                 <li>Vị trí: Kệ <?php echo $set['vitri']; ?></li>
                 <li>Số lượt mượn: <?php echo $set['soluongmuon']; ?></li>
+                <li>Số người yêu thích: <?php 
+                $dem = new BookModel();
+                $dem = $dem->getSumLike($set['masach']);
+                echo $dem['sl'];
+                ?></li>
             </ul>
             <div class="text-center">
                 <a href="" class="btn btn-danger" style="display: none">Đăng kí mượn</a>
