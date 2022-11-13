@@ -1,7 +1,5 @@
 <?php
 
-use LDAP\Connection;
-
 class BookModel
 {
     public function __construct()

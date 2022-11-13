@@ -4,18 +4,15 @@
     <div id="column_chart"></div>
     <?php
 
-    // for ($i = 0; $i < 12; $i++) {
-    //     $month = $i + 1;
-
-    //     echo $i;
-    // }
-    // for ($item = 0; $item < count($data); $i++) {
-    //     if ($data[$item]['ngaymuon'] == 11) {
-    //         echo $data[$item]["tong"] . "<br>";
-    //     }
-    // }
-
-    echo count($data);
+    for ($i = 0; $i < 12; $i++) {
+        $month = $i + 1;
+        for ($item = 0; $item < sizeof($data); $item++) {
+            if ($data[$item]['ngaymuon'] == 11) {
+                echo $data[$item]["tong"] . "<br>";
+            }
+        }
+        echo $i . "i" . "<br>";
+    }
     ?>
 </div>
 
