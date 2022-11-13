@@ -40,4 +40,16 @@ switch ($action) {
     case "bookdetail":
         include "./src/views/book_detail.php";
         break;
+    case "changestatus":
+        $masv = $_GET['masv'];
+        $masach = $_GET['masach'];
+        $c = new BookModel();
+        $res = $c->checkStatusOfThisUser($_SESSION['user'], $masach);
+        if($res){
+            $c->removeLike($masv, $masach);
+        }else{
+            $c->insertLike($masv, $masach);
+        }
+        echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=book&action=bookdetail&id=$masach'/>";
+        break;
 }
