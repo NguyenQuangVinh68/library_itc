@@ -2,7 +2,21 @@
     <h3 class="text-center">Sơ đồ</h3>
     <div id="pie_chart"></div>
     <div id="column_chart"></div>
+    <?php
 
+    // for ($i = 0; $i < 12; $i++) {
+    //     $month = $i + 1;
+
+    //     echo $i;
+    // }
+    // for ($item = 0; $item < count($data); $i++) {
+    //     if ($data[$item]['ngaymuon'] == 11) {
+    //         echo $data[$item]["tong"] . "<br>";
+    //     }
+    // }
+
+    echo count($data);
+    ?>
 </div>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -13,23 +27,28 @@
         'packages': ['corechart']
     });
     google.charts.setOnLoadCallback(drawChart);
+
     function drawChart() {
         data = new google.visualization.DataTable();
         data.addColumn('string', 'Tháng');
         data.addColumn('number', 'số lượng');
-        // data.addColumn({
-        //     type: "string",
-        //     role: "annotation"
-        // });
+        data.addColumn({
+            type: "string",
+            role: "tooltip"
+        });
         data.addRows([
             <?php
-            $value = "";
-            while ($data = $result->fetch()) {
+            // $value = "";
+            // for ($i = 0; $i <= 12; $i++) {
+            //     $month = $i++;
 
-                $value .= "['$data[nhande]',$data[tong]],";
-            }
+            //     while ($data = $result->fetch()) {
+            //         $value .= "['thang $month',$data[tong],'$data[nhande]'],";
+            //     }
+            // }
             ?>
-            <?php echo $value ?>
+            <?php #echo $value 
+            ?>
         ]);
 
         var options = {
