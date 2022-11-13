@@ -169,9 +169,8 @@ class BookModel
                 FROM danhsachmuon ds 
                 INNER JOIN (SELECT mamuon, masach, COUNT(soluong) AS tong FROM chitietmuon GROUP BY masach) ct 
                 ON ds.mamuon = ct.mamuon 
-                INNER JOIN sach s
-                ON s.masach = ct.masach 
-                WHERE month(ds.ngaymuon) = 11";
+                INNER JOIN sach s   
+                ON s.masach = ct.masach";
         return  $db->getList($sql);
     }
 }
