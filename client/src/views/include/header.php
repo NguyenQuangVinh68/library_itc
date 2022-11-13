@@ -61,7 +61,7 @@
 <style>
 .nav-item.user {
     background-color: #fff;
-    filter: brightness(90%);
+    filter: brightness(95%);
     border-radius: 20px;
     padding-right: 10px;
     position: relative;
@@ -73,7 +73,7 @@
     display: block;
 
     position: absolute;
-    right: 5px;
+    right: 10px;
     top: 50%;
     transform: translate(0, -50%);
 }
