@@ -35,10 +35,7 @@ switch ($action) {
                     $result = $book->insertBookByCSV($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia, $soluongmuon);
                 }
                 echo "<script>alert('Thêm vào database thành công!')</script>";
-<<<<<<< HEAD
-=======
                 echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=book' />";
->>>>>>> 2f2b66059c6877a15eb4dfd4bc5b94abb8899afa
             }
             break;
     case "importbook":
