@@ -65,5 +65,29 @@ class BookModel{
         $result = $db->getInstance($select);
         return $result;
     }
+    public function checkStatusOfThisUser($masv,$masach){
+        $db = new ConnectModel();
+        $select = "select * from yeuthich  where masv = '$masv' and masach = '$masach'";
+        $result = $db->getInstance($select);
+        return $result;
+    }
+    public function removeLike($masv,$masach){
+        $db = new ConnectModel();
+        $select = "delete from yeuthich where masv = '$masv' and masach = '$masach'";
+        $result = $db->exec($select);
+        return $result;
+    }
+    public function insertLike($masv,$masach){
+        $db = new ConnectModel();
+        $select = "insert into yeuthich(mayeuthich, masv, masach) values(null, '$masv' ,'$masach')";
+        $result = $db->exec($select);
+        return $result;
+    }
+    public function getSumLike($masach){
+        $db = new ConnectModel();
+        $select = "select count(masv)as sl from yeuthich where masach='$masach'";
+        $result = $db->getInstance($select);
+        return $result;
+    }
 }
 ?>

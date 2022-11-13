@@ -16,8 +16,23 @@ $set = $h->getDetailInformation($id);
                     <p>Tác giả: <span style="font-weight: bold;"><?php echo $set['tacgia']; ?></span></p>
                     <p>Bộ sưu tập: <span style="font-weight: bold;"><?php echo $set['bosuutap']; ?></span></p>
 
-                    <button class="btn btn-second" style="border: 1px solid #333;"><i class="fa-regular fa-heart"></i></button>
-                    <button class="btn btn-warning"><i class="fa-solid fa-heart" style="color: red"></i></button>
+                    <?php
+                    if(isset($_SESSION['user'])){
+                        $c = new BookModel();
+                        $res = $c->checkStatusOfThisUser($_SESSION['user'], $set['masach']);
+                        if($res){
+                            echo '<a href="index.php?controller=book&action=changestatus&masv='.$_SESSION['user'].'&masach='.$set['masach'].'" class="btn btn-warning"><i class="fa-solid fa-heart" style="color: red"></i></a>';
+                        }else{
+                            echo '<a href="index.php?controller=book&action=changestatus&masv='.$_SESSION['user'].'&masach='.$set['masach'].'" class="btn btn-second" style="border: 1px solid #333;"><i class="fa-regular fa-heart"></i></a>';
+                        }
+                    }else{
+                        if(!isset($_SESSION['user'])){
+                            echo '<a href="index.php?controller=login" class="btn btn-second" style="border: 1px solid #333;"><i class="fa-regular fa-heart"></i></a>';
+                        }
+                    }
+                    ?>
+                    
+                    
                 </div>
             </div>
             
@@ -30,9 +45,14 @@ $set = $h->getDetailInformation($id);
                 <li>Số lượng trên kệ: <?php echo $set['soluong']; ?></li>
                 <li>Vị trí: Kệ <?php echo $set['vitri']; ?></li>
                 <li>Số lượt mượn: <?php echo $set['soluongmuon']; ?></li>
+                <li>Số người yêu thích: <?php 
+                $dem = new BookModel();
+                $dem = $dem->getSumLike($set['masach']);
+                echo $dem['sl'];
+                ?></li>
             </ul>
             <div class="text-center">
-                <a href=""><button class="btn btn-danger">Đăng kí mượn</button></a>
+                <a href="" class="btn btn-danger" style="display: none">Đăng kí mượn</a>
             </div>
         </div>
     </div>
