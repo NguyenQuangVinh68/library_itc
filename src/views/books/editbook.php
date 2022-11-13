@@ -101,9 +101,9 @@
                 <td colspan="2" style="text-align: right;">
                     <?php
                     if ($ac == 1) {
-                        echo '<input class="btn btn-primary" type="submit" value="Submit Update">';
+                        echo '<input class="btn btn-primary" type="submit" value="Cập nhật">';
                     } else {
-                        echo '<input class="btn btn-success" type="submit" value="Submit Add New">';
+                        echo '<input class="btn btn-success" type="submit" value="Thêm sách">';
                     }
                     ?>
 
