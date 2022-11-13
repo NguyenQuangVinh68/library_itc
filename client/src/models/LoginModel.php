@@ -8,6 +8,7 @@ class LoginModel
     }
     public function loginUser($user, $pass)
     {
+        $pass = md5($pass);
         $db = new ConnectModel();
         $select = "select * from sinhvien where masv='$user' and matkhau='$pass'";
         $result = $db -> getList($select);

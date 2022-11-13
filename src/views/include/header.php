@@ -1,7 +1,7 @@
 <div id="sidebar" class="active">
     <div class="sidebar-wrapper active">
         <div class="sidebar-header">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-center">
                 <div class="logo">
                     <a href="index.php"><img src="./src/assets/images/logo/logo.png" alt="Logo" srcset=""></a>
                 </div>

@@ -1,9 +1,9 @@
 <div class="container" style="margin-top:100px;">
     <h1 class="text-center">Tra cứu</h1>
-    <div class="contain-form container-fluid">
-        <form class="input-group form-timkiem" action="index.php?controller=book&action=onsearch" method="post">
-            <input type="text" name="txtSearch" id="ContentSearch" class="form-control" placeholder="Bạn đang cần tìm?" autocomplete="off" required>
-            <button id="ContentButSearch" class="btn btn-danger wrn-btn float-right" type="submit">TÌM KIẾM</button>
+    <div class="contain-form d-flex justify-content-center my-4">
+        <form class="input-group form-timkiem w-75" action="index.php?controller=book&action=onsearch" method="post">
+            <input type="text" name="txtSearch" id="ContentSearch" class="form-control w-75" placeholder="Bạn đang cần tìm?" autocomplete="off" required>
+            <button id="ContentButSearch" class="btn btn-primary wrn-btn float-right w-25" type="submit">TÌM KIẾM <i class="fas fa-search"></i></button>
         </form>
     </div>
 </div>
