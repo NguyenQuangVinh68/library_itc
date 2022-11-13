@@ -4,10 +4,10 @@
         <div>
             <h1 id="title_search">Find items in libraries near you</h1>
             <div>
-                <form action="">
+                <form action="index.php?controller=book&action=onsearch" method="post">
                     <div class="d-flex justify-content-center align-items-center mt-3">
-                        <input type="text" class=" form-control border-bottom border-0 p-2 w-75 " placeholder="Search anything" required autofocus>
-                        <i class="fa-solid fa-magnifying-glass fs-3  rounded p-2 " style="background-color: #2075ba;"></i>
+                        <input type="text" name="txtSearch" class=" form-control border-bottom border-0 p-2 w-75 " placeholder="Search anything" required autofocus>
+                        <button class="btn btn-primary" style="background-color: #2075ba;"><i class="fa-solid fa-magnifying-glass fs-3  rounded " ></i></button>
                     </div>
                 </form>
             </div>
@@ -21,7 +21,7 @@
             <div class="col-lg-4 col-md-4">
                 <div class="card border-0">
                     <div class="card-body ">
-                        <img src="./src/assets/images/1659489133-gettyimages-129270922-16x9.webp" alt="" class="w-100">
+                        <img src="https://kenh14cdn.com/2018/9/26/hoatran-img8121-15379796122961009481384.jpg" alt="" class="w-100">
                     </div>
                     <div class="card-footer border-0 bg-white">
                         <h5>Hello world</h5>
@@ -33,7 +33,7 @@
             <div class="col-lg-4 col-md-4">
                 <div class="card border-0">
                     <div class="card-body ">
-                        <img src="./src/assets/images/1659489133-gettyimages-129270922-16x9.webp" alt="" class="w-100">
+                        <img src="https://cafebiz.cafebizcdn.vn/2018/10/16/photo-1-15396557382171854642345.jpg" alt="" class="w-100">
                     </div>
                     <div class="card-footer border-0 bg-white">
                         <h5>Hello world</h5>
@@ -45,7 +45,7 @@
             <div class="col-lg-4 col-md-4">
                 <div class="card border-0">
                     <div class="card-body ">
-                        <img src="./src/assets/images/1659489133-gettyimages-129270922-16x9.webp" alt="" class="w-100">
+                        <img src="https://kenh14cdn.com/2018/9/26/hoatran-img8133-15379796123061389683964.jpg" alt="" class="w-100">
                     </div>
                     <div class="card-footer border-0 bg-white">
                         <h5>Hello world</h5>

@@ -35,6 +35,10 @@ switch ($action) {
                     $result = $book->insertBookByCSV($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia, $soluongmuon);
                 }
                 echo "<script>alert('Thêm vào database thành công!')</script>";
+<<<<<<< HEAD
+=======
+                echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=book' />";
+>>>>>>> 2f2b66059c6877a15eb4dfd4bc5b94abb8899afa
             }
             break;
     case "importbook":
@@ -56,9 +60,9 @@ switch ($action) {
             $ub = new BookModel();
             $ub->importBook($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia);
             if (isset($ub)) {
-                echo '<script> alert("Import success!!!"); </script>';
+                echo '<script> alert("Thêm thành công!!!"); </script>';
             } else {
-                echo '<script> alert("Import fail!!!"); </script>';
+                echo '<script> alert("Thêm thất bại!!!"); </script>';
             }
             echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=book&action=default' />";
         }
