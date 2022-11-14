@@ -20,6 +20,7 @@ session_start();
     <link rel="stylesheet" href="src/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="src/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="src/assets/css/app.css">
+    <link rel="stylesheet" href="src/assets/css/style.css">
     <link rel="shortcut icon" href="src/assets/images/favicon.svg" type="image/x-icon">
 
 

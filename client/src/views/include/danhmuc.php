@@ -1,4 +1,5 @@
 <!-- End Counter -->
+
 <div class="container mb-3">
     <div class="row">
         <div class="col-12 mt-3">
@@ -49,6 +50,10 @@
 
 .category-book {
     cursor: pointer;
+}
+
+.category-book:hover {
+    text-decoration: underline;
 }
 
 .category-book i {

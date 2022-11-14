@@ -7,9 +7,30 @@
             <p class="mb-0">&copy; Copyright by MyTeam</p>
         </div>
     </div>
-    <div class="container-fluid text-center">
+    <div class="container-fluid text-center background-footer overflow-hidden">
 
-        <img src="https://vn.got-it.ai/blog/wp-content/themes/gotitblog/assets/images/footer-top.svg" alt="">
+        <img class="w-100 background1" src="https://vn.got-it.ai/blog/wp-content/themes/gotitblog/assets/images/footer-top.svg" alt="">
 
     </div>
 </footer>
+
+<style>
+    .background-footer {
+        display: flex;
+    }
+
+    /* .background-footer .background1 {
+        position: relative;
+        top: 100%;
+        animation: animateBg1 linear 10s forwards;
+    } */
+
+    /* @keyframes animateBg1 {
+        from {
+            left: -100%;
+        }
+        to {
+            left: 100%;
+        }
+    } */
+</style>

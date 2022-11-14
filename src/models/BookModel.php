@@ -39,11 +39,11 @@ class BookModel
         return $db->getInstance($sql);
     }
 
-    function insertBookByCSV($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia)
+    function insertBookByCSV($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia, $soluongmuon)
     {
         $db = new ConnectModel();
-        $query = "INSERT INTO sach(masach, nhande, tacgia, theloai, bosuutap, chuyennganh, anhbia, thongtinxb, vitri, soluong, gia) 
-        VALUES ($masach, '$nhande', '$tacgia', '$theloai', '$bosuutap', '$chuyennganh', '$anhbia', '$thongtinxb', '$vitri', $soluong, $gia)";
+        $query = "INSERT INTO sach(masach, nhande, tacgia, theloai, bosuutap, chuyennganh, anhbia, thongtinxb, vitri, soluong, gia,soluongmuon) 
+        VALUES ($masach, '$nhande', '$tacgia', '$theloai', '$bosuutap', '$chuyennganh', '$anhbia', '$thongtinxb', '$vitri', $soluong, $gia,$soluongmuon)";
         $result = $db->exec($query);
         return $result;
     }
@@ -167,7 +167,7 @@ class BookModel
     public function getBookByMonth()
     {
         $db = new ConnectModel();
-        $sql = "SELECT s.nhande,MONTH(ds.ngaymuon) AS ngaymuon,ct.tong 
+        $sql = "SELECT s.nhande, MONTH(ds.ngaymuon) AS ngaymuon,ct.tong 
                 FROM danhsachmuon ds 
                 INNER JOIN (SELECT mamuon, masach, COUNT(soluong) AS tong FROM chitietmuon GROUP BY masach) ct 
                 ON ds.mamuon = ct.mamuon 

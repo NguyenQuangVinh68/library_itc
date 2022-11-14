@@ -6,6 +6,10 @@
 
             <input type="text" placeholder="Email sinh viên" name="txtemail" class="">
 
+            <div class="forgot-pass">
+                <a href="index.php?controller=login">Trở lại trang Đăng nhập</a>
+            </div>
+
             <button class="button" name="login" type="submit">Lấy lại mật khẩu</button>
         </form>
     </div>
