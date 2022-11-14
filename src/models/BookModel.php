@@ -165,7 +165,7 @@ class BookModel
     public function getBookByMonth()
     {
         $db = new ConnectModel();
-        $sql = "SELECT s.nhande, MONTH(ds.ngaymuon) AS ngaymuon,ct.tong 
+        $sql = "SELECT s.nhande, MONTH(ds.ngaymuon) AS thangmuon, ct.tong
                 FROM danhsachmuon ds 
                 INNER JOIN (SELECT mamuon, masach, COUNT(soluong) AS tong FROM chitietmuon GROUP BY masach) ct 
                 ON ds.mamuon = ct.mamuon 

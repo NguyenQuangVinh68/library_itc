@@ -3,14 +3,21 @@
     <div id="pie_chart"></div>
     <div id="column_chart"></div>
     <?php
-    // for ($i = 0; $i < 12; $i++) {
-    //     $month = $i + 1;
-    //     for ($item = 0; $item < sizeof($data); $item++) {
-    //         if ($data[$item]['ngaymuon'] == $month) {
-    //             echo $data[$item]['ngaymuon'];
-    //         }
-    //     }
-    // }
+    $value = "";
+    for ($i = 0; $i < 12; $i++) {
+        $month = $i + 1;
+        $sumBooks = 0;
+        $nameBooks = "";
+        for ($item = 0; $item < sizeof($data); $item++) {
+            if ($data[$item]['thangmuon'] == $month) {
+                $sumBooks += $data[$item]['tong'];
+                $nameBooks .=  $data[$item]['nhande'] . " ( số lượng " . $data[$item]['tong'] . ") ";
+            }
+        }
+        echo $nameBooks . "name $month<br>";
+        $value .= "['Tháng $month'," . $sumBooks . ",],";
+    }
+    echo $value;
     ?>
 </div>
 
@@ -33,25 +40,30 @@
         });
         data.addRows([
             <?php
-            $value = "";
-            for ($i = 0; $i < 12; $i++) {
-                $month = $i + 1;
-                for ($item = 0; $item < sizeof($data); $item++) {
-                    if ($data[$item]['ngaymuon'] == $month) {
-                        $value .= "['Tháng $month'," . $data[$item]['tong'] . ",'" . $data[$item]['nhande'] . "'],";
-                    }
-                }
-                $value .= "['Tháng $month'," . 0 . ",'"  . "'],";
-            }
-            echo $value;
+            // $value = "";
+            // for ($i = 0; $i < 12; $i++) {
+            //     $month = $i + 1;
+            //     $sumBooks = 0;
+            //     $nameBooks = "";
+            //     for ($item = 0; $item < sizeof($data); $item++) {
+            //         if ($data[$item]['thangmuon'] == $month) {
+            //             $sumBooks += $data[$item]['tong'];
+            //             $nameBooks .=  $data[$item]['nhande'] . " ( số lượng " . $data[$item]['tong'] . ") ";
+            //         }
+            //     }
+            //     // echo $nameBooks . "$month";
+            //     $value .= "['Tháng $month'," . $sumBooks . ",'" . $nameBooks . "'],";
+            // }
+            // echo $value;
             ?>
         ]);
 
         var options = {
-            'title': 'Tổng các đầu sách mượn trong tháng 11',
+            'title': 'Tổng các đầu sách mượn trong tháng',
             bar: {
                 groupWidth: "75%"
             },
+            curveType: 'function',
         };
         chart = new google.visualization.LineChart(document.getElementById('pie_chart'));
         google.visualization.events.addListener(chart, 'select', selectHandler);
