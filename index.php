@@ -74,7 +74,7 @@ session_start();
 
     <script src="src/assets/js/main.js"></script>
     <script>
-        function confirmation(masach) {
+        function confirmation(controller, action, masach) {
             Swal.fire({
                 title: 'Bạn có chắc chưa?',
                 text: "Bạn không thể hoàn tác!",
@@ -86,7 +86,7 @@ session_start();
                 cancelButtonText: "Giữ lại"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = `index.php?controller=book&action=deletebook&id=${masach}`;
+                    window.location.href = `index.php?controller=${controller}&action=${action}&id=${masach}`;
                 }
             })
         }

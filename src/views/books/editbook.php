@@ -1,7 +1,7 @@
-<?php 
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 ?>
 
 <div>
@@ -14,8 +14,6 @@
         }
     }
 
-    ?>
-    <?php
     if ($ac == 1) {
         echo '<div class="row col-md-8 col-md-offset-4" ><h3>CẬP NHẬT THÔNG TIN SÁCH</h3></div>';
     } else {
@@ -67,7 +65,21 @@
             </tr>
             <tr>
                 <td>Thể loại</td>
-                <td> <input type="text" class="form-control" name="theloai" value="<?php if (isset($masach)) echo $theloai; ?>" /></td>
+                <td>
+                    <select name="theloai" class="form-select">
+                        <?php
+                        $selected1 = "";
+                        if (isset($theloai) && $theloai != "") {
+                            $selected1 = $theloai;
+                        }
+                        $category = new CategoryModel();
+                        $result = $category->getCategory();
+                        while ($item = $result->fetch()) :
+                        ?>
+                            <option value="<?php echo  $item["tentheloai"] ?>" <?php if ($selected1 == $item['tentheloai']) echo "selected='selected'"; ?>><?php echo  $item["tentheloai"] ?></option>
+                        <?php endwhile; ?>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Bộ sưu tập</td>

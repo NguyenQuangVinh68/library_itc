@@ -45,7 +45,7 @@ error_reporting(E_ALL);
                         <a class="btn btn-primary p-1  d-flex align-items-center" href="index.php?controller=book&action=editbookform&id=<?php echo $set['masach']; ?>"><i class="bi bi-pencil fs-6 w-100"></i></a>
                     </td>
                     <!-- <td><a href="#"> <button class="btn btn-danger">Xoa</button> </a></td> -->
-                    <?php echo "<td><a class='btn btn-danger p-1 d-flex align-items-center' onclick='confirmation(" . '"' . $set['masach'] . '"' . ")'><i class='bi bi-x'></i></a></td>" ?>
+                    <?php echo "<td><a class='btn btn-danger p-1 d-flex align-items-center' onclick=confirmation('book','deletebook',$set[masach])><i class='bi bi-x'></i></a></td>" ?>
                 </tr>
             <?php
             endwhile;
