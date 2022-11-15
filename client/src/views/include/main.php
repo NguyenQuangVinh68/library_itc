@@ -1,3 +1,9 @@
+<script type="text/javascript">
+    function chonsize(a) {
+        document.getElementById("size").value = a;
+
+    }
+</script>
 <!-- category -->
 <div class="banner text-white">
     <div class="d-flex align-items-center justify-content-center" style="height: 450px;">
@@ -49,7 +55,7 @@
                     </div>
                     <div class="card-footer border-0 bg-white">
                         <h5>Hello world</h5>
-                        <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, quia.</p>
+                        <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, quia.</p>
                         <button class="btn btn-primary">Learn more</button>
                     </div>
                 </div>

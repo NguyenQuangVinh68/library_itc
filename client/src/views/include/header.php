@@ -56,15 +56,15 @@ function active($currect_page)
                     <li class="nav-item">
                         <a class="nav-link menu-nav-link <?php active('index.php?controller=book'); ?>" href="index.php?controller=book">Tìm Sách</a>
                     </li>
-                    <li class="nav-item pe-5 ">
-                        <a class="nav-link menu-nav-link text-white <?php active('index.php?controller=book&action=top5'); ?>" href="index.php?controller=book&action=top5">BXH</a>
+                    <li class="nav-item">
+                        <a class="nav-link menu-nav-link <?php active('index.php?controller=book&action=top5'); ?>" href="index.php?controller=book&action=top5">BXH</a>
                     </li>
                     <?php
                     if (isset($_SESSION['user'])) :
                     ?>
-                        <li class="nav-item pe-5 ">
-                            <a class="nav-link menu-nav-link text-white" href="index.php?controller=book&action=mylikebook">Yêu Thích</a>
-                        </li>
+                    <li class="nav-item ">
+                        <a class="nav-link menu-nav-link <?php active('index.php?controller=book&action=mylikebook');?>" href="index.php?controller=book&action=mylikebook">Yêu Thích</a>
+                    </li>
                     <?php
                     endif;
                     ?>
