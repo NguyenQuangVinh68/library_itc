@@ -10,9 +10,7 @@ switch ($action) {
 
         $books = new BookModel();
         $result = $books->getBookByMonth();
-
         $data = $result->fetchAll();
-
         include_once("./src/views/chart/index.php");
         break;
 }

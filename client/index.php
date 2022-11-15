@@ -37,7 +37,6 @@ session_start();
             $controller = $_GET['controller'];
         }
         include "./src/controllers/" . $controller . ".php";
-        // include_once "./src/views/book_detail.php";
         include_once "./src/views/include/footer.php";
         ?>
     </div>

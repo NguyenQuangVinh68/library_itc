@@ -3,19 +3,21 @@
     <div id="pie_chart"></div>
     <div id="column_chart"></div>
     <?php
-
-    // for ($i = 0; $i < 12; $i++) {
-    //     $month = $i + 1;
-
-    //     echo $i;
-    // }
-    // for ($item = 0; $item < count($data); $i++) {
-    //     if ($data[$item]['ngaymuon'] == 11) {
-    //         echo $data[$item]["tong"] . "<br>";
-    //     }
-    // }
-
-    echo count($data);
+    $value = "";
+    for ($i = 0; $i < 12; $i++) {
+        $month = $i + 1;
+        $sumBooks = 0;
+        $nameBooks = "";
+        for ($item = 0; $item < sizeof($data); $item++) {
+            if ($data[$item]['thangmuon'] == $month) {
+                $sumBooks += $data[$item]['tong'];
+                $nameBooks .=  $data[$item]['nhande'] . " ( số lượng " . $data[$item]['tong'] . ") ";
+            }
+        }
+        echo $nameBooks . "name $month<br>";
+        $value .= "['Tháng $month'," . $sumBooks . ",],";
+    }
+    echo $value;
     ?>
 </div>
 
@@ -31,7 +33,7 @@
     function drawChart() {
         data = new google.visualization.DataTable();
         data.addColumn('string', 'Tháng');
-        data.addColumn('number', 'số lượng');
+        data.addColumn('number', 'Số lượng mượn');
         data.addColumn({
             type: "string",
             role: "tooltip"
@@ -39,25 +41,31 @@
         data.addRows([
             <?php
             // $value = "";
-            // for ($i = 0; $i <= 12; $i++) {
-            //     $month = $i++;
-
-            //     while ($data = $result->fetch()) {
-            //         $value .= "['thang $month',$data[tong],'$data[nhande]'],";
+            // for ($i = 0; $i < 12; $i++) {
+            //     $month = $i + 1;
+            //     $sumBooks = 0;
+            //     $nameBooks = "";
+            //     for ($item = 0; $item < sizeof($data); $item++) {
+            //         if ($data[$item]['thangmuon'] == $month) {
+            //             $sumBooks += $data[$item]['tong'];
+            //             $nameBooks .=  $data[$item]['nhande'] . " ( số lượng " . $data[$item]['tong'] . ") ";
+            //         }
             //     }
+            //     // echo $nameBooks . "$month";
+            //     $value .= "['Tháng $month'," . $sumBooks . ",'" . $nameBooks . "'],";
             // }
-            ?>
-            <?php #echo $value 
+            // echo $value;
             ?>
         ]);
 
         var options = {
-            'title': 'Tổng các đầu sách mượn trong tháng 11',
+            'title': 'Tổng các đầu sách mượn trong tháng',
             bar: {
-                groupWidth: "10%"
+                groupWidth: "75%"
             },
+            curveType: 'function',
         };
-        chart = new google.visualization.ColumnChart(document.getElementById('pie_chart'));
+        chart = new google.visualization.LineChart(document.getElementById('pie_chart'));
         google.visualization.events.addListener(chart, 'select', selectHandler);
         chart.draw(data, options);
     }

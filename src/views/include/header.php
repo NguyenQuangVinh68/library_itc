@@ -45,6 +45,15 @@
 
                 <li class="sidebar-item  has-sub ">
                     <a href="#" class='sidebar-link'>
+                        <i class="bi bi-list-stars"></i>
+                        <span>Quản lí danh mục</span>
+                    </a>
+                    <ul class=" submenu ">
+                        <li class="submenu-item"><a href="index.php?controller=category">Các danh mục</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item  has-sub ">
+                    <a href="#" class='sidebar-link'>
                         <i class="bi bi-puzzle"></i>
                         <span>Quản lí hoạt động</span>
                     </a>
@@ -59,6 +68,7 @@
                             <a href="index.php?controller=history&action=lated">Đã quá hạn</a>
                         </li>
                     </ul>
+                </li>
                 <li class="sidebar-item ">
                     <a href="?controller=chart" class='sidebar-link'>
                         <i class="bi bi-bar-chart-line-fill"></i>
