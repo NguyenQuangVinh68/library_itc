@@ -23,6 +23,8 @@ session_start();
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <!-- style for search.php -->
     <link rel="stylesheet" href="./src/assets/css/style-search.css" />
+    <!-- style for comment.php -->
+    <link rel="stylesheet" href="./src/assets/css/style-comment.css">
     <!-- font awsome -->
     <script src="https://kit.fontawesome.com/00ab326edb.js" crossorigin="anonymous"></script>
     <title>Library</title>

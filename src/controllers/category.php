@@ -59,7 +59,17 @@ switch ($action) {
     case 'deletecategory':
         $id = $_GET["id"];
         $category = new CategoryModel();
+        $result = $category->getCategoryById($id);
+        $tentheloai = $result['tentheloai'];
+
+        // delete books by category
         $category->deleteCategory($id);
+
+        $book = new BookModel();
+
+
+        $book->deleteBookByCategory($tentheloai);
+        
         echo "<script> alert('Deleted id = " . $id . " success'); </script>";
         // echo '<script> alert("Delete success!!!"); </script>';
         echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=category&action=default' />";

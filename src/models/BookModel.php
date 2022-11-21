@@ -96,6 +96,13 @@ class BookModel
         $db->exec($query);
     }
 
+    public function deleteBookByCategory($tentheloai)
+    {
+        $db = new ConnectModel();
+        $sql = "DELETE FROM sach WHERE theloai = '$tentheloai'";
+        $db->exec($sql);
+    }
+
 
     // quản lý hoạt động
 
