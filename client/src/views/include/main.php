@@ -1,9 +1,9 @@
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     function chonsize(a) {
         document.getElementById("size").value = a;
 
     }
-</script>
+</script> -->
 <!-- category -->
 <div class="banner text-white">
     <div class="d-flex align-items-center justify-content-center" style="height: 450px;">
@@ -13,7 +13,7 @@
                 <form action="index.php?controller=book&action=onsearch" method="post">
                     <div class="d-flex justify-content-center align-items-center mt-3">
                         <input type="text" name="txtSearch" class=" form-control border-bottom border-0 p-2 w-75 " placeholder="Search anything" required autofocus>
-                        <button class="btn btn-primary" style="background-color: #2075ba;"><i class="fa-solid fa-magnifying-glass fs-3  rounded " ></i></button>
+                        <button class="btn btn-primary" style="background-color: #2075ba;"><i class="fa-solid fa-magnifying-glass fs-3  rounded "></i></button>
                     </div>
                 </form>
             </div>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="card-footer border-0 bg-white">
                         <h5>Hello world</h5>
-                        <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, quia.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, quia.</p>
                         <button class="btn btn-primary">Learn more</button>
                     </div>
                 </div>
@@ -65,41 +65,6 @@
         <div class="my-5">
             <h3 class="text-center "><a href="">Top 100 Novels in Libraries</a></h3>
             <div class="slider my-5">
-                <div class="card border-0">
-                    <div class="card-body">
-                        <img class="w-100" src="https://coverart.oclc.org/ImageWebSvc/oclc/+-+66949209_140.jpg?allowDefault=false&client=WorldcatOrgUI" alt="">
-                    </div>
-                </div>
-                <div class="card border-0">
-                    <div class="card-body">
-                        <img class="w-100" src="https://coverart.oclc.org/ImageWebSvc/oclc/+-+1819544586_140.jpg?allowDefault=false&client=WorldcatOrgUI" alt="">
-                    </div>
-                </div>
-                <div class="card border-0">
-                    <div class="card-body">
-                        <img class="w-100" src="https://coverart.oclc.org/ImageWebSvc/oclc/+-+9826578756_140.jpg?allowDefault=false&client=WorldcatOrgUI" alt="">
-                    </div>
-                </div>
-                <div class="card border-0">
-                    <div class="card-body">
-                        <img class="w-100" src="https://coverart.oclc.org/ImageWebSvc/oclc/+-+1819544586_140.jpg?allowDefault=false&client=WorldcatOrgUI" alt="">
-                    </div>
-                </div>
-                <div class="card border-0">
-                    <div class="card-body">
-                        <img class="w-100" src="https://coverart.oclc.org/ImageWebSvc/oclc/+-+3430974476_140.jpg?allowDefault=false&client=WorldcatOrgUI" alt="">
-                    </div>
-                </div>
-                <div class="card border-0">
-                    <div class="card-body">
-                        <img class="w-100" src="https://coverart.oclc.org/ImageWebSvc/oclc/+-+1819544586_140.jpg?allowDefault=false&client=WorldcatOrgUI" alt="">
-                    </div>
-                </div>
-                <div class="card border-0">
-                    <div class="card-body">
-                        <img class="w-100" src="https://coverart.oclc.org/ImageWebSvc/oclc/+-+66949209_140.jpg?allowDefault=false&client=WorldcatOrgUI" alt="">
-                    </div>
-                </div>
                 <div class="card border-0">
                     <div class="card-body">
                         <img class="w-100" src="https://coverart.oclc.org/ImageWebSvc/oclc/+-+1819544586_140.jpg?allowDefault=false&client=WorldcatOrgUI" alt="">
@@ -220,5 +185,4 @@
     </div>
 </section>
 
-<link rel="stylesheet" href="./src/assets/css/style-header.css">
 <script src="./src/assets/js/style-header.js"></script>

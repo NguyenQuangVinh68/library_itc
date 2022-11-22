@@ -9,180 +9,141 @@ function active($currect_page)
 }
 ?>
 
-<header class="container-fluid p-0 ">
-    <div class=" bg-white text-dark">
-        <div class="row  py-3 px-5 w-100">
-            <div class="col-lg-5 col-md-5 col-5 brand">
-                <img src="./src/assets/images/logo_brand.png" alt="">
-                <div class="text-dark">ITC Library</div>
-            </div>
-            <div class="col-lg-2 col-md-2 col-2"></div>
-            <div class="col-lg-5 col-md-5 col-5">
-                <ul class="nav justify-content-end">
-                    <?php
-                    if (!isset($_SESSION['user'])) :
-                    ?>
-                        <li class="nav-item"><a class="nav-link text-dark fw-bold" href="index.php?controller=login">Sign
-                                In</a></li>
-                    <?php
-                    else :
-                    ?>
-                        <li class="nav-item user">
-                            <?php echo '<a class="nav-link text-white fw-bold" href=""><span class="text-dark">Xin chào</span> ' . $_SESSION['tenuser'] . '</a>'; ?>
-                            <i class="fas fa-caret-down"></i>
-                            <ul class="user-action-list">
-                                <li class="user-action-item">
-                                    <a href="index.php?controller=password&action=changepassword">Đổi mật khẩu</a>
-                                </li>
-                                <li class="user-action-item">
-                                    <a href="index.php?controller=login&action=logout">Đăng xuất</a>
-                                </li>
-                            </ul>
 
+<header>
+    <div class="row px-5 py-3 header__top w-100">
+        <div class="col-lg-8 col-md-8 col-8">
+            <div class="d-flex justify-content-start align-items-center gap-3 ">
+                <div style="width:75px; height:75px" class="d-flex align-items-center">
+                    <img src="./src/assets/images/logo_brand.png" alt="" class="w-100">
+                </div>
+                <div class="text__logo">ITC Library</div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-mg-4 col-4 d-flex justify-content-end align-items-center">
+            <?php
+            if (!isset($_SESSION['user'])) :
+            ?>
+                <a class="btn btn-outline-dark" href="index.php?controller=login">Signin</a>
+            <?php else : ?>
+                <div style="width:40px; height:40px; ">
+                    <button class=" border-0 bg-white p-0 " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                        <img src="./src/assets/images/face/2.jpg" alt="" class="w-100 rounded-pill" data-bs-toggle="tooltip" data-bs-placement="left" title="<?php echo $_SESSION['tenuser'] ?>">
+                    </button>
+                </div>
+
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasRightLabel">Your Profile</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <p class="text-center bg-info  p-3">Xin chào <?php echo $_SESSION['tenuser'] ?></p>
+                        <a class="btn btn-primary w-100 mt-4" href="index.php?controller=password&action=changepassword">Đổi mật khẩu</a>
+                        <a class="btn btn-primary w-100 mt-4" href="index.php?controller=password&action=changepassword">Đăng xuất</a>
+                    </div>
+                </div>
+            <?php endif ?>
+        </div>
+    </div>
+
+    <!-- menu -->
+
+    <nav class="navbar navbar-expand-sm p-0" style="background: linear-gradient(206.57deg, #0f5b97c4 0%, #0C4470 100%);border-bottom: 2px solid #fff;">
+        <div class="container-fluid">
+            <button class=" navbar-toggler " id="btn__menu" type="button" data-bs-toggle="collapse" data-bs-target="#header__menu">
+                <i class="fa-solid fa-bars text-white"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="header__menu">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link <?php active('') || active('index.php'); ?>" aria-current="page" href="index.php">Trang Chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php active('index.php?controller=book'); ?>" href="index.php?controller=book">Tìm Sách</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php active('index.php?controller=book&action=top5'); ?>" href="index.php?controller=book&action=top5">bxh</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Danh Mục</a>
+                        <ul class="dropdown-menu">
+                            <?php
+
+                            ?>
+                            <li><a class="dropdown-item" href="#">Link</a></li>
+                            <li><a class="dropdown-item" href="#">Another link</a></li>
+                            <li><a class="dropdown-item" href="#">A third link</a></li>
+                        </ul>
+                    </li>
+                    <?php if (isset($_SESSION['user'])) : ?>
+                        <li class="nav-item ">
+                            <a class="nav-link <?php active('index.php?controller=book&action=mylikebook'); ?>" href="index.php?controller=book&action=mylikebook">Yêu Thích</a>
                         </li>
                     <?php endif; ?>
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="main text-white">
-        <div class=" bg-info ">
-            <div class=" container-fluid px-5 " style="background: linear-gradient(206.57deg, #0f5b97c4 0%, #0C4470 100%);border-bottom: 2px solid #fff;">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link menu-nav-link <?php active('') || active('index.php'); ?>" aria-current="page" href="index.php">Trang
-                            Chủ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link menu-nav-link <?php active('index.php?controller=book'); ?>" href="index.php?controller=book">Tìm Sách</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link menu-nav-link <?php active('index.php?controller=book&action=top5'); ?>" href="index.php?controller=book&action=top5">BXH</a>
-                    </li>
-                    <?php
-                    if (isset($_SESSION['user'])) :
-                    ?>
-                    <li class="nav-item ">
-                        <a class="nav-link menu-nav-link <?php active('index.php?controller=book&action=mylikebook');?>" href="index.php?controller=book&action=mylikebook">Yêu Thích</a>
-                    </li>
-                    <?php
-                    endif;
-                    ?>
-                </ul>
-            </div>
-        </div>
-    </div>
+    </nav>
 </header>
-
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700;800&display=swap');
 
-    .brand {
+    .text__logo {
+        font-size: 40px !important;
         font-family: 'JetBrains Mono', monospace;
+    }
+
+    .btn__menu {
         display: flex;
-        align-items: center;
+        margin-left: auto;
     }
 
-    .brand img {
-        margin-right: 10px;
-        width: 50px;
-        height: 50px;
-        border: 1px solid #333;
-        border-radius: 50%;
+    #btn__menu:focus {
+        box-shadow: none;
     }
 
-    .brand .text-dark {
-        display: flex;
-        align-items: center;
-        font-size: 2rem;
+    #header__menu li {
+        margin: 5px 10px;
     }
 
-    .nav-item .nav-link.menu-nav-link {
-        display: block;
-        padding: 10px 20px;
-        color: #fff;
-        border-left: 1px solid transparent;
-        border-right: 1px solid transparent;
+    #header__menu .nav-link {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 15px;
+        font-weight: 500;
+        color: #d9e0ff !important;
+        text-transform: capitalize;
     }
 
-    .nav-item .nav-link.menu-nav-link:hover {
-        border-left: 1px solid #fff;
-        border-right: 1px solid #fff;
+    #header__menu .nav-link.active,
+    #header__menu .nav-link:hover {
+        border-bottom: 2px solid #acb2ca;
     }
-
-
-    .nav-item .nav-link.menu-nav-link.active,
-    .nav-item .nav-link.menu-nav-link:hover {
-        background: #45a9d4;
-        color: #333;
-    }
-
-    .nav-item.user {
-        background-color: #49b2df;
-        filter: brightness(95%);
-        border-radius: 20px;
-        padding-right: 10px;
-        position: relative;
-        transition: all linear 0.3s;
-    }
-
-    .nav-item.user i {
-        content: '';
-        display: block;
-
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translate(0, -50%);
-    }
-
-    .user-action-list {
-        position: absolute;
-        top: 100%;
-
-        width: 100%;
-        height: auto;
-        background-color: #49b2df;
-        list-style: none;
-        box-shadow: 0 5px 5px #333;
-        display: none;
-        transition: display linear 1s;
-        padding-left: 0;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-        overflow: hidden;
-    }
-
-    .user-action-list .user-action-item a {
-        padding: 10px;
-        display: block;
-    }
-
-    .user-action-list .user-action-item:hover a {
-        background-color: #0c4673;
-        color: #fff;
-        border-radius: 5px;
-    }
-
-    .nav-item.user:hover {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-
-    .nav-item.user:hover .user-action-list {
-        display: block;
-        transition: display linear 1s;
-    }
-
 
     @media only screen and (max-width: 390px) {
+        .header__top {
+            padding: 10px 20px !important;
+        }
+
         #title_search {
             font-size: 18px;
         }
 
-        .fs-5 {
-            font-size: 16px !important;
+        .text__logo {
+            font-size: 10px !important;
         }
     }
 </style>
+
+<script>
+    window.addEventListener("resize", () => {
+        var nav__toogle = document.getElementById("btn__menu");
+        var __width = 390;
+        if (__width <= 390) {
+            nav__toogle.classList.add("btn__menu")
+        } else {
+            nav__toogle.classList.remove("btn__menu")
+        }
+    })
+</script>

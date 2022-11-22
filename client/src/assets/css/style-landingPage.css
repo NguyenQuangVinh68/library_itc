@@ -65,10 +65,10 @@
   bottom: 0;
   transform: translate(-50%, 0);
   list-style: none;
-  display: flex;
+  display: flex !important;
   justify-items: center;
-  align-items: center;
-  gap: 0 20px;
+  justify-content: center;
+  gap: 0 10px;
 }
 
 .slick-dots button {
@@ -83,4 +83,9 @@
 
 .slick-dots .slick-active button {
   background-color: #105083;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
 }

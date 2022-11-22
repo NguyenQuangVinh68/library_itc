@@ -21,8 +21,10 @@ session_start();
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <!-- style for search.php -->
-    <link rel="stylesheet" href="./src/assets/css/style-search.css" />
+    <!-- landing page -->
+    <link rel="stylesheet" href="./src/assets/css/style-landingPage.css">
+    <!-- search -->
+    <link rel="stylesheet" href="./src/assets/css/style-search.css">
     <!-- style for comment.php -->
     <link rel="stylesheet" href="./src/assets/css/style-comment.css">
     <!-- font awsome -->
