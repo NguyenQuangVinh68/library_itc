@@ -23,7 +23,7 @@ class ConnectModel
 	//	Lấy nhiều rows
 	public function getList($select)
 	{
-		$results = $this->db->query($select);
+		$results = $this->db->query($select, PDO::FETCH_ASSOC);
 		// echo $results;
 		return ($results);
 	}

@@ -1,21 +1,20 @@
-<?php 
-$action="login";
-if(isset($_GET["action"])){
+<?php
+$action = "login";
+if (isset($_GET["action"])) {
     $action = $_GET["action"];
 }
-switch($action){
+switch ($action) {
     case "login":
         include "./src/views/login/login.php";
         break;
     case "login_action":
-        if($_SERVER["REQUEST_METHOD"] == "POST")
-        {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $_POST["txtusername"];
-            $pass = $_POST["txtpassword"];
+            $pass = md5($_POST["txtpassword"]);
             $dt = new LoginModel();
             $result = $dt->loginAdmin($user, $pass);
-            echo $result;
-            if($result!=false){
+
+            if ($result != false) {
                 $_SESSION['admin'] = $result[0];
                 $_SESSION['tenadm'] = $result[2];
                 echo "<script> alert('Đăng nhập thành công');</script>";
@@ -32,5 +31,3 @@ switch($action){
         echo "<meta http-equiv='refresh' content='0;url=./index.php' />";
         break;
 }
-
-?>

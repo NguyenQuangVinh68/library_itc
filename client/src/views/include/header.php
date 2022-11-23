@@ -60,20 +60,22 @@ function active($currect_page)
                         <a class="nav-link <?php active('') || active('index.php'); ?>" aria-current="page" href="index.php">Trang Chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php active('index.php?controller=book'); ?>" href="index.php?controller=book">Tìm Sách</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link <?php active('index.php?controller=book&action=top5'); ?>" href="index.php?controller=book&action=top5">bxh</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Danh Mục</a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu ">
                             <?php
-
+                            $categoryModel = new CategoryModel();
+                            $resultCategory = $categoryModel->getCategory();
+                            if (isset($resultCategory)) :
+                                while ($category = $resultCategory->fetch()) :
                             ?>
-                            <li><a class="dropdown-item" href="#">Link</a></li>
-                            <li><a class="dropdown-item" href="#">Another link</a></li>
-                            <li><a class="dropdown-item" href="#">A third link</a></li>
+                                    <li><a class="dropdown-item " href="index.php?controller=book&name_category=<?php echo $category['tentheloai'] ?>"><?php echo $category['tentheloai'] ?></a></li>
+                            <?php
+                                endwhile;
+                            endif;
+                            ?>
                         </ul>
                     </li>
                     <?php if (isset($_SESSION['user'])) : ?>
