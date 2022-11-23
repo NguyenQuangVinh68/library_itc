@@ -1,5 +1,13 @@
 <div class="container my-5">
-    <h3 class="text-center mb-5"><?php echo $_GET['name_category'] ?></h3>
+    <?php
+    if (isset($_GET['name_category'])) :
+    ?>
+        <h3 class="text-center mb-5"><?php echo $_GET['name_category'] ?></h3>
+    <?php
+    else :
+    ?>
+        <h3 class="text-center mb-5">Kết quả tìm kiếm</h3>
+    <?php endif; ?>
     <?php
     while ($data = $result->fetch()) :
     ?>

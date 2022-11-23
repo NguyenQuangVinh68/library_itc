@@ -1,9 +1,3 @@
-<!-- <script type="text/javascript">
-    function chonsize(a) {
-        document.getElementById("size").value = a;
-
-    }
-</script> -->
 <!-- category -->
 <div class="banner text-white">
     <div class="d-flex align-items-center justify-content-center" style="height: 450px;">
@@ -12,10 +6,11 @@
             <div class="d-flex justify-content-center align-items-center ">
                 <form action="index.php?controller=book&action=onsearch" method="post" class="d-flex align-items-center w-100 bg-white  px-3 rounded  form-search">
                     <div class="py-2 w-50  border-end">
-                        <select class="form-select border-0 border-end-2 w-100 " aria-label="Default select example" name="option_search">
-                            <option value="2">Tác giả</option>
-                            <option value="1">Sách</option>
-                            <option value="2">Thể loại</option>
+                        <input type="hidden" name="column_search" id="column_search">
+                        <select class="form-select border-0 border-end-2 w-100 " aria-label="Default select example" id="option_search">
+                            <option value="nhande">Nhan đề sách</option>
+                            <option value="tacgia">Tác giả</option>
+                            <option value="theloai">Thể loại</option>
                         </select>
                     </div>
                     <input type="text" name="txtSearch" id="txtSearch" class=" form-control  border-0" placeholder="Search anything" required autofocus>
@@ -227,5 +222,12 @@
         }
     }
 </style>
+<script type="text/javascript">
+    var a = document.getElementById("option_search")
+    a.addEventListener("click", () => {
+        console.log(a.value);
+        document.getElementById("column_search").value = a.value;
+    })
+</script>
 
 <script src="./src/assets/js/style-header.js"></script>

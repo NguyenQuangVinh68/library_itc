@@ -11,10 +11,10 @@ class BookModel
         $res = $db->getList($select);
         return $res;
     }
-    public function onSearch($keyword)
+    public function onSearch($cloumn, $txtSearch)
     {
         $db = new ConnectModel();
-        $select = "select * from sach where nhande like '%$keyword%'";
+        $select = "SELECT * FROM sach WHERE $cloumn like '%$txtSearch%'";
         $result = $db->getList($select);
         return $result;
     }

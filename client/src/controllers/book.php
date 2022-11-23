@@ -17,11 +17,15 @@ switch ($action) {
     case "onsearch":
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $column = $_POST["option_search"];
+            $column = "nhande";
             $txtSearch = $_POST["txtSearch"];
+            if (strlen($_POST['column_search']) > 0) {
+                $column = $_POST['column_search'];
+            };
 
-            echo $column;
-            echo $txtSearch;
+            $book = new BookModel();
+            $result = $book->onSearch($column, $txtSearch);
+            include "./src/views/book/index.php";
         }
 
         break;
