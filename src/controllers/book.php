@@ -10,34 +10,34 @@ switch ($action) {
     case "importbooks":
         include "./src/views/books/importbooks.php";
         break;
-        case "importbooks_action":
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $file = $_FILES['file']['tmp_name'];
-                file_put_contents($file, str_replace("\xEF\xBB\xBF", "", file_get_contents($file)));
-    
-                $file_open = fopen($file, 'r');
-                $db = null;
-                while (($csv = fgetcsv($file_open, 1000, ",")) !== false) {
-                    $masach = $csv[0];
-                    $nhande = $csv[1];
-                    $tacgia = $csv[2];
-                    $theloai = $csv[3];
-                    $bosuutap = $csv[4];
-                    $chuyennganh = $csv[5];
-                    $anhbia = $csv[6];
-                    $thongtinxb = $csv[7];
-                    $vitri = $csv[8];
-                    $soluong = $csv[9];
-                    $gia = $csv[10];
-                    $soluongmuon = $csv[11];
-    
-                    $book = new BookModel();
-                    $result = $book->insertBookByCSV($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia, $soluongmuon);
-                }
-                echo "<script>alert('Thêm vào database thành công!')</script>";
-                echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=book' />";
+    case "importbooks_action":
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $file = $_FILES['file']['tmp_name'];
+            file_put_contents($file, str_replace("\xEF\xBB\xBF", "", file_get_contents($file)));
+
+            $file_open = fopen($file, 'r');
+            $db = null;
+            while (($csv = fgetcsv($file_open, 1000, ",")) !== false) {
+                $masach = $csv[0];
+                $nhande = $csv[1];
+                $tacgia = $csv[2];
+                $theloai =  mb_strtolower($csv[3], 'UTF-8');
+                $bosuutap = $csv[4];
+                $chuyennganh = $csv[5];
+                $anhbia = $csv[6];
+                $thongtinxb = $csv[7];
+                $vitri = $csv[8];
+                $soluong = $csv[9];
+                $gia = $csv[10];
+                $soluongmuon = $csv[11];
+
+                $book = new BookModel();
+                $result = $book->insertBookByCSV($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia, $soluongmuon);
             }
-            break;
+            echo "<script>alert('Thêm vào database thành công!')</script>";
+            echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=book' />";
+        }
+        break;
     case "importbook":
         include "./src/views/books/editbook.php";
         break;

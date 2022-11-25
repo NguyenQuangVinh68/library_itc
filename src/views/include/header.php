@@ -43,14 +43,11 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item  has-sub ">
-                    <a href="#" class='sidebar-link'>
+                <li class="sidebar-item  ">
+                    <a href="?controller=category" class='sidebar-link'>
                         <i class="bi bi-list-stars"></i>
-                        <span>Quản lí danh mục</span>
+                        <span>Các thể loại</span>
                     </a>
-                    <ul class=" submenu ">
-                        <li class="submenu-item"><a href="index.php?controller=category">Các danh mục</a></li>
-                    </ul>
                 </li>
                 <li class="sidebar-item  has-sub ">
                     <a href="#" class='sidebar-link'>

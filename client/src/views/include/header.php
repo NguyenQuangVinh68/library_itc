@@ -118,8 +118,7 @@ function active($currect_page)
         text-transform: capitalize;
     }
 
-    #header__menu .nav-link.active,
-    #header__menu .nav-link:hover {
+    #header__menu .nav-link.active {
         border-bottom: 2px solid #acb2ca;
     }
 

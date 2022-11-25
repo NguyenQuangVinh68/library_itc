@@ -28,16 +28,11 @@
             $category = new CategoryModel();
             $result = $category->getCategoryById($_GET['id']);
             $tentheloai = $result['tentheloai'];
-            $mamenu = $result['mamenu'];
         }
         ?>
         <div class="my-2">
             <label class="form-label">Tên thể loại</label>
             <input class="form-control" type="text" name="tentheloai" id="tentheloai" value="<?php echo isset($tentheloai) ? $tentheloai : "" ?>">
-        </div>
-        <div class="my-2">
-            <label class="form-label">Mã menu</label>
-            <input class="form-control" type="text" name="mamenu" id="mamenu" value="<?php echo isset($mamenu) ? $mamenu : "" ?>">
         </div>
         <input name="idmenu" type="hidden" value="<?php echo isset($_GET['id']) ? $_GET['id'] : ""  ?>">
         <button class="btn btn-primary" type="submit">Submit</button>

@@ -28,10 +28,10 @@ class CategoryModel
         return $db->insert($this->table, $data);
     }
 
-    public function updateCategory($tentheloai, $mamenu, $id)
+    public function updateCategory($tentheloai, $id)
     {
         $db = new ConnectModel();
-        $sql = "UPDATE $this->table SET tentheloai = '$tentheloai', mamenu = '$mamenu' WHERE id = $id";
+        $sql = "UPDATE $this->table SET tentheloai = '$tentheloai' WHERE id = $id";
         return $db->exec($sql);
     }
 

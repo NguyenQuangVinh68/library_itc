@@ -18,12 +18,10 @@ switch ($action) {
 
     case 'add_action':
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $tentheloai = $_POST['tentheloai'];
-            $mamenu = $_POST['mamenu'];
+            $tentheloai = mb_strtolower($_POST['tentheloai'], "UTF-8");
             $category = new CategoryModel();
             $data = array(
                 "tentheloai" => $tentheloai,
-                "mamenu" => $mamenu,
             );
 
             $result = $category->insertCategory($data);
@@ -40,19 +38,31 @@ switch ($action) {
     case 'edit_action':
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $tentheloai = $_POST['tentheloai'];
-            $mamenu = $_POST['mamenu'];
+
+            $tentheloaiNew = mb_strtolower($_POST['tentheloai'], "UTF-8");
             $idmenu = $_POST['idmenu'];
+
             $category = new CategoryModel();
+            $result = $category->getCategoryById($idmenu);
+            $tentheloaiOld = $result['tentheloai'];
 
-            echo $tentheloai;
+            if ($tentheloaiNew  == $tentheloaiOld) {
+                $category = new CategoryModel();
 
-            $result = $category->updateCategory($tentheloai, $mamenu, $idmenu);
+                $result = $category->updateCategory($tentheloai, $idmenu);
 
-            if ($result) {
-                echo '<script> alert("Cập nhật thành công!!!"); </script>';
-                echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=category&action=default' />";
-            } else  echo '<script> alert("Cập nhật thất bại!!!"); </script>';
+                // update lại thể loại trong bảng sách
+
+                $book = new BookModel();
+
+                if ($result) {
+                    echo '<script> alert("Cập nhật thành công!!!"); </script>';
+                    echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=category&action=default' />";
+                } else  echo '<script> alert("Cập nhật thất bại!!!"); </script>';
+            }
+            // chuyển về chữ thường
+
+
         }
         break;
 
@@ -69,7 +79,7 @@ switch ($action) {
 
 
         $book->deleteBookByCategory($tentheloai);
-        
+
         echo "<script> alert('Deleted id = " . $id . " success'); </script>";
         // echo '<script> alert("Delete success!!!"); </script>';
         echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=category&action=default' />";
