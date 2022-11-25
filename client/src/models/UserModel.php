@@ -2,6 +2,10 @@
 
 class UserModel
 {
+    public function __construct()
+    {
+    }
+
     public function getUserById($masv)
     {
         $db = new ConnectModel();
@@ -9,7 +13,10 @@ class UserModel
         return $db->getInstance($sql);
     }
 
-    public function getReply(){
-        
+    public function loginUser($user, $pass)
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT * FROM sinhvien WHERE masv='$user' AND matkhau= '$pass'";
+        return  $db->getInstance($sql);
     }
 }

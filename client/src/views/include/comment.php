@@ -10,9 +10,14 @@
             <h5><?php echo isset($result) && isset($_SESSION['user']) ? count($resultFetchAll) : 0; ?> bình luận</h5>
             <div class="card p-3 border-0 shadow-sm">
                 <form action="index.php?controller=comment&action=add_comment" method="post">
-                    <textarea name="noidungbl" id="noidungbl" class="form-control" style="resize: none;" placeholder="Viết bình luận ..."></textarea>
-                    <button class="btn btn-outline-dark d-flex ms-auto mt-3">Phản hồi</button>
-                    <input type="hidden" name="masach" value="<?php echo $set['masach'] ?>">
+                    <textarea name="noidungbl" id="noidungbl" class="form-control" style="resize: none;" placeholder="Viết bình luận ..." required></textarea>
+                    <div class="d-flex  align-items-center py-3">
+                        <!-- rating -->
+                        <div id="rateYo"></div>
+                        <button class="btn btn-outline-dark d-flex ms-auto">Phản hồi</button>
+                        <input type="hidden" name="masach" value="<?php echo $set['masach'] ?>">
+                        <input type="hidden" name="rating" id="rating">
+                    </div>
                 </form>
             </div>
         </div>
@@ -75,73 +80,6 @@
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                        <!-- <div class="comment__container" dataset="first-comment" id="first-reply">
-                            <div class="comment__card">
-                                <h6 class="comment__title">The first reply</h6>
-                                <p>
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                    Voluptatum eaque itaque sit tempora officiis, quisquam atque?
-                                    Impedit dignissimos error laudantium!
-                                </p>
-                                <div class="comment__card-footer">
-                                    <div class="show-replies">115 phản hồi</div>
-                                </div>
-                                <div id="feedback" class="check">
-                                    <div class="btn btn-primary feedback__btn">trả lời</div>
-                                    <div class="form__feedback">
-                                        <input type="text" class="form-control" autofocus>
-                                        <button class="btn btn-info">gửi</button>
-                                    </div>
-                                </div>
-                                <img src="./src/assets/images/face/2.jpg" alt="" class="rounded-circle position-absolute top-0 start-0 translate-middle  border border-light" style="width:50px;height:50px">
-
-                            </div>
-                            <div class="comment__container" dataset="first-reply" id="first-first-reply">
-                                <div class="comment__card">
-                                    <h6 class="comment__title">The first reply to the first reply</h6>
-                                    <p>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                        Voluptatum eaque itaque sit tempora officiis, quisquam atque?
-                                        Impedit dignissimos error laudantium!
-                                    </p>
-                                    <div class="comment__card-footer">
-                                        <div class="show-replies">114 phản hồi</div>
-                                    </div>
-                                    <div id="feedback" class="check">
-                                        <div class="btn btn-primary feedback__btn">trả lời</div>
-                                        <div class="form__feedback">
-                                            <input type="text" class="form-control" autofocus>
-                                            <button class="btn btn-info">gửi</button>
-                                        </div>
-                                    </div>
-                                    <img src="./src/assets/images/face/2.jpg" alt="" class="rounded-circle position-absolute top-0 start-0 translate-middle  border border-light" style="width:50px;height:50px">
-
-                                </div>
-                                <div class="comment__container" dataset="first-first-reply">
-                                    <div class="comment__card">
-                                        <h6 class="comment__title">
-                                            The first reply to the first reply to the first reply
-                                        </h6>
-                                        <p>
-                                            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                            Voluptatum eaque itaque sit tempora officiis, quisquam atque?
-                                            Impedit dignissimos error laudantium!
-                                        </p>
-                                        <div class="comment__card-footer">
-                                            <div class="show-replies">0 phản hồi</div>
-                                        </div>
-                                        <div id="feedback" class="check">
-                                            <div class="btn btn-primary feedback__btn">trả lời</div>
-                                            <div class="form__feedback">
-                                                <input type="text" class="form-control" autofocus>
-                                                <button class="btn btn-info">gửi</button>
-                                            </div>
-                                        </div>
-                                        <img src="./src/assets/images/face/2.jpg" alt="" class="rounded-circle position-absolute top-0 start-0 translate-middle  border border-light" style="width:50px;height:50px">
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
     <?php
@@ -183,8 +121,36 @@
     }
 </style>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 
 <script>
+    $(function() {
+        $("#rateYo").rateYo({
+            starWidth: "30px",
+            normalFill: "#A0A0A0",
+            fullStar: true,
+            rating: 5,
+            onSet: function(rating, rateYoInstance) {
+                alert(typeof rating);
+                $("#rating").val(rating);
+            }
+        });
+    });
+
+    $(function() {
+        $("#ave_start").rateYo({
+            starWidth: "30px",
+            normalFill: "#A0A0A0",
+            readOnly: true,
+            rating: <?php
+                    $comment = new CommentModel();
+                    if (isset($_GET['id'])) {
+                        $comment->averageStar($_GET['id']);
+                    } ?>
+        })
+    })
+
+
     const showContainers = document.querySelectorAll(".show-replies");
 
     showContainers.forEach((btn) =>

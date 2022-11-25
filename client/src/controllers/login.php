@@ -1,22 +1,22 @@
-<?php 
-$action="login";
-if(isset($_GET["action"])){
+<?php
+$action = "login";
+if (isset($_GET["action"])) {
     $action = $_GET["action"];
 }
-switch($action){
+switch ($action) {
     case "login":
         include "./src/views/login/login.php";
         break;
     case "login_action":
-        if($_SERVER["REQUEST_METHOD"] == "POST")
-        {
-            $user = $_POST["txtusername"];
-            $pass = $_POST["txtpassword"];
-            $dt = new LoginModel();
-            $result = $dt->loginUser($user, $pass);
-            if($result!=false){
-                $_SESSION['user'] = $result[0];
-                $_SESSION['tenuser'] = $result[1];
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $username = $_POST["txtusername"];
+            $pass = md5($_POST["txtpassword"]);
+            $user = new UserModel();
+
+            $result = $user->loginUser($username, $pass);
+            if ($result) {
+                $_SESSION['user'] = $result["masv"];
+                $_SESSION['tenuser'] = $result["tensv"];
                 echo "<script> alert('Đăng nhập thành công');</script>";
                 echo "<meta http-equiv='refresh' content='0;url=./index.php' />";
             } else {
@@ -31,5 +31,3 @@ switch($action){
         echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=login' />";
         break;
 }
-
-?>

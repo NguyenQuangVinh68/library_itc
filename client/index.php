@@ -29,6 +29,7 @@ session_start();
     <link rel="stylesheet" href="./src/assets/css/style-comment.css">
     <!-- font awsome -->
     <script src="https://kit.fontawesome.com/00ab326edb.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     <title>Library</title>
 </head>
 

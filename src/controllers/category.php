@@ -44,21 +44,25 @@ switch ($action) {
 
             $category = new CategoryModel();
             $result = $category->getCategoryById($idmenu);
-            $tentheloaiOld = $result['tentheloai'];
+            $tentheloaiOld = mb_strtolower($result['tentheloai'], "UTF-8");
 
-            if ($tentheloaiNew  == $tentheloaiOld) {
+            if ($tentheloaiNew  != $tentheloaiOld) {
                 $category = new CategoryModel();
 
-                $result = $category->updateCategory($tentheloai, $idmenu);
+                $result = $category->updateCategory($tentheloaiNew, $idmenu);
 
                 // update lại thể loại trong bảng sách
 
                 $book = new BookModel();
+                $book->updateBookByCategory($tentheloaiNew, $tentheloaiOld);
 
                 if ($result) {
                     echo '<script> alert("Cập nhật thành công!!!"); </script>';
                     echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=category&action=default' />";
                 } else  echo '<script> alert("Cập nhật thất bại!!!"); </script>';
+            } else {
+                echo '<script> alert("Ban chưa đổi tên mới!!!"); </script>';
+                echo '<meta http-equiv="refresh" content="0;URL=' . $_SERVER['HTTP_REFERER'] . '">';
             }
             // chuyển về chữ thường
 

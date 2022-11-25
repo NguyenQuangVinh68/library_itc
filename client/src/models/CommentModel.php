@@ -42,4 +42,23 @@ class CommentModel
         // echo $sql;
         return $db->getList($sql);
     }
+
+    public function getStarById($bookid)
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT danhgia FROM binhluan WHERE masach = $bookid ";
+        return $db->getList($sql);
+    }
+
+    public function averageStar($bookid)
+    {
+        $data = $this->getStarById($bookid);
+        $data = $data->fetchAll();
+
+        $sum = 0;
+        foreach ($data as $key => $value) {
+            $sum += (int)($value['danhgia']);
+        }
+        echo ($sum / count($data));
+    }
 }

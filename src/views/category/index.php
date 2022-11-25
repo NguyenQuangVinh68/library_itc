@@ -6,7 +6,7 @@
                 <thead>
                     <th>Stt</th>
                     <th>Tên thể loại</th>
-                    <th></th>
+                    <th class="w-25"></th>
                 </thead>
                 <?php
                 $category = new CategoryModel();
@@ -20,7 +20,7 @@
                         <td><?php echo $item['tentheloai'] ?></td>
                         <td>
                             <a href="index.php?controller=category&action=editcategory&id=<?php echo $item['id'] ?>" class="btn btn-warning">Sửa</a>
-                            <?php echo "<a class='btn btn-danger align-items-center' onclick=confirmation('category','deletecategory',$item[id])><i class='bi bi-x'></i></a>" ?>
+                            <?php echo "<a class='btn btn-danger align-items-center' onclick=confirmation('category','deletecategory',$item[id])>Xóa</a>" ?>
                         </td>
                     </tbody>
                 <?php endwhile; ?>

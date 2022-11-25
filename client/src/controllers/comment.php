@@ -10,17 +10,21 @@ switch ($action) {
                 $noidungbl = $_POST['noidungbl'];
                 $masach = $_POST['masach'];
                 $ngaybl = date("Y-m-d");
+                $rating = $_POST['rating'];
+                if ($rating == null) {
+                    $rating = "5";
+                }
+
 
                 $data = array(
                     "masv" => $_SESSION["user"],
                     "masach" => $masach,
                     "ngaybl" => $ngaybl,
+                    "danhgia" => $rating,
                     "noidung" => $noidungbl
                 );
                 $table = "binhluan";
-
                 $comment = new CommentModel();
-
                 $result = $comment->insertComment($table, $data);
 
                 if ($result) echo "<script> alert('bình luận thành công');</script>";

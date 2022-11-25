@@ -42,7 +42,7 @@ switch ($action) {
         } else {
             $c->insertLike($masv, $masach);
         }
-        echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=book&action=bookdetail&id=$masach'/>";
+        echo '<meta http-equiv="refresh" content="0;URL=' . $_SERVER['HTTP_REFERER'] . '">';
         break;
     case 'top5':
         include "./src/views/book/bxh.php";

@@ -14,22 +14,6 @@ class BookModel
         return $result;
     }
 
-    public function getDanhSachMuon($month)
-    {
-        $db = new ConnectModel();
-        $sql = "SELECT * FROM danhsachmuon WHERE MONTH(ngaymuon) = $month";
-        $result = $db->getList($sql);
-        return $result;
-    }
-
-    public function getDanhSachTra($month)
-    {
-        $db = new ConnectModel();
-        $sql = "SELECT * FROM danhsachtra WHERE MONTH(ngaytra) = $month";
-        $result = $db->getList($sql);
-        return $result;
-    }
-
     public function getBookById($masach)
     {
         $db = new ConnectModel();
@@ -87,6 +71,14 @@ class BookModel
         gia = '$gia' 
         WHERE masach = '$masach'";
         $db->exec($query);
+    }
+
+    public function updateBookByCategory($categoryNew, $categoryOld)
+    {
+        $db = new ConnectModel();
+        $sql =  "UPDATE sach SET theloai = '$categoryNew' WHERE theloai = '$categoryOld'";
+        echo $sql;
+        $db->exec($sql);
     }
 
     public function deleteBook($masach)

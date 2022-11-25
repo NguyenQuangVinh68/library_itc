@@ -90,7 +90,7 @@ switch ($action) {
 
     case "findbook":
         // do hệ thống thêm vào và load lại trang thì lần nhấn tìm tiếp theo hàm count mới bắt đầu đếm
-        $limitBorrowBook = 3;
+        $limitBorrowBook = 2;
         $book = new BookModel();
 
         // kiểm tra sách mượn và sách trả để tiến hành cho mượn tiếp hoặc không 
@@ -121,7 +121,7 @@ switch ($action) {
                 }
             }
         } else {
-            echo '<script> alert("Mỗi sinh viên chỉ được mượn tối đa 3 quyển sách"); </script>';
+            echo '<script> alert("Mỗi sinh viên chỉ được mượn tối đa 2 quyển sách"); </script>';
         }
         include_once("./src/views/books/borrowbook.php");
         break;
