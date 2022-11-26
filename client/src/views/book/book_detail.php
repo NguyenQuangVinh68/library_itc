@@ -7,17 +7,19 @@ if ($set) :
 ?>
     <div class="container mt-5 mb-5">
         <div class="row">
-            <div class="col-lg-8 col-md-8 mb-5">
+            <div class="col-lg-9  mb-5">
                 <div class="row">
-                    <div class="col-lg-3 col-md-3 mb-4">
-                        <img class="w-100" src="<?php echo $set['anhbia']; ?>" style="box-shadow: -2px -3px 7px #333" />
+                    <div class="col-lg-3 col-md-3 mb-4 img_bookdetail">
+                        <img class="w-100  shadow" src="<?php echo $set['anhbia']; ?>" />
                     </div>
-                    <div class="col-lg-9 col-md-9">
+                    <div class="col-lg-9 col-md-9 ">
                         <h5 class="titlebook"><?php echo $set['nhande']; ?></h5>
                         <div id="ave_start"></div>
-                        <p>Thông tin xuất bản: <span style="font-style: italic;"><?php echo $set['thongtinxb']; ?></span></p>
-                        <p>Tác giả: <span style="font-weight: bold;"><?php echo $set['tacgia']; ?></span></p>
-                        <p>Bộ sưu tập: <span style="font-weight: bold;"><?php echo $set['bosuutap']; ?></span></p>
+                        <div class="bookdetail_information">
+                            <p><b>Thông tin xuất bản: </b><span><?php echo $set['thongtinxb']; ?></span></p>
+                            <p><b>Tác giả: </b><span><?php echo $set['tacgia']; ?></span></p>
+                            <p><b>Bộ sưu tập: </b><span><?php echo $set['bosuutap']; ?></span></p>
+                        </div>
 
                         <?php
                         if (isset($_SESSION['user'])) {
@@ -40,9 +42,9 @@ if ($set) :
                 </div>
 
             </div>
-            <div class="col-lg-4 col-md-4 " style="box-shadow: -1px -1px 7px #333">
-                <div class="w-100 text-center " style="background-color:rgb(14, 101, 152); height: 35px; color: #fff; margin-top: 10px">
-                    <h5 style="line-height: 35px;">THÔNG TIN MƯỢN SÁCH</h5>
+            <div class="col-lg-3 ">
+                <div class="w-100 text-center text-white mb-3" style="background-color:#0e6598">
+                    <h5 class="py-3">THÔNG TIN MƯỢN SÁCH</h5>
                 </div>
                 <ul>
                     <li>Số lượng trên kệ: <?php echo $set['soluong']; ?></li>
@@ -65,3 +67,20 @@ if ($set) :
 <?php else : ?>
     <h1 class="mt-5 text-center">Not found</h1>
 <?php endif; ?>
+
+<style>
+    .bookdetail_information b {
+        font-weight: 900;
+    }
+
+    @media only screen and (max-width:390px) {
+        .img_bookdetail {
+            display: flex;
+            justify-content: center;
+        }
+
+        .img_bookdetail img {
+            width: 50% !important;
+        }
+    }
+</style>

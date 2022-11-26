@@ -17,14 +17,20 @@ session_start();
     <link rel="shortcut icon" type="image/icon" href="./src/assets/images/favicon.ico" />
     <link rel="stylesheet" href="./src/assets/bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700;800&display=swap");
+
+        * {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <!-- landing page -->
     <link rel="stylesheet" href="./src/assets/css/style-landingPage.css">
-    <!-- search -->
-    <link rel="stylesheet" href="./src/assets/css/style-search.css">
     <!-- style for comment.php -->
     <link rel="stylesheet" href="./src/assets/css/style-comment.css">
     <!-- font awsome -->

@@ -2,7 +2,7 @@
 <div class="banner text-white">
     <div class="d-flex align-items-center justify-content-center" style="height: 450px;">
         <div>
-            <h1 id="title_search">Find items in libraries near you</h1>
+            <h1 id="title_search" class="mb-4">Find items in libraries near you</h1>
             <div class="d-flex justify-content-center align-items-center ">
                 <form action="index.php?controller=book&action=onsearch" method="post" class="d-flex align-items-center w-100 bg-white  px-3 rounded  form-search">
                     <div class="py-2 w-50  border-end">
@@ -208,17 +208,24 @@
         border-radius: 0;
     }
 
-
     /* responsive */
     @media only screen and (max-width: 390px) {
         #title_search {
-            font-size: 20px !important;
+            font-size: 15px !important;
             text-align: center;
         }
 
         .form-search {
             font-size: 10px !important;
             margin: 0 5px !important;
+        }
+
+        .form-search input::placeholder {
+            font-size: 12px !important;
+        }
+
+        .form-search button {
+            font-size: 12px;
         }
     }
 </style>

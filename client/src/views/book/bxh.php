@@ -28,9 +28,9 @@
                 </thead>
                 <tbody>
                     <?php
-                    $t = new BookModel();
-                    $res = $t->getTop5Like();
-                    while ($set = $res->fetch()) :
+                    $book = new BookModel();
+                    $result = $book->getTop5Like();
+                    while ($set = $result->fetch()) :
                     ?>
                         <tr onclick="intoDetailOf(<?php echo $set['masach']; ?>)" style="cursor: pointer;">
                             <td class="col-1"><?php echo $set['masach']; ?></td>
@@ -112,11 +112,12 @@
     }
 </script>
 <style>
-#bxh, .titleofbxh{
-    font-family:Nunito;
-    color: #435EBE;
-    -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    font-weight: 500;
-}
+    #bxh,
+    .titleofbxh {
+        font-family: Nunito;
+        color: #435EBE;
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        font-weight: 500;
+    }
 </style>

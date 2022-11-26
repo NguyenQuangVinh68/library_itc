@@ -15,7 +15,6 @@ switch ($action) {
         break;
 
     case "onsearch":
-
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $column = "nhande";
             $txtSearch = $_POST["txtSearch"];
@@ -27,7 +26,6 @@ switch ($action) {
             $result = $book->onSearch($column, $txtSearch);
             include "./src/views/book/index.php";
         }
-
         break;
     case "bookdetail":
         include "./src/views/book/book_detail.php";
@@ -49,5 +47,10 @@ switch ($action) {
         break;
     case 'mylikebook':
         include "./src/views/book/mylikebook.php";
+        break;
+    case 'borrowing':
+        $book = new BookModel();
+        $result = $book->getBorrowByStudentCode($_SESSION['user']);
+        include "./src/views/book/borrowing.php";
         break;
 }

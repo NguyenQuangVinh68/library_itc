@@ -2,7 +2,7 @@
     <?php
     if (isset($_GET['name_category'])) :
     ?>
-        <h3 class="text-center mb-5"><?php echo $_GET['name_category'] ?></h3>
+        <h3 class="text-center mb-5 text-capitalize"><?php echo $_GET['name_category'] ?></h3>
     <?php
     else :
     ?>
@@ -11,18 +11,24 @@
     <?php
     while ($data = $result->fetch()) :
     ?>
-        <div class="container row pb-3">
-            <a href="index.php?controller=book&action=bookdetail&id=<?php echo $data['masach']; ?>">
-                <h5 class="titlebook"><?php echo $data['nhande']; ?></h5>
-            </a>
-            <div class="col-lg-2 col-md-6" style="border: 1px solid #333; padding: 0;">
-                <img width="100%" src="<?php echo $data['anhbia']; ?>" />
-            </div>
-            <div class="col-lg-9 col-md-6">
-                <p>Thông tin xuất bản: <span style="font-style: italic;"><?php echo $data['thongtinxb']; ?></span></p>
-                <p>Tác giả: <span style="font-weight: bold;"><?php echo $data['tacgia']; ?></span></p>
-                <p>Bộ sưu tập: <span style="font-weight: bold;"><?php echo $data['bosuutap']; ?></span></p>
-                <p>Vị trí kệ sách: <span class="vitrikesach"><?php echo $data['vitri']; ?></span></p>
+        <div class="row pb-3">
+            <div class="col-lg-12">
+                <div class="row w-100 m-0">
+                    <div class="col-lg-12 col-md-12 col-12 p-0 mb-3 fs-5">
+                        <a class="fw-bold" href="index.php?controller=book&action=bookdetail&id=<?php echo $data['masach']; ?>" target="_blank">
+                            <?php echo $data['nhande']; ?>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-4 d-flex align-items-center p-0">
+                        <img class="w-100 border" src="<?php echo $data['anhbia']; ?>" />
+                    </div>
+                    <div class="col-lg-10 col-md-6 col-8 book_information">
+                        <p><b>Thông tin xuất bản: </b> <span><?php echo $data['thongtinxb']; ?></span></p>
+                        <p><b>Tác giả: </b><span><?php echo $data['tacgia']; ?></span></p>
+                        <p><b>Bộ sưu tập: </b><span><?php echo $data['bosuutap']; ?></span></p>
+                        <p><b>Vị trí kệ sách: </b><span class="vitrikesach"><?php echo $data['vitri']; ?></span></p>
+                    </div>
+                </div>
             </div>
         </div>
         <hr>
@@ -31,3 +37,9 @@
     endwhile;
     ?>
 </div>
+
+<style>
+    .book_information b {
+        font-weight: 900;
+    }
+</style>

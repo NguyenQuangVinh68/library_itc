@@ -1,110 +1,49 @@
-<div id="forgot-change-password" class="container-fluild">
-    <div class="container login-form-box">
-        <h3 class="title text-center mb-5">Thay đổi mật khẩu</h3>
-        <form method="post" action="index.php?controller=password&action=changepasswordforgot_action" class="login-form">
-            <input type="text" placeholder="Mã số sinh viên" name="txtuser" class="">
-
-            <input type="text" placeholder="Mã gửi đến email" name="txtcode" class="">
-
-            <input type="password" placeholder="Mật khẩu mới" name="txtpassnew" class="">
-
-            <div class="forgot-pass">
-                <a href="index.php?controller=login">Trở lại trang Đăng nhập</a>
-            </div>
-
-            <button class="button" name="login" type="submit">Lấy lại mật khẩu</button>
-        </form>
+<div class="container my-5">
+    <div class="login">
+        <div class="card border-0 shadow p-5">
+            <h3 class="text-center mb-4">Thay đổi mật khẩu</h3>
+            <form method="post" action="index.php?controller=password&action=changepasswordforgot_action">
+                <input type="text" placeholder="Mã số sinh viên" name="txtuser" class="form-control mb-3">
+                <input type="text" placeholder="Mã gửi đến email" name="txtcode" class="form-control mb-3">
+                <input type="password" placeholder="Mật khẩu mới" name="txtpassnew" class="form-control mb-3">
+                <div class="mb-3 text-center">
+                    <a href="index.php?controller=login">Trở lại </a>
+                </div>
+                <button class="btn btn-primary w-100" name="login" type="submit">Lấy lại mật khẩu</button>
+            </form>
+        </div>
     </div>
 </div>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700;800&display=swap');
+    .login {
+        width: 30%;
+        margin: 0 auto;
+    }
 
-* {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 62.5%;
-}
+    .login input:focus {
+        box-shadow: none;
+    }
 
-#forgot-change-password {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
-    background-color: #f0f2f5;
-}
 
-#forgot-change-password .login-form-box {
-    width: 400px;
-    margin: 0 auto;
-    position: relative;
-    height: auto;
-    top: 50%;
-    transform: translate(0, -50%);
-    border-radius: 10px;
-    padding: 30px;
-    background-color: #fff;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
+    @media only screen and (max-width: 1024px) {
+        .login {
+            width: 40% !important;
+            margin: 0 auto;
+        }
+    }
 
-#forgot-change-password .login-form {
-    width: 100%;
-    text-align: center;
-}
+    @media only screen and (max-width: 768px) {
+        .login {
+            width: 50% !important;
+            margin: 0 auto;
+        }
+    }
 
-#forgot-change-password .login-form input,
-#forgot-change-password .login-form button {
-    font-size: 1.3rem;
-    border-radius: 5px;
-    padding: 10px;
-
-    width: 80%;
-}
-
-#forgot-change-password .login-form input {
-    color: #333;
-    outline: none;
-    border: 1px solid #dddfe2;
-
-    margin-bottom: 15px;
-}
-
-#forgot-change-password .login-form button {
-    color: #fff;
-    border: none;
-    background-color: #1877f2;
-}
-
-#forgot-change-password .login-form button:hover {
-    background-color: #166fe5;
-}
-
-#forgot-change-password .login-form input:focus {
-    border-color: #1b74e4;
-}
-
-#forgot-change-password ::placeholder {
-    color: #90949c;
-}
-
-#forgot-change-password :-ms-input-placeholder {
-    /* Internet Explorer 10-11 */
-    color: #90949c;
-}
-
-#forgot-change-password ::-ms-input-placeholder {
-    /* Microsoft Edge */
-    color: #90949c;
-}
-
-#forgot-change-password .forgot-pass a {
-    font-size: 10px;
-    margin-bottom: 15px;
-    display: block;
-
-    color: #1877f2;
-}
+    @media only screen and (max-width: 390px) {
+        .login {
+            width: 100% !important;
+            margin: 0 auto;
+        }
+    }
 </style>

@@ -36,7 +36,6 @@ switch ($action) {
         break;
 
     case 'edit_action':
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $tentheloaiNew = mb_strtolower($_POST['tentheloai'], "UTF-8");
@@ -64,9 +63,6 @@ switch ($action) {
                 echo '<script> alert("Ban chưa đổi tên mới!!!"); </script>';
                 echo '<meta http-equiv="refresh" content="0;URL=' . $_SERVER['HTTP_REFERER'] . '">';
             }
-            // chuyển về chữ thường
-
-
         }
         break;
 
@@ -78,12 +74,8 @@ switch ($action) {
 
         // delete books by category
         $category->deleteCategory($id);
-
         $book = new BookModel();
-
-
         $book->deleteBookByCategory($tentheloai);
-
         echo "<script> alert('Deleted id = " . $id . " success'); </script>";
         // echo '<script> alert("Delete success!!!"); </script>';
         echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=category&action=default' />";

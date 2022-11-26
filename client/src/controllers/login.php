@@ -17,6 +17,7 @@ switch ($action) {
             if ($result) {
                 $_SESSION['user'] = $result["masv"];
                 $_SESSION['tenuser'] = $result["tensv"];
+                $_SESSION['gender'] = $result['gioitinh'];
                 echo "<script> alert('Đăng nhập thành công');</script>";
                 echo "<meta http-equiv='refresh' content='0;url=./index.php' />";
             } else {
@@ -28,6 +29,7 @@ switch ($action) {
     case 'logout':
         unset($_SESSION['user']);
         unset($_SESSION['tenuser']);
+        unset($_SESSION['gender']);
         echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=login' />";
         break;
 }

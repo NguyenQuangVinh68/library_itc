@@ -88,6 +88,18 @@ class BookModel
         $result = $db->getList($select);
         return $result;
     }
+    public function getBorrowByStudentCode($stu_code)
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT sa.masach, sa.nhande, sa.anhbia, sa.tacgia
+                FROM danhsachmuon ds
+                INNER JOIN chitietmuon ct
+                ON ds.mamuon = ct.mamuon
+                INNER JOIN sach sa
+                ON sa.masach = ct.masach
+                WHERE ds.masv = '$stu_code'";
+        return $db->getList($sql);
+    }
 
 
     // tìm kiếm theo category

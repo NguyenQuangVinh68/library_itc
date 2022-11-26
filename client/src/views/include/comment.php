@@ -7,10 +7,10 @@
     ?>
     <div class=" mt-5">
         <div class="col-lg-8 ">
-            <h5><?php echo isset($result) && isset($_SESSION['user']) ? count($resultFetchAll) : 0; ?> bình luận</h5>
+            <h5 class="fs-6"><?php echo isset($result) && isset($_SESSION['user']) ? count($resultFetchAll) : 0; ?> bình luận</h5>
             <div class="card p-3 border-0 shadow-sm">
                 <form action="index.php?controller=comment&action=add_comment" method="post">
-                    <textarea name="noidungbl" id="noidungbl" class="form-control" style="resize: none;" placeholder="Viết bình luận ..." required></textarea>
+                    <textarea name="noidungbl" id="noidungbl" class="form-control" style="resize: none;" placeholder="Viết bình luận..." required></textarea>
                     <div class="d-flex  align-items-center py-3">
                         <!-- rating -->
                         <div id="rateYo"></div>
@@ -43,7 +43,7 @@
                                 <div class="show-replies"><?php echo isset($replyFetchAll) ? count($replyFetchAll) . " phản hồi" : "" ?></div>
                             </div>
                             <div id="feedback" class="check">
-                                <div class="btn btn-primary feedback__btn">trả lời</div>
+                                <div class="btn btn-primary feedback__btn " style="font-size: 12px;">trả lời</div>
                                 <div class="form__feedback">
                                     <form action="index.php?controller=comment&action=add_reply" method="post">
                                         <input type="text" name="noidungbl" class="form-control" autofocus required>
@@ -126,12 +126,11 @@
 <script>
     $(function() {
         $("#rateYo").rateYo({
-            starWidth: "30px",
+            starWidth: "20px",
             normalFill: "#A0A0A0",
             fullStar: true,
             rating: 5,
             onSet: function(rating, rateYoInstance) {
-                alert(typeof rating);
                 $("#rating").val(rating);
             }
         });
