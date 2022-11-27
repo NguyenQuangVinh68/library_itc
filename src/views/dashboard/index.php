@@ -85,98 +85,115 @@ error_reporting(E_ALL);
 </div>
 
 <div class="my-5">
-    <h5>LỊCH SỬ MƯỢN GẦN NHẤT</h5>
+    <div class="mb-5">
+        <h5>LỊCH SỬ MƯỢN GẦN NHẤT</h5>
 
-    <table class="table table-bordered ">
-        <thead class="table-success">
-            <tr>
-                <th>Mã sinh viên</th>
-                <th>Mã sách</th>
-                <th>Nhan đề</th>
-                <th>Ngày mượn</th>
-                <th>Hẹn trả</th>
-                <th>Mã Admin</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-            </tr>
-            <?php
-            $BookModel = new HistoryModel();
-            $month = date('m');
-            $result = $BookModel->getBorrowList();
-
-            while ($item = $result->fetch()) :
-            ?>
+        <table class="table table-bordered ">
+            <thead class="table-success">
                 <tr>
-                    <td><?php echo $item['masv'] ?></td>
-                    <td><?php echo $item['masach'] ?></td>
-                    <td><?php echo $item['nhande'] ?></td>
-                    <td><?php echo $item['ngaymuon'] ?></td>
-                    <td><?php echo $item['ngaytra'] ?></td>
-                    <td><?php echo $item['maadm'] ?></td>
+                    <th>Mã sinh viên</th>
+                    <th>Mã sách</th>
+                    <th>Nhan đề</th>
+                    <th>Ngày mượn</th>
+                    <th>Hẹn trả</th>
+                    <th>Mã Admin</th>
                 </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php
+                $BookModel = new HistoryModel();
+                $month = date('m');
+                $result = $BookModel->getBorrowList();
 
-    <h5>LỊCH SỬ TRẢ GẦN NHẤT</h5>
-    <table class="table table-bordered ">
-        <thead class="table-danger">
-            <tr>
-                <th>Mã sinh viên</th>
-                <th>Mã sách</th>
-                <th>Nhan đề</th>
-                <th>Mã admin</th>
-                <th>Ngày trả</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $result = $BookModel->getReturnList();
-            while ($item = $result->fetch()) :
-            ?>
+                while ($item = $result->fetch()) :
+                ?>
+                    <tr>
+                        <td><?php echo $item['masv'] ?></td>
+                        <td><?php echo $item['masach'] ?></td>
+                        <td><?php echo $item['nhande'] ?></td>
+                        <td><?php echo $item['ngaymuon'] ?></td>
+                        <td><?php echo $item['ngaytra'] ?></td>
+                        <td><?php echo $item['maadm'] ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+            <tfoot>
                 <tr>
-                    <td><?php echo $item['masv'] ?></td>
-                    <td><?php echo $item['masach'] ?></td>
-                    <td><?php echo $item['nhande'] ?></td>
-                    <td><?php echo $item['maadm'] ?></td>
-                    <td><?php echo $item['ngaytra'] ?></td>
+                    <td colspan="6 " class="text-end"><a href="index.php?controller=history&action=getallborrowing">Xem chi tiết</a></td>
                 </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
+            </tfoot>
+        </table>
+    </div>
 
-    <h5>LỊCH SỬ BÁO MẤT GẦN NHẤT</h5>
-    <table class="table table-bordered ">
-        <thead class="table-secondary">
-            <tr>
-                <th>Mã sách</th>
-                <th>Nhan đề</th>
-                <th>Mã sinh viên</th>
-                <th>Ngày mượn</th>
-                <th>Ngày báo mất</th>
-                <th>Tiền đóng phạt</th>
-                <th>Mã thủ thư</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-            $result = $BookModel->getLoseBook();
-            while ($item = $result->fetch()) :
-            ?>
+    <div class="mb-5">
+        <h5>LỊCH SỬ TRẢ GẦN NHẤT</h5>
+        <table class="table table-bordered ">
+            <thead class="table-danger">
                 <tr>
-                    <td><?php echo $item['masach'] ?></td>
-                    <td><?php echo $item['nhande'] ?></td>
-                    <td><?php echo $item['masv'] ?></td>
-                    <td><?php echo $item['ngaymuon'] ?></td>
-                    <td><?php echo $item['ngaybaomat'] ?></td>
-                    <td><?php echo $item['tienphat'] ?></td>
-                    <td><?php echo $item['maadm'] ?></td>
+                    <th>Mã sinh viên</th>
+                    <th>Mã sách</th>
+                    <th>Nhan đề</th>
+                    <th>Mã admin</th>
+                    <th>Ngày trả</th>
                 </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php
+                $result = $BookModel->getReturnList();
+                while ($item = $result->fetch()) :
+                ?>
+                    <tr>
+                        <td><?php echo $item['masv'] ?></td>
+                        <td><?php echo $item['masach'] ?></td>
+                        <td><?php echo $item['nhande'] ?></td>
+                        <td><?php echo $item['maadm'] ?></td>
+                        <td><?php echo $item['ngaytra'] ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6 " class="text-end"><a href="index.php?controller=history&action=getallreturn">Xem chi tiết</a></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="mb-5">
+        <h5>LỊCH SỬ BÁO MẤT GẦN NHẤT</h5>
+        <table class="table table-bordered ">
+            <thead class="table-secondary">
+                <tr>
+                    <th>Mã sách</th>
+                    <th>Nhan đề</th>
+                    <th>Mã sinh viên</th>
+                    <th>Ngày mượn</th>
+                    <th>Ngày báo mất</th>
+                    <th>Tiền đóng phạt</th>
+                    <th>Mã Admin</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $result = $BookModel->getLoseBook();
+                while ($item = $result->fetch()) :
+                ?>
+                    <tr>
+                        <td><?php echo $item['masach'] ?></td>
+                        <td><?php echo $item['nhande'] ?></td>
+                        <td><?php echo $item['masv'] ?></td>
+                        <td><?php echo $item['ngaymuon'] ?></td>
+                        <td><?php echo $item['ngaybaomat'] ?></td>
+                        <td><?php echo $item['tienphat'] ?></td>
+                        <td><?php echo $item['maadm'] ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7" class="text-end"><a href="index.php?controller=history&action=getall_losted">Xem chi tiết</a></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
     <!-- con footer phía dưới bên trong -->

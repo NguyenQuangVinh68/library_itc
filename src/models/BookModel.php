@@ -122,7 +122,11 @@ class BookModel
     public function getBorrowByCodeStudent($codeStudent)
     {
         $db  = new ConnectModel();
-        $sql = "SELECT mamuon FROM danhsachmuon WHERE masv = '$codeStudent' ORDER BY mamuon DESC LIMIT 1";
+        $sql = "SELECT mamuon 
+                FROM danhsachmuon 
+                WHERE masv = '$codeStudent' 
+                ORDER BY mamuon 
+                DESC LIMIT 1";
         return $db->getInstance($sql);
     }
 

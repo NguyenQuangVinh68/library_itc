@@ -4,6 +4,7 @@ class HistoryModel
     public function __construct()
     {
     }
+
     public function getBorrowList()
     {
         $db = new ConnectModel();
@@ -15,6 +16,7 @@ class HistoryModel
         $result = $db->getList($sql);
         return $result;
     }
+
     public function getBorrowListByID($masv)
     {
         $db = new ConnectModel();
@@ -27,6 +29,7 @@ class HistoryModel
         $result = $db->getList($sql);
         return $result;
     }
+
     public function getReturnList()
     {
         $db = new ConnectModel();
@@ -34,13 +37,16 @@ class HistoryModel
         $result = $db->getList($sql);
         return $result;
     }
-    public function getLoseBook(){
+
+    public function getLoseBook()
+    {
         $db = new ConnectModel();
         $sql = "SELECT * FROM danhsachmat limit 5";
         $result = $db->getList($sql);
         return $result;
     }
-    public function returnABook($mamuon, $masach,$masv)
+
+    public function returnABook($mamuon, $masach, $masv)
     {
         $db = new ConnectModel();
         $sql = "update sach set soluong = soluong+1 WHERE masach = '$masach'";
@@ -57,6 +63,7 @@ class HistoryModel
         $result = $db->exec($sql2);
         return $result;
     }
+
     public function getInfoLoseBook($mamuon, $masach)
     {
         $db = new ConnectModel();
@@ -65,10 +72,11 @@ class HistoryModel
         $res = $db->getInstance($n);
         return $res;
     }
-    public function loseABook($masv, $masach, $nhande, $ngaymuon, $ngaybaomat, $tienphat, $maadm,$mamuon)
+
+    public function loseABook($masv, $masach, $nhande, $ngaymuon, $ngaybaomat, $tienphat, $maadm, $mamuon)
     {
         $db = new ConnectModel();
-        
+
         // thực hiện thêm dòng vào bảng danhsachmat
         $sql = "insert into danhsachmat(masv,masach,nhande,ngaymuon,ngaybaomat,tienphat,maadm) values('$masv','$masach','$nhande','$ngaymuon','$ngaybaomat','$tienphat','$maadm')";
         $result = $db->exec($sql);
@@ -77,6 +85,7 @@ class HistoryModel
         $result = $db->exec($sql);
         return $result;
     }
+
     public function checkExistBorrowing($mamuon)
     {
         $db = new ConnectModel();
@@ -84,18 +93,37 @@ class HistoryModel
         $result = $db->getInstance($sql);
         return $result;
     }
+
     public function removeBorrowId($mamuon)
     {
         $db = new ConnectModel();
         $sql = "delete from danhsachmuon where mamuon = '$mamuon' ";
         $db->exec($sql);
     }
+
     /**
      * Lấy danh sách sinh viên mượn sách quá hạn
      */
-    public function getListLated(){
+    public function getListLated()
+    {
         $db = new ConnectModel();
         $sql = "select sv.masv, sv.tensv, c.nhande, d.ngaymuon, d.ngaytra from danhsachmuon d, chitietmuon c, sinhvien sv where d.mamuon = c.mamuon and d.masv = sv.masv";
+        $result = $db->getList($sql);
+        return $result;
+    }
+
+    // chi tiết từng column in dashboard
+    public function getDetailInDashboard($column)
+    {
+        if ($column == "danhsachmuon") {
+            $sql = "SELECT ds.masv, ds.ngaytra, ds.maadm, ct.masach, ct.nhande,ds.ngaymuon 
+                    FROM $column ds
+                    INNER JOIN chitietmuon ct
+                    ON ds.mamuon = ct.mamuon";
+        } else {
+            $sql = "SELECT * FROM $column";
+        }
+        $db = new ConnectModel();
         $result = $db->getList($sql);
         return $result;
     }

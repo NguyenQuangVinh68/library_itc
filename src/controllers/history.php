@@ -29,7 +29,7 @@ switch ($action) {
             $masach = $_GET['masach'];
             $masv = $_SESSION['masv'];
             $h = new HistoryModel();
-            $result = $h->returnABook($mamuon, $masach,$masv);
+            $result = $h->returnABook($mamuon, $masach, $masv);
             if ($result) {
                 $result = $h->checkExistBorrowing($mamuon);
                 if (!$result) {
@@ -52,8 +52,8 @@ switch ($action) {
             $ngaybaomat = date('Y-m-d');
             $tienphat = $res['gia'];
             $maadm = $res['maadm'];
-            $result = $h->loseABook($masv, $masach, $nhande, $ngaymuon, $ngaybaomat, $tienphat, $maadm,$mamuon);
-            
+            $result = $h->loseABook($masv, $masach, $nhande, $ngaymuon, $ngaybaomat, $tienphat, $maadm, $mamuon);
+
             if ($result) {
                 $result = $h->checkExistBorrowing($mamuon);
                 if (!$result) {
@@ -67,6 +67,22 @@ switch ($action) {
     case "lated":
         include "./src/views/history/lated.php";
         break;
+    case "getallborrowing":
+        $book = new HistoryModel();
+        $column = "danhsachmuon";
+        $result = $book->getDetailInDashboard($column);
+        include "./src/views/history/index.php";
+        break;
+    case "getall_losted":
+        $book = new HistoryModel();
+        $column = "danhsachmat";
+        $result = $book->getDetailInDashboard($column);
+        include "./src/views/history/index.php";
+        break;
+    case "getallreturn":
+        $book = new HistoryModel();
+        $column = "danhsachtra";
+        $result = $book->getDetailInDashboard($column);
+        include "./src/views/history/index.php";
+        break;
 }
-
-?>
