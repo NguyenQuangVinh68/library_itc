@@ -21,7 +21,7 @@ function active($currect_page)
                 <div class="text__logo">ITC Library</div>
             </div>
         </div>
-        <div class="col-lg-4 col-mg-4 col-6 d-flex justify-content-end align-items-center">
+        <div class="col-lg-4 col-md-4 col-6 d-flex justify-content-end align-items-center">
             <?php if (!isset($_SESSION['user'])) : ?>
                 <a class="btn btn-outline-dark" href="index.php?controller=login">Đăng nhập</a>
             <?php else : ?>
@@ -139,6 +139,7 @@ function active($currect_page)
     #header__menu .nav-link.active {
         border-bottom: 2px solid #acb2ca;
     }
+
 
     @media only screen and (max-width: 390px) {
         .header__top {

@@ -2,7 +2,7 @@
 <div class="banner text-white">
     <div class="d-flex align-items-center justify-content-center" style="height: 450px;">
         <div>
-            <h1 id="title_search" class="mb-4">Find items in libraries near you</h1>
+            <h1 id="title_search" class="mb-4">Tìm kiếm sách trong thư viện</h1>
             <div class="d-flex justify-content-center align-items-center ">
                 <form action="index.php?controller=book&action=onsearch" method="post" class="d-flex align-items-center w-100 bg-white  px-3 rounded  form-search">
                     <div class="py-2 w-50  border-end">
@@ -13,8 +13,8 @@
                             <option value="theloai">Thể loại</option>
                         </select>
                     </div>
-                    <input type="text" name="txtSearch" id="txtSearch" class=" form-control  border-0" placeholder="Search anything" required autofocus>
-                    <button type="submit" class="btn btn-primary " style="background-color: #2075ba;">Search</button>
+                    <input type="text" name="txtSearch" id="txtSearch" class=" form-control  border-0" placeholder="Bạn cần tìm..." required autofocus>
+                    <button type="submit" class="btn btn-primary " style="background-color: #2075ba;"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>
         </div>
@@ -63,35 +63,24 @@
         </div>
 
         <div class="my-5">
-            <h3 class="text-center "><a href="">Top 100 Novels in Libraries</a></h3>
+            <h3 class="text-center "><a href="" style="font-weight: 900;">7 đầu sách mới nhất</a></h3>
             <div class="slider my-5">
-                <div class="card border-0">
-                    <div class="card-body">
-                        <img class="w-100" src="https://coverart.oclc.org/ImageWebSvc/oclc/+-+1819544586_140.jpg?allowDefault=false&client=WorldcatOrgUI" alt="">
+                <?php
+                $book = new BookModel();
+                $result  = $book->getNewBook();
+                while ($data = $result->fetch()) :
+                ?>
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <a href="index.php?controller=book&action=bookdetail&id=<?php echo $data['masach'] ?>">
+                                <img class="w-100" src="<?php echo $data["anhbia"] ?>" alt="">
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="card border-0">
-                    <div class="card-body">
-                        <img class="w-100" src="https://coverart.oclc.org/ImageWebSvc/oclc/+-+9826578756_140.jpg?allowDefault=false&client=WorldcatOrgUI" alt="">
-                    </div>
-                </div>
-                <div class="card border-0">
-                    <div class="card-body">
-                        <img class="w-100" src="https://coverart.oclc.org/ImageWebSvc/oclc/+-+1819544586_140.jpg?allowDefault=false&client=WorldcatOrgUI" alt="">
-                    </div>
-                </div>
-                <div class="card border-0">
-                    <div class="card-body">
-                        <img class="w-100" src="https://coverart.oclc.org/ImageWebSvc/oclc/+-+3430974476_140.jpg?allowDefault=false&client=WorldcatOrgUI" alt="">
-                    </div>
-                </div>
-                <div class="card border-0">
-                    <div class="card-body">
-                        <img class="w-100" src="https://coverart.oclc.org/ImageWebSvc/oclc/+-+1819544586_140.jpg?allowDefault=false&client=WorldcatOrgUI" alt="">
-                    </div>
-                </div>
+                <?php endwhile; ?>
             </div>
         </div>
+    </div>
     </div>
 </section>
 
@@ -123,7 +112,7 @@
     </div>
 </section>
 
-<section class="my-5 bg-light ">
+<!-- <section class="my-5 bg-light ">
     <div class="container py-5 ">
         <h3 class="text-center mb-5">Explore resources in libraries worldwide</h3>
         <div class="row ">
@@ -195,9 +184,71 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <style>
+    /* slider */
+    .slider img {
+        height: 250px !important;
+    }
+
+    .slick-list {
+        padding-bottom: 50px;
+    }
+
+    .slick-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        border: 0px;
+        color: #0c4470;
+        padding: 5px 20px;
+        font-size: 25px;
+    }
+
+    .slick-arrow:hover {
+        background-color: #0c4470;
+        color: #fff;
+        transition: 0.5s;
+    }
+
+    .slick-next {
+        right: 0;
+    }
+
+    .slick-prev {
+        left: 0;
+    }
+
+    .slick-dots {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        padding: 0;
+        transform: translate(-50%, 0);
+        list-style: none;
+        display: flex !important;
+        justify-items: center;
+        justify-content: center;
+        gap: 0 10px;
+    }
+
+    .slick-dots button {
+        font-size: 0px;
+        border: none;
+        width: 15px;
+        height: 15px;
+        border-radius: 100rem;
+        background-color: #eee;
+        transition: all 0.2s linear;
+    }
+
+    .slick-dots .slick-active button {
+        background-color: #105083;
+    }
+
+    /* form search */
     #txtSearch:focus {
         box-shadow: none !important;
     }
@@ -227,14 +278,50 @@
         .form-search button {
             font-size: 12px;
         }
+
+        .slider img {
+            height: 320px !important;
+        }
     }
 </style>
 <script type="text/javascript">
+    $(document).ready(function() {
+        $(".slider").slick({
+            infinite: true,
+            slidesToShow: 6,
+            slidesToScroll: 1,
+            prevArrow: "<button type='button' class='slick-prev slick-arrow'><i class='fa-solid fa-circle-left ' aria-hidden='true'></i></i></button>",
+            nextArrow: "<button type='button' class='slick-next slick-arrow'><i class='fa-solid fa-circle-right ' aria-hidden='true'></i></button>",
+            dots: true,
+            responsive: [{
+                    breakpoint: 1026,
+                    settings: {
+                        slidesToShow: 4,
+                    },
+                },
+                {
+                    breakpoint: 769,
+                    settings: {
+                        slidesToShow: 3,
+                        infinite: false
+                    },
+                },
+                {
+                    breakpoint: 390,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        arrows: false,
+                        infinite: false
+                    },
+                },
+            ],
+        });
+    });
+
     var a = document.getElementById("option_search")
     a.addEventListener("click", () => {
         console.log(a.value);
         document.getElementById("column_search").value = a.value;
     })
 </script>
-
-<script src="./src/assets/js/style-header.js"></script>

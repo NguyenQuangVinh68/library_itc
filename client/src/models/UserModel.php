@@ -15,6 +15,8 @@ class UserModel
 
     public function loginUser($user, $pass)
     {
+
+        $pass = md5($pass);
         $db = new ConnectModel();
         $sql = "SELECT * FROM sinhvien WHERE masv='$user' AND matkhau= '$pass'";
         return  $db->getInstance($sql);

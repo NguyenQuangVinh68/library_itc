@@ -27,63 +27,7 @@
 
 /* arrow slick */
 
-.slider img {
-  height: 200px !important;
-}
 
-.slick-list {
-  padding-bottom: 50px;
-}
-
-.slick-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  border: 0px;
-  color: #0c4470;
-  padding: 5px 20px;
-  font-size: 25px;
-}
-
-.slick-arrow:hover {
-  background-color: #0c4470;
-  color: #fff;
-  transition: 0.5s;
-}
-
-.slick-next {
-  right: 0;
-}
-.slick-prev {
-  left: 0;
-}
-
-.slick-dots {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translate(-50%, 0);
-  list-style: none;
-  display: flex !important;
-  justify-items: center;
-  justify-content: center;
-  gap: 0 10px;
-}
-
-.slick-dots button {
-  font-size: 0px;
-  border: none;
-  width: 15px;
-  height: 15px;
-  border-radius: 100rem;
-  background-color: #eee;
-  transition: all 0.2s linear;
-}
-
-.slick-dots .slick-active button {
-  background-color: #105083;
-}
 
 a {
   text-decoration: none;

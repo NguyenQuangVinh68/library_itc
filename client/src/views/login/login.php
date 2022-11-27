@@ -3,8 +3,14 @@
         <div class="card border-0 shadow p-5">
             <h3 class=" text-center mb-4">Đăng nhập</h3>
             <form action="index.php?controller=login&action=login_action" method="post">
-                <input type="text" placeholder="Mã số sinh viên" name="txtusername" class="form-control mb-4">
-                <input type="password" placeholder="Mật khẩu" name="txtpassword" class="form-control mb-4">
+                <div class="mb-4">
+                    <input type="text" placeholder="Mã số sinh viên" name="txtcode" class="form-control mb-2" required>
+                    <span class="text-danger"><?php echo isset($_GET['mess_code']) ? $_GET['mess_code'] : "" ?></span>
+                </div>
+                <div class="mb-4">
+                    <input type="password" placeholder="Mật khẩu" name="txtpassword" class="form-control mb-2" required>
+                    <span class="text-danger "><?php echo isset($_GET['mess_pass']) ? $_GET['mess_pass'] : "" ?></span>
+                </div>
                 <div class="mb-3 text-center">
                     <a class="mb-3" href="index.php?controller=password">Quên mật khẩu ?</a>
                 </div>

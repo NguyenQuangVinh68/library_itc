@@ -1,4 +1,7 @@
 <?php
+
+use LDAP\Connection;
+
 class BookModel
 {
     public function __construct()
@@ -11,6 +14,15 @@ class BookModel
         $res = $db->getList($select);
         return $res;
     }
+
+    public function getNewBook()
+    {
+        $limit = 7;
+        $db = new ConnectModel();
+        $sql = "SELECT * FROM sach ORDER BY masach DESC LIMIT $limit";
+        return $db->getList($sql);
+    }
+
     public function onSearch($cloumn, $txtSearch)
     {
         $db = new ConnectModel();
