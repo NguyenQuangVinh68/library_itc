@@ -94,9 +94,8 @@ switch ($action) {
         $book = new BookModel();
 
         // kiểm tra sách mượn và sách trả để tiến hành cho mượn tiếp hoặc không 
-        $rowBorrow = $totalborrow = $book->totalborrowByStudent($_SESSION['masv']);
-        $rowReturn = $totalborrow = $book->totalreturnByStudent($_SESSION['masv']);
-        $totalBorrow = $rowBorrow - $rowReturn;
+        $issetBorrowingStudent = $book->totalBorrowingByStudent($_SESSION['masv']);
+        $totalBorrow = $issetBorrowingStudent['tongmuon'];
 
         if ($totalBorrow < $limitBorrowBook  && ($totalBorrow + count($_SESSION['books'])) < $limitBorrowBook) {
             if (isset($_SERVER['REQUEST_METHOD']) == "post") {

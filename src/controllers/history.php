@@ -5,62 +5,91 @@ if (isset($_GET['action'])) {
 }
 switch ($action) {
     case "default":
-        include "./src/views/books/findStudent.php";
+        $history = new HistoryModel();
+        $result = $history->getAllStudentBorrowing();
+        include "./src/views/history/borrowingbystudent.php";
 
         break;
-    case "borrowingbookbyid":
-        if (isset($_SERVER['REQUEST_METHOD']) == "post") {
-            $student_code = $_POST['mssv'];
-            $student = new StudentModel();
-            $result =  $student->getStudentById($student_code);
-            if ($result) {
-                $_SESSION['masv'] = $result['masv'];
-                $_SESSION['tensv'] = $result['tensv'];
-            } else {
-                unset($_SESSION['masv']);
-                unset($_SESSION['tensv']);
+    case "borrowingbookbycode":
+        if (isset($_SERVER['REQUEST_METHOD']) == "get") {
+            if (isset($_GET['masv'])) {
+                $student_code = $_GET['masv'];
+                $history = new HistoryModel();
+                $result = $history->getDetailBorrowByCodeStudent($student_code);
+                include "./src/views/history/detailborrowingbystudent.php";
             }
-            include_once("./src/views/history/borrowing.php");
         }
         break;
     case 'returnaction':
-        if (isset($_GET['mamuon']) & isset($_GET['masach'])) {
+        if (isset($_GET['mamuon']) && isset($_GET['masach'])) {
+
             $mamuon = $_GET['mamuon'];
             $masach = $_GET['masach'];
-            $masv = $_SESSION['masv'];
-            $h = new HistoryModel();
-            $result = $h->returnABook($mamuon, $masach, $masv);
-            if ($result) {
-                $result = $h->checkExistBorrowing($mamuon);
-                if (!$result) {
-                    $h->removeBorrowId($mamuon);
+            $masv = $_GET['masv'];
+
+            $history = new HistoryModel();
+            $history->updateStockInBook($masach);
+
+            $book = new BookModel();
+            $issetBook = $book->getBookID($masach);
+
+            if ($issetBook) {
+                $nhande = $issetBook['nhande'];
+                $ngaytra = date("Y-m-d");
+                $maadm = $_SESSION['admin'];
+
+                $table = "danhsachtra";
+                $data = array(
+                    "mamuon" => $mamuon,
+                    "masv" => $masv,
+                    "masach" => $masach,
+                    "nhande" => $nhande,
+                    "maadm" => $maadm,
+                    "ngaytra" => $ngaytra
+                );
+
+                $result = $history->InsertReturnBook($table, $data);
+                if ($result) {
+                    echo "<script> alert('Đã trả sách!'); </script>";
+                    echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=history' />";
+                } else {
+                    echo "<script> alert('thất bại'); </script>";
                 }
-                echo "<script> alert('Đã trả sách!'); </script>";
-                echo "<meta http-equiv='refresh' content='0;url=./index.php' />";
             }
         }
         break;
     case 'losebook':
-        if (isset($_GET['mamuon']) & isset($_GET['masach'])) {
-            $mamuon = $_GET['mamuon'];
+        if (isset($_GET['masv']) && isset($_GET['masach'])) {
             $masach = $_GET['masach'];
-            $masv = $_SESSION['masv'];
-            $h = new HistoryModel();
-            $res = $h->getInfoLoseBook($mamuon, $masach);
-            $nhande = $res['nhande'];
-            $ngaymuon = $res['ngaymuon'];
-            $ngaybaomat = date('Y-m-d');
-            $tienphat = $res['gia'];
-            $maadm = $res['maadm'];
-            $result = $h->loseABook($masv, $masach, $nhande, $ngaymuon, $ngaybaomat, $tienphat, $maadm, $mamuon);
+            $masv = $_GET['masv'];
 
-            if ($result) {
-                $result = $h->checkExistBorrowing($mamuon);
-                if (!$result) {
-                    $h->removeBorrowId($mamuon);
+            $book = new BookModel();
+            $issetBook = $book->getBookID($masach);
+
+
+            if ($issetBook) {
+                $history = new HistoryModel();
+
+                $nhande = $issetBook['nhande'];
+                $ngaybaomat = date('Y-m-d');
+                $tienphat = $issetBook['gia'] * 2;
+                $maadm = $_SESSION['admin'];
+
+                $data = array(
+                    "masv" => $masv,
+                    "masach" => $masach,
+                    "nhande" => $nhande,
+                    "ngaybaomat" => $ngaybaomat,
+                    "tienphat" => $tienphat,
+                    "maadm" => $maadm
+                );
+
+                $result = $history->insertLoseABook($table, $data);
+
+                if ($result) {
+                    echo "<script> alert('Đã báo mất sách!'); </script>";
+                    echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=history' />";
                 }
-                echo "<script> alert('Đã báo mất sách!'); </script>";
-                echo "<meta http-equiv='refresh' content='0;url=./index.php' />";
             }
         }
         break;

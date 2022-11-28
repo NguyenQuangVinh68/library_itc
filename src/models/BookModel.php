@@ -38,13 +38,12 @@ class BookModel
         $db->exec($query);
     }
 
-    public function getBookID($id)
+    public function getBookID($masach)
     {
         $db = new ConnectModel();
-        $sql = "SELECT * FROM sach where masach= '$id'";
-        $result = $db->getList($sql);
-        $set = $result->fetch();
-        return $set;
+        $sql = "SELECT * FROM sach where masach= $masach";
+        $result = $db->getInstance($sql);
+        return $result;
     }
 
     public function updateStockInBook($masach, $soluong)
@@ -98,25 +97,21 @@ class BookModel
 
     // quản lý hoạt động
 
-    public function totalborrowByStudent($codeStudent)
+    public function totalBorrowingByStudent($codeStudent)
     {
         $db = new ConnectModel();
-        $sql = "SELECT * 
-                FROM danhsachmuon DS
-                INNER JOIN chitietmuon CT
-                ON DS.mamuon = CT.mamuon 
-                WHERE DS.masv = '$codeStudent'";
-        $row = $db->getList($sql);
-        return count($row->fetchAll());
-    }
-    public function totalreturnByStudent($codeStudent)
-    {
-        $db = new ConnectModel();
-        $sql = "SELECT * 
-                FROM danhsachtra
-                WHERE masv = '$codeStudent'";
-        $row = $db->getList($sql);
-        return count($row->fetchAll());
+        $sql = "SELECT count(muon.masv) as tongmuon
+                FROM ( 
+                    SELECT ct.masach, ct.nhande, ds.mamuon, ds.masv,ds.tensv, ds.maadm 
+                    FROM chitietmuon ct 
+                    INNER JOIN danhsachmuon ds 
+                    ON ct.mamuon = ds.mamuon
+                    WHERE ds.masv = '$codeStudent'
+                    GROUP BY ct.id DESC) muon 
+                WHERE muon.mamuon NOT IN (SELECT mamuon FROM danhsachtra) 
+                OR muon.masach NOT IN (SELECT masach FROM danhsachtra)
+                GROUP BY muon.masv DESC";
+        return $db->getInstance($sql);
     }
 
     public function getBorrowByCodeStudent($codeStudent)
@@ -162,6 +157,8 @@ class BookModel
         echo $sql;
         return $db->exec($sql);
     }
+
+
 
     // chart
 

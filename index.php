@@ -91,9 +91,9 @@ session_start();
             })
         }
 
-        function confirmation2(masach, mamuon) {
+        function confirmation2(masach, mamuon, masv) {
             Swal.fire({
-                title: 'Cuốn sâch này đã mất?',
+                title: 'Cuốn sách này đã mất?',
                 text: "Bạn không thể hoàn tác!",
                 icon: 'warning',
                 showCancelButton: true,
@@ -103,7 +103,7 @@ session_start();
                 cancelButtonText: "Hủy lệnh"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = `index.php?controller=history&action=losebook&masach=${masach}&mamuon=${mamuon}`;
+                    window.location.href = `index.php?controller=history&action=losebook&masach=${masach}&mamuon=${mamuon}&masv=${masv}`;
                 }
             })
         }

@@ -17,6 +17,40 @@ class HistoryModel
         return $result;
     }
 
+    public function getAllStudentBorrowing()
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT muon.masv,muon.tensv,muon.maadm, count(muon.masv) as tongmuon
+                FROM ( 
+                    SELECT ct.masach, ct.nhande, ds.mamuon, ds.masv,ds.tensv, ds.maadm 
+                    FROM chitietmuon ct 
+                    INNER JOIN danhsachmuon ds 
+                    ON ct.mamuon = ds.mamuon
+                    GROUP BY ct.id DESC) muon 
+                WHERE muon.mamuon NOT IN (SELECT mamuon FROM danhsachtra) 
+                OR muon.masach NOT IN (SELECT masach FROM danhsachtra)
+                GROUP BY muon.masv DESC";
+
+
+        $result = $db->getList($sql);
+        return $result;
+    }
+
+    public function getDetailBorrowByCodeStudent($student_code)
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT muon.masv, muon.tensv, muon.masach, muon.nhande, muon.maadm, muon.mamuon
+                FROM ( SELECT ct.masach, ct.nhande, ds.mamuon, ds.masv,ds.tensv, ds.maadm 
+                        FROM chitietmuon ct 
+                        INNER JOIN danhsachmuon ds 
+                        ON ct.mamuon = ds.mamuon
+                        WHERE ds.masv = '$student_code' 
+                        GROUP BY ct.id DESC) muon 
+                WHERE muon.mamuon NOT IN (SELECT mamuon FROM danhsachtra) 
+                OR muon.masach NOT IN (SELECT masach FROM danhsachtra) ";
+        return $db->getList($sql);
+    }
+
     public function getBorrowListByID($masv)
     {
         $db = new ConnectModel();
@@ -46,44 +80,11 @@ class HistoryModel
         return $result;
     }
 
-    public function returnABook($mamuon, $masach, $masv)
+
+    public function insertLoseABook($table, $data)
     {
         $db = new ConnectModel();
-        $sql = "update sach set soluong = soluong+1 WHERE masach = '$masach'";
-        $db->exec($sql);
-        //get info book 
-        $n = "SELECT c.nhande, d.maadm from danhsachmuon d, chitietmuon c where d.mamuon = '$mamuon' and c.mamuon ='$mamuon' and c.masach = '$masach'";
-        $res = $db->getInstance($n);
-        $nhande = $res['nhande'];
-        $maadm = $res['maadm'];
-        $ngaytra = date("Y-m-d");
-        $sql3 = "insert into danhsachtra(matra, masv, masach, nhande, maadm, ngaytra) values(null, '$masv', '$masach', '$nhande', '$maadm', '$ngaytra')";
-        $result = $db->exec($sql3);
-        $sql2 = "delete from chitietmuon where mamuon = '$mamuon' and masach = '$masach'";
-        $result = $db->exec($sql2);
-        return $result;
-    }
-
-    public function getInfoLoseBook($mamuon, $masach)
-    {
-        $db = new ConnectModel();
-        // truy xuất các giá trị cần thêm vào bảng trước khi thực hiện thêm
-        $n = "SELECT c.nhande, d.ngaymuon, d.maadm, s.gia from danhsachmuon d, chitietmuon c, sach s where d.mamuon = '$mamuon' and c.mamuon ='$mamuon' and c.masach = '$masach' and s.masach = '$masach'";
-        $res = $db->getInstance($n);
-        return $res;
-    }
-
-    public function loseABook($masv, $masach, $nhande, $ngaymuon, $ngaybaomat, $tienphat, $maadm, $mamuon)
-    {
-        $db = new ConnectModel();
-
-        // thực hiện thêm dòng vào bảng danhsachmat
-        $sql = "insert into danhsachmat(masv,masach,nhande,ngaymuon,ngaybaomat,tienphat,maadm) values('$masv','$masach','$nhande','$ngaymuon','$ngaybaomat','$tienphat','$maadm')";
-        $result = $db->exec($sql);
-        //xóa dòng chi tiết mượn
-        $sql = "delete from chitietmuon where mamuon = '$mamuon' and masach = '$masach'";
-        $result = $db->exec($sql);
-        return $result;
+        return $db->insert($table, $data);
     }
 
     public function checkExistBorrowing($mamuon)
@@ -92,13 +93,6 @@ class HistoryModel
         $sql = "Select * from chitietmuon where mamuon = '$mamuon'";
         $result = $db->getInstance($sql);
         return $result;
-    }
-
-    public function removeBorrowId($mamuon)
-    {
-        $db = new ConnectModel();
-        $sql = "delete from danhsachmuon where mamuon = '$mamuon' ";
-        $db->exec($sql);
     }
 
     /**
@@ -126,5 +120,22 @@ class HistoryModel
         $db = new ConnectModel();
         $result = $db->getList($sql);
         return $result;
+    }
+
+    // update stock in sach
+
+    public function updateStockInBook($masach)
+    {
+        $db = new ConnectModel();
+        $sql = "UPDATE sach SET soluong = soluong + 1 WHERE masach = $masach";
+        $result = $db->exec($sql);
+        return $result;
+    }
+
+    // insert in table danhsachtra
+    public function InsertReturnBook($table, $data)
+    {
+        $db = new ConnectModel();
+        return $db->insert($table, $data);
     }
 }

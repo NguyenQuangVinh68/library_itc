@@ -167,7 +167,6 @@ error_reporting(E_ALL);
                     <th>Mã sách</th>
                     <th>Nhan đề</th>
                     <th>Mã sinh viên</th>
-                    <th>Ngày mượn</th>
                     <th>Ngày báo mất</th>
                     <th>Tiền đóng phạt</th>
                     <th>Mã Admin</th>
@@ -182,7 +181,6 @@ error_reporting(E_ALL);
                         <td><?php echo $item['masach'] ?></td>
                         <td><?php echo $item['nhande'] ?></td>
                         <td><?php echo $item['masv'] ?></td>
-                        <td><?php echo $item['ngaymuon'] ?></td>
                         <td><?php echo $item['ngaybaomat'] ?></td>
                         <td><?php echo $item['tienphat'] ?></td>
                         <td><?php echo $item['maadm'] ?></td>

@@ -34,7 +34,6 @@ if (isset($result)) :
                         <th>Ngày mượn</th>
                         <th>Ngày trả</th>
                     <?php elseif ($actiontmp == 2) : ?>
-                        <th>Ngày mượn</th>
                         <th>Ngày báo mất</th>
                         <th>Tiền đóng phạt</th>
                     <?php else : ?>
