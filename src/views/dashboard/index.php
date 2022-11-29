@@ -86,7 +86,7 @@ error_reporting(E_ALL);
 
 <div class="my-5">
     <div class="mb-5">
-        <h5>LỊCH SỬ MƯỢN GẦN NHẤT</h5>
+        <h5>LỊCH SỬ MƯỢN </h5>
 
         <table class="table table-bordered ">
             <thead class="table-success">
@@ -126,7 +126,7 @@ error_reporting(E_ALL);
     </div>
 
     <div class="mb-5">
-        <h5>LỊCH SỬ TRẢ GẦN NHẤT</h5>
+        <h5>LỊCH SỬ TRẢ </h5>
         <table class="table table-bordered ">
             <thead class="table-danger">
                 <tr>

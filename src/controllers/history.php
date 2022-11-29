@@ -114,4 +114,17 @@ switch ($action) {
         $result = $book->getDetailInDashboard($column);
         include "./src/views/history/index.php";
         break;
+    case 'findstudent':
+        if (isset($_POST['textSearch'])) {
+            $masv = $_POST['textSearch'];
+
+            $history = new HistoryModel();
+            $result = $history->getStudentBorrowing($masv);
+            if ($result) {
+                include "./src/views/history/borrowingbystudent.php";
+            } else {
+                echo "<script> alert('Mã sinh viên không tồn tại'); </script>";
+            }
+        }
+        break;
 }

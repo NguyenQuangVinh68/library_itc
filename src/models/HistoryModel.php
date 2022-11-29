@@ -12,6 +12,7 @@ class HistoryModel
                 FROM danhsachmuon d  
                 INNER JOIN chitietmuon c
                 ON c.mamuon = d.mamuon
+                ORDER BY d.ngaymuon DESC
                 LIMIT 5";
         $result = $db->getList($sql);
         return $result;
@@ -26,6 +27,27 @@ class HistoryModel
                     FROM chitietmuon ct 
                     INNER JOIN danhsachmuon ds 
                     ON ct.mamuon = ds.mamuon
+                    GROUP BY ct.id DESC) muon 
+                WHERE muon.mamuon NOT IN (SELECT mamuon FROM danhsachtra) 
+                OR muon.masach NOT IN (SELECT masach FROM danhsachtra)
+                GROUP BY muon.masv DESC";
+
+
+        $result = $db->getList($sql);
+        return $result;
+    }
+
+    // tìm theo $masv cung cấp  
+    public function getStudentBorrowing($masearch)
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT muon.masv,muon.tensv,muon.maadm, count(muon.masv) as tongmuon
+                FROM ( 
+                    SELECT ct.masach, ct.nhande, ds.mamuon, ds.masv,ds.tensv, ds.maadm 
+                    FROM chitietmuon ct 
+                    INNER JOIN danhsachmuon ds 
+                    ON ct.mamuon = ds.mamuon
+                    WHERE ds.masv LIKE '%$masearch%'
                     GROUP BY ct.id DESC) muon 
                 WHERE muon.mamuon NOT IN (SELECT mamuon FROM danhsachtra) 
                 OR muon.masach NOT IN (SELECT masach FROM danhsachtra)
@@ -67,7 +89,10 @@ class HistoryModel
     public function getReturnList()
     {
         $db = new ConnectModel();
-        $sql = "SELECT * FROM danhsachtra limit 5";
+        $sql = "SELECT * 
+                FROM danhsachtra
+                ORDER BY ngaytra DESC
+                LIMIT 5";
         $result = $db->getList($sql);
         return $result;
     }
@@ -113,9 +138,10 @@ class HistoryModel
             $sql = "SELECT ds.masv, ds.ngaytra, ds.maadm, ct.masach, ct.nhande,ds.ngaymuon 
                     FROM $column ds
                     INNER JOIN chitietmuon ct
-                    ON ds.mamuon = ct.mamuon";
+                    ON ds.mamuon = ct.mamuon
+                    ORDER BY ds.ngaymuon  DESC";
         } else {
-            $sql = "SELECT * FROM $column";
+            $sql = "SELECT * FROM $column ";
         }
         $db = new ConnectModel();
         $result = $db->getList($sql);

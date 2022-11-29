@@ -53,15 +53,15 @@ error_reporting(E_ALL);
 
             <tr>
                 <td>Mã sách</td>
-                <td> <input type="text" class="form-control" name="masach" readonly value="<?php if (isset($masach)) echo $masach; ?>" /></td>
+                <td> <input autocomplete="off" type="text" class="form-control" name="masach" readonly value="<?php if (isset($masach)) echo $masach; ?>" /></td>
             </tr>
             <tr>
                 <td>Nhan đề</td>
-                <td> <input type="text" class="form-control" name="nhande" value="<?php if (isset($masach)) echo $nhande; ?>" /></td>
+                <td> <input autocomplete="off" type="text" class="form-control" name="nhande" value="<?php if (isset($masach)) echo $nhande; ?>" /></td>
             </tr>
             <tr>
                 <td>Tác giả</td>
-                <td> <input type="text" class="form-control" name="tacgia" value="<?php if (isset($masach)) echo $tacgia; ?>" /></td>
+                <td> <input autocomplete="off" type="text" class="form-control" name="tacgia" value="<?php if (isset($masach)) echo $tacgia; ?>" /></td>
             </tr>
             <tr>
                 <td>Thể loại</td>
@@ -83,31 +83,57 @@ error_reporting(E_ALL);
             </tr>
             <tr>
                 <td>Bộ sưu tập</td>
-                <td> <input type="text" class="form-control" name="bosuutap" value="<?php if (isset($masach)) echo $bosuutap; ?>" /></td>
+                <td>
+                    <select name="bosutap" class="form-select">
+                        <?php
+                        $selectedKhoa = "";
+                        if (isset($bosuutap) && $bosuutap != "") {
+                            $selectedKhoa = $bosuutap;
+                        }
+                        $khoa = $category->getKhoa();
+                        while ($item = $khoa->fetch()) :
+                        ?>
+                            <option value="<?php echo  $item["tenkhoa"] ?>" <?php if ($selectedKhoa == $item['tenkhoa']) echo "selected='selected'"; ?>><?php echo  $item["tenkhoa"] ?></option>
+                        <?php endwhile; ?>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Chuyên ngành</td>
-                <td> <input type="text" class="form-control" name="chuyennganh" value="<?php if (isset($masach)) echo $chuyennganh; ?>" /></td>
+                <td>
+                    <select name="chuyennganh" class="form-select">
+                        <?php
+                        $selectedNganh = "";
+                        if (isset($chuyennganh) && $chuyennganh != "") {
+                            $selectedNganh = $chuyennganh;
+                        }
+                        $nganh = $category->getNganh();
+                        while ($item = $nganh->fetch()) :
+                        ?>
+                            <option value="<?php echo  $item["tennganh"] ?>" <?php if ($selectedNganh == $item['tennganh']) echo "selected='selected'"; ?>><?php echo  $item["tennganh"] ?></option>
+                        <?php endwhile; ?>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Ảnh bìa (link ảnh)</td>
-                <td> <input type="text" class="form-control" name="anhbia" value="<?php if (isset($masach)) echo $anhbia; ?>" /></td>
+                <td> <input autocomplete="off" type="text" class="form-control" name="anhbia" value="<?php if (isset($masach)) echo $anhbia; ?>" /></td>
             </tr>
             <tr>
                 <td>Thông tin xuất bản</td>
-                <td> <input type="text" class="form-control" name="thongtinxb" value="<?php if (isset($masach)) echo $thongtinxb; ?>" /></td>
+                <td> <input autocomplete="off" type="text" class="form-control" name="thongtinxb" value="<?php if (isset($masach)) echo $thongtinxb; ?>" /></td>
             </tr>
             <tr>
                 <td>Vị trí</td>
-                <td> <input type="text" class="form-control" name="vitri" value="<?php if (isset($masach)) echo $vitri; ?>" /></td>
+                <td> <input autocomplete="off" type="text" class="form-control" name="vitri" value="<?php if (isset($masach)) echo $vitri; ?>" /></td>
             </tr>
             <tr>
                 <td>Số lượng</td>
-                <td> <input type="text" class="form-control" name="soluong" value="<?php if (isset($masach)) echo $soluong; ?>" /></td>
+                <td> <input autocomplete="off" type="text" class="form-control" name="soluong" value="<?php if (isset($masach)) echo $soluong; ?>" /></td>
             </tr>
             <tr>
                 <td>Giá</td>
-                <td> <input type="text" class="form-control" name="gia" value="<?php if (isset($masach)) echo $gia; ?>" /></td>
+                <td> <input autocomplete="off" type="text" class="form-control" name="gia" value="<?php if (isset($masach)) echo $gia; ?>" /></td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: right;">

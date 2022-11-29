@@ -14,11 +14,11 @@ if (isset($result)) :
     <div class="mb-5">
 
         <?php if ($actiontmp == 1) : ?>
-            <h3 class="text-center mb-5">LỊCH SỬ MƯỢN GẦN NHẤT</h3>
+            <h3 class="text-center mb-5">LỊCH SỬ MƯỢN </h3>
         <?php elseif ($actiontmp == 2) : ?>
-            <h3 class="text-center mb-5">LỊCH SỬ BÁO MẤT GẦN NHẤT</h3>
+            <h3 class="text-center mb-5">LỊCH SỬ BÁO MẤT </h3>
         <?php else : ?>
-            <h3 class="text-center mb-5">LỊCH SỬ TRẢ GẦN NHẤT</h3>
+            <h3 class="text-center mb-5">LỊCH SỬ TRẢ </h3>
 
         <?php endif; ?>
 
@@ -52,13 +52,14 @@ if (isset($result)) :
                         <td><?php echo $item['masach'] ?></td>
                         <td><?php echo $item['nhande'] ?></td>
 
+                        <?php if (isset($item['ngaymuon'])) : ?>
+                            <td><?php echo $item['ngaymuon'] ?></td>
+                        <?php endif; ?>
+
                         <?php if (isset($item['ngaytra'])) : ?>
                             <td><?php echo $item['ngaytra'] ?></td>
                         <?php endif; ?>
 
-                        <?php if (isset($item['ngaymuon'])) : ?>
-                            <td><?php echo $item['ngaymuon'] ?></td>
-                        <?php endif; ?>
 
                         <?php if (isset($item['ngaybaomat'])) : ?>
                             <td><?php echo $item['ngaybaomat'] ?></td>

@@ -41,4 +41,23 @@ class CategoryModel
         $sql = "DELETE FROM $this->table WHERE id = '$id'";
         $db->exec($sql);
     }
+
+
+    // get khoa
+
+    public function getKhoa()
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT * FROM khoa";
+        return $db->getList($sql);
+    }
+
+
+    // get ngành
+    public function getNganh()
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT * FROM nganh";
+        return $db->getList($sql);
+    }
 }
