@@ -9,107 +9,49 @@ session_start();
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="src/assets/css/bootstrap.css">
-    <link rel="stylesheet" href="src/assets/vendors/iconly/bold.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/icon" href="./src/assets/images/favicon.ico" />
+    <link rel="stylesheet" href="./src/assets/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-    <link rel="stylesheet" href="src/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="src/assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="src/assets/css/app.css">
-    <link rel="stylesheet" href="src/assets/css/style.css">
-    <link rel="shortcut icon" href="src/assets/images/favicon.svg" type="image/x-icon">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700;800&display=swap");
 
-
-    <title>Admin Library</title>
+        * {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- landing page -->
+    <link rel="stylesheet" href="./src/assets/css/style-landingPage.css">
+    <!-- style for comment.php -->
+    <link rel="stylesheet" href="./src/assets/css/style-comment.css">
+    <!-- font awsome -->
+    <script src="https://kit.fontawesome.com/00ab326edb.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+    <title>Library</title>
 </head>
 
 <body>
-    <?php
-    if (!isset($_SESSION['admin'])) :
-    ?>
+    <div id="app">
         <?php
-        include "./src/views/login/login.php";
-
-        $ctrl = 'dashboard';
+        include_once "./src/views/include/header.php";
+        $controller = 'home';
         if (isset($_GET['controller'])) {
-            $ctrl = $_GET['controller'];
+            $controller = $_GET['controller'];
         }
-        include "./src/controllers/" . $ctrl . ".php";
-
-    else :
+        include "./src/controllers/" . $controller . ".php";
+        include_once "./src/views/include/footer.php";
         ?>
-
-
-        <div id="app" class="w-100">
-            <!-- Header left -->
-            <?php include_once("./src/views/include/header.php"); ?>
-            <!-- Main -->
-            <div id="main">
-                <!-- Header top -->
-                <?php include_once("./src/views/include/header-top.php"); ?>
-
-                <?php
-                $ctrl = 'dashboard';
-                if (isset($_GET['controller'])) {
-                    $ctrl = $_GET['controller'];
-                }
-                include "./src/controllers/" . $ctrl . ".php";
-                ?>
-            </div>
-            <!-- Footer -->
-            <?php include_once("./src/views/include/footer.php"); ?>
-        </div>
-    <?php endif; ?>
-
-    <script src="src/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="src/assets/js/bootstrap.bundle.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.7/sweetalert2.all.min.js"></script>
-    <script src="src/assets/vendors/apexcharts/apexcharts.js"></script>
-    <script src="src/assets/js/pages/dashboard.js"></script>
-
-    <script src="src/assets/js/main.js"></script>
-    <script>
-        function confirmation(controller, action, masach) {
-            Swal.fire({
-                title: 'Bạn có chắc chưa?',
-                text: "Bạn không thể hoàn tác!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'OK, Xóa đi',
-                cancelButtonText: "Giữ lại"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = `index.php?controller=${controller}&action=${action}&id=${masach}`;
-                }
-            })
-        }
-
-        function confirmation2(masach, mamuon, masv) {
-            Swal.fire({
-                title: 'Cuốn sách này đã mất?',
-                text: "Bạn không thể hoàn tác!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'OK, Đã mất đi',
-                cancelButtonText: "Hủy lệnh"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = `index.php?controller=history&action=losebook&masach=${masach}&mamuon=${mamuon}&masv=${masv}`;
-                }
-            })
-        }
-    </script>
-</body>
-
+    </div>
+    <script src="./src/assets/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>

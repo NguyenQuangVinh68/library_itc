@@ -1,176 +1,128 @@
 <?php
 
+use LDAP\Connection;
+
 class BookModel
 {
     public function __construct()
     {
     }
-
     public function getAllBook()
     {
         $db = new ConnectModel();
-        $sql = "SELECT * FROM sach ";
-        $result = $db->getList($sql);
+        $select = "select * from sach";
+        $res = $db->getList($select);
+        return $res;
+    }
+
+    public function getNewBook()
+    {
+        $limit = 7;
+        $db = new ConnectModel();
+        $sql = "SELECT * FROM sach ORDER BY masach DESC LIMIT $limit";
+        return $db->getList($sql);
+    }
+
+    public function onSearch($cloumn, $txtSearch)
+    {
+        $db = new ConnectModel();
+        $select = "SELECT * FROM sach WHERE $cloumn like '%$txtSearch%'";
+        $result = $db->getList($select);
         return $result;
     }
-
-    public function getBookById($masach)
+    public function getListITBook()
     {
         $db = new ConnectModel();
-        $sql = "SELECT masach, nhande, tacgia,anhbia FROM sach WHERE masach = '$masach' AND soluong > 0";
-        return $db->getInstance($sql);
-    }
-
-    function insertBookByCSV($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia, $soluongmuon)
-    {
-        $db = new ConnectModel();
-        $query = "INSERT INTO sach(masach, nhande, tacgia, theloai, bosuutap, chuyennganh, anhbia, thongtinxb, vitri, soluong, gia,soluongmuon) 
-        VALUES ($masach, '$nhande', '$tacgia', '$theloai', '$bosuutap', '$chuyennganh', '$anhbia', '$thongtinxb', '$vitri', $soluong, $gia,$soluongmuon)";
-        $result = $db->exec($query);
+        $select = "select * from sach where bosuutap like '%CNTT%' ";
+        $result = $db->getList($select);
         return $result;
     }
-
-
-    public function importBook($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia)
+    public function getListECBook()
     {
         $db = new ConnectModel();
-        $query = "INSERT INTO sach(masach, nhande, tacgia, theloai, bosuutap, chuyennganh, anhbia, thongtinxb, vitri, soluong, gia) VALUES (null, '$nhande', '$tacgia', '$theloai', '$bosuutap', '$chuyennganh', '$anhbia', '$thongtinxb', '$vitri', $soluong, $gia)";
-        $db->exec($query);
-    }
-
-    public function getBookID($masach)
-    {
-        $db = new ConnectModel();
-        $sql = "SELECT * FROM sach where masach= $masach";
-        $result = $db->getInstance($sql);
+        $select = "select * from sach where bosuutap like '%KT%' ";
+        $result = $db->getList($select);
         return $result;
     }
-
-    public function updateStockInBook($masach, $soluong)
+    public function getDetailInformation($id)
     {
         $db = new ConnectModel();
-        $sql =  "UPDATE sach SET soluong = soluong - $soluong WHERE masach = '$masach'";
-        $db->exec($sql);
+        $select = "select * from sach where masach = $id ";
+        $result = $db->getInstance($select);
+        return $result;
     }
-
-    public function updateBook($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia)
+    public function checkStatusOfThisUser($masv, $masach)
     {
         $db = new ConnectModel();
-        $query = "UPDATE sach set 
-        masach = '$masach',
-        nhande = '$nhande',
-        tacgia = '$tacgia',
-        theloai = '$theloai',
-        bosuutap = '$bosuutap',
-        chuyennganh = '$chuyennganh',
-        anhbia = '$anhbia',
-        thongtinxb = '$thongtinxb',
-        vitri = '$vitri',
-        soluong =  '$soluong',
-        gia = '$gia' 
-        WHERE masach = '$masach'";
-        $db->exec($query);
+        $select = "select * from yeuthich  where masv = '$masv' and masach = '$masach'";
+        $result = $db->getInstance($select);
+        return $result;
     }
-
-    public function updateBookByCategory($categoryNew, $categoryOld)
+    public function removeLike($masv, $masach)
     {
         $db = new ConnectModel();
-        $sql =  "UPDATE sach SET theloai = '$categoryNew' WHERE theloai = '$categoryOld'";
-        echo $sql;
-        $db->exec($sql);
+        $select = "delete from yeuthich where masv = '$masv' and masach = '$masach'";
+        $result = $db->exec($select);
+        return $result;
     }
-
-    public function deleteBook($masach)
+    public function insertLike($masv, $masach)
     {
         $db = new ConnectModel();
-        $query = "DELETE FROM sach WHERE masach = '$masach'";
-        $db->exec($query);
+        $select = "insert into yeuthich(mayeuthich, masv, masach) values(null, '$masv' ,'$masach')";
+        $result = $db->exec($select);
+        return $result;
     }
-
-    public function deleteBookByCategory($tentheloai)
+    public function getSumLike($masach)
     {
         $db = new ConnectModel();
-        $sql = "DELETE FROM sach WHERE theloai = '$tentheloai'";
-        $db->exec($sql);
+        $select = "select count(masv) as sl from yeuthich where masach='$masach'";
+        $result = $db->getInstance($select);
+        return $result;
     }
-
-
-    // quản lý hoạt động
-
-    public function totalBorrowingByStudent($codeStudent)
+    public function getTop5Like()
     {
         $db = new ConnectModel();
-        $sql = "SELECT count(muon.masv) as tongmuon
-                FROM ( 
-                    SELECT ct.masach, ct.nhande, ds.mamuon, ds.masv,ds.tensv, ds.maadm 
-                    FROM chitietmuon ct 
-                    INNER JOIN danhsachmuon ds 
-                    ON ct.mamuon = ds.mamuon
-                    WHERE ds.masv = '$codeStudent'
-                    GROUP BY ct.id DESC) muon 
-                WHERE muon.mamuon NOT IN (SELECT mamuon FROM danhsachtra) 
-                OR muon.masach NOT IN (SELECT masach FROM danhsachtra)
-                GROUP BY muon.masv DESC";
-        return $db->getInstance($sql);
+        $select = "select s.masach, nhande, tacgia, anhbia,count(masv) as sl from yeuthich y, sach s where s.masach = y.masach group by masach order by sl desc limit 5";
+        $result = $db->getList($select);
+        return $result;
     }
-
-    public function getBorrowByCodeStudent($codeStudent)
-    {
-        $db  = new ConnectModel();
-        $sql = "SELECT mamuon 
-                FROM danhsachmuon 
-                WHERE masv = '$codeStudent' 
-                ORDER BY mamuon 
-                DESC LIMIT 1";
-        return $db->getInstance($sql);
-    }
-
-    public function insertBorrow($table, $data)
+    public function getTop5Read()
     {
         $db = new ConnectModel();
-        return $db->insert($table, $data);
+        $select = "select masach, nhande, tacgia, anhbia,soluongmuon as sl from sach order by sl desc limit 5";
+        $result = $db->getList($select);
+        return $result;
     }
-
-    public function insertBorrowDetailt($table, $data)
+    public function getMyLikeBook($masv)
     {
         $db = new ConnectModel();
-        return $db->insert($table, $data);
+        $select = "select s.masach, nhande, tacgia, anhbia from yeuthich y, sinhvien sv, sach s where s.masach = y.masach and y.masv = sv.masv and sv.masv= '$masv' ";
+        $result = $db->getList($select);
+        return $result;
     }
-
-    public function getIdBookFromListBorrow($masach, $masv)
+    public function getBorrowByStudentCode($stu_code)
     {
         $db = new ConnectModel();
-        $sql = "SELECT ds.masv, ds.tensv, ct.masach 
+        $sql = "SELECT sa.masach, sa.nhande, sa.anhbia, sa.tacgia
                 FROM danhsachmuon ds
                 INNER JOIN chitietmuon ct
                 ON ds.mamuon = ct.mamuon
-                WHERE ct.masach = '$masach'
-                AND ds.masv = '$masv'";
-
-        return $db->getInstance($sql);
-    }
-
-    public function updateBorrowNumber($masach, $soluong)
-    {
-        $db = new ConnectModel();
-        $sql = "UPDATE sach SET soluongmuon = soluongmuon + $soluong WHERE masach = $masach";
-        echo $sql;
-        return $db->exec($sql);
+                INNER JOIN sach sa
+                ON sa.masach = ct.masach
+                WHERE ds.masv = '$stu_code'";
+        return $db->getList($sql);
     }
 
 
+    // tìm kiếm theo category
 
-    // chart
-
-    public function getBookByMonth()
+    public function getBookByCategory($table, $name_category)
     {
         $db = new ConnectModel();
-        $sql = "SELECT s.nhande, MONTH(ds.ngaymuon) AS thangmuon, ct.tong
-                FROM danhsachmuon ds 
-                INNER JOIN (SELECT mamuon, masach, COUNT(soluong) AS tong FROM chitietmuon GROUP BY masach) ct 
-                ON ds.mamuon = ct.mamuon 
-                INNER JOIN sach s   
-                ON s.masach = ct.masach";
-        return  $db->getList($sql);
+        $sql = "SELECT *
+                FROM $table   
+                WHERE theloai = '$name_category'";
+        $result = $db->getList($sql);
+        return $result;
     }
 }
