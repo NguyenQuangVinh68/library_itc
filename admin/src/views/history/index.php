@@ -39,9 +39,7 @@ if (isset($result)) :
                     <?php else : ?>
                         <th>Ngày trả</th>
                     <?php endif; ?>
-
                     <th>Mã admin</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -50,7 +48,7 @@ if (isset($result)) :
                     <tr>
                         <td><?php echo $item['masv'] ?></td>
                         <td><?php echo $item['masach'] ?></td>
-                        <td><?php echo $item['nhande'] ?></td>
+                        <td class="w-50"><?php echo $item['nhande'] ?></td>
 
                         <?php if (isset($item['ngaymuon'])) : ?>
                             <td><?php echo $item['ngaymuon'] ?></td>
@@ -74,5 +72,6 @@ if (isset($result)) :
                 <?php endwhile; ?>
             </tbody>
         </table>
+        <input type="button" class="btn btn-primary d-flex ms-auto" onClick="history.go(-1);" value="Trở lại">
     </div>
 <?php endif; ?>

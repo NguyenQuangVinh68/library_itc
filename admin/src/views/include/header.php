@@ -44,7 +44,7 @@
                 </li>
 
                 <li class="sidebar-item  ">
-                    <a href="?controller=category" class='sidebar-link'>
+                    <a href="index.php?controller=category" class='sidebar-link'>
                         <i class="bi bi-list-stars"></i>
                         <span>Các thể loại</span>
                     </a>
@@ -52,7 +52,7 @@
                 <li class="sidebar-item  has-sub ">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-puzzle"></i>
-                        <span>Quản lí hoạt động</span>
+                        <span>QL hoạt động</span>
                     </a>
                     <ul class=" submenu ">
                         <li class=" submenu-item ">
@@ -67,13 +67,13 @@
                     </ul>
                 </li>
                 <li class="sidebar-item ">
-                    <a href="?controller=chart" class='sidebar-link'>
+                    <a href="index.php?controller=thongke" class='sidebar-link'>
                         <i class="bi bi-bar-chart-line-fill"></i>
                         <span>Thống kê</span>
                     </a>
                 </li>
                 <li class="sidebar-item ">
-                    <a href="?controller=login&action=logout" class='sidebar-link'>
+                    <a href="index.php?controller=login&action=logout" class='sidebar-link'>
                         <i class="bi bi-box-arrow-right"></i>
                         <span>Đăng xuất</span>
                     </a>
