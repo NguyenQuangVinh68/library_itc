@@ -116,12 +116,21 @@ class BookModel
 
     // tìm kiếm theo category
 
+    public function getBookByCategoryLimit($table, $name_category, $start, $limit)
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT *
+                FROM $table   
+                WHERE theloai = '$name_category' LIMIT $start, $limit";
+        $result = $db->getList($sql);
+        return $result;
+    }
     public function getBookByCategory($table, $name_category)
     {
         $db = new ConnectModel();
         $sql = "SELECT *
                 FROM $table   
-                WHERE theloai = '$name_category'";
+                WHERE theloai = '$name_category' ";
         $result = $db->getList($sql);
         return $result;
     }

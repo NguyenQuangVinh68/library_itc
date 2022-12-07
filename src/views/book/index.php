@@ -36,7 +36,37 @@
     endwhile;
     ?>
 
-    <?php ?>
+    <!-- phân trang pagination -->
+
+
+
+    <?php if (isset($_GET['name_category'])) : ?>
+        <div class="d-flex justify-content-center">
+            <?php
+            $book = new BookModel();
+            $table = "sach";
+            $allBookByCategory = $book->getBookByCategory($table, $_GET['name_category']);
+            $countBook = count($allBookByCategory->fetchAll());
+
+            $currentPage = (isset($_GET['page'])) ? $_GET['page'] : 1;
+            $limit = 8;
+            $page = ($countBook % $limit == 0) ? $countBook / $limit : ceil($countBook / $limit);
+            ?>
+            <ul class="pagination">
+                <?php if ($currentPage > 1 || $_GET['page'] > 1) : ?>
+                    <li class="page-item"><a class="page-link" href="index.php?controller=book&name_category=<?php echo $_GET['name_category'] ?>&page=<?php echo ($currentPage - 1) ?>">Trước</a></li>
+                <?php endif; ?>
+
+                <?php for ($i = 1; $i <= $page; $i++) : ?>
+                    <li class="page-item <?php echo ($i == $_GET['page']) ? 'active' : '' ?>"><a class="page-link " href="index.php?controller=book&name_category=<?php echo $_GET['name_category'] ?>&page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                <?php endfor; ?>
+
+                <?php if ($currentPage < $page && $page > 1) : ?>
+                    <li class="page-item"><a class="page-link" href="index.php?controller=book&name_category=<?php echo $_GET['name_category'] ?>&page=<?php echo ($currentPage + 1) ?>">Tiếp</a></li>
+                <?php endif ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 </div>
 
 <style>

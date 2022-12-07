@@ -6,10 +6,21 @@ if (isset($_GET["action"])) {
 switch ($action) {
     case "default":
         if (isset($_GET['name_category'])) {
+
             $name_category = $_GET['name_category'];
             $table = "sach";
             $book = new BookModel();
-            $result = $book->getBookByCategory($table, $name_category);
+
+            $limit = 7;
+            if (isset($_GET['page'])) {
+                $page = $_GET['page'];
+                $start = ($page - 1) * $limit;
+            } else {
+                $start = 0;
+                $_GET['page'] = 1;  
+            }
+
+            $result = $book->getBookByCategoryLimit($table, $name_category, $start,  $limit);
             include "./src/views/book/index.php";
         }
         break;
