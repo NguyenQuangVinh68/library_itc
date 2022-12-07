@@ -29,10 +29,9 @@ switch ($action) {
                 $vitri = $csv[8];
                 $soluong = $csv[9];
                 $gia = $csv[10];
-                $soluongmuon = $csv[11];
 
                 $book = new BookModel();
-                $result = $book->insertBookByCSV($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia, $soluongmuon);
+                $result = $book->insertBookByCSV($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia);
             }
             echo "<script>alert('Thêm vào database thành công!')</script>";
             echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=book' />";
@@ -43,25 +42,68 @@ switch ($action) {
         break;
     case "importbook_action":
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
             $masach = $_POST['masach'];
             $nhande = $_POST['nhande'];
             $tacgia = $_POST['tacgia'];
             $theloai = $_POST['theloai'];
             $bosuutap = $_POST['bosuutap'];
             $chuyennganh = $_POST['chuyennganh'];
-            $anhbia = $_POST['anhbia'];
             $thongtinxb = $_POST['thongtinxb'];
             $vitri = $_POST['vitri'];
             $soluong = $_POST['soluong'];
             $gia = $_POST['gia'];
-            $ub = new BookModel();
-            $ub->importBook($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia);
-            if (isset($ub)) {
-                echo '<script> alert("Thêm thành công!!!"); </script>';
+
+
+            // check sách tồn tại (chưa)
+            $book = new BookModel();
+
+            $targetDir = "../public/image/books/";
+            $filename = $_FILES["anhbia"]["name"];
+            $tmp__filetype = explode('.', $filename);
+            $filetype = end($tmp__filetype);
+            $randName = md5(time() . $filename) . '.' . $filetype;
+            $targetFilePath = $targetDir . $randName;
+
+            //  Kiểm tra xem ảnh gửi qua có thuộc 1 trong các định dạng như dưới không
+            $allowTypes = array(
+                'jpg',
+                'png',
+                'jpeg',
+                'gif',
+                'pdf'
+            );
+
+            if (in_array($filetype, $allowTypes)) {
+                //Chuyển file tới public/uploads trên server để lưu ảnh
+                move_uploaded_file($_FILES["anhbia"]["tmp_name"], $targetFilePath);
+                $table = "sach";
+                $data = array(
+                    "nhande" => $nhande,
+                    "tacgia" => $tacgia,
+                    "theloai" => $theloai,
+                    "bosuutap" => $bosuutap,
+                    "chuyennganh" => $chuyennganh,
+                    "anhbia" => "books/$randName",
+                    "thongtinxb" => $thongtinxb,
+                    "vitri" => $vitri,
+                    "soluong" => $soluong,
+                    "gia" => $gia,
+                );
+                $result = $book->insertBook($table, $data);
+                if ($result) {
+                    echo '<script> alert("Thêm thành công!!!"); </script>';
+                    echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=book&action=default' />";
+                } else {
+                    echo '<script> alert("Thêm thất bại!!!"); </script>';
+                    echo '<meta http-equiv="refresh" content="0;URL=' . $_SERVER['HTTP_REFERER'] . '">';
+                }
             } else {
-                echo '<script> alert("Thêm thất bại!!!"); </script>';
+                //Trả về lỗi nếu không đúng định dạng
+                echo '<script> alert("file ảnh không đúng định dạng"); </script>';
+                echo '<meta http-equiv="refresh" content="0;URL=' . $_SERVER['HTTP_REFERER'] . '">';
             }
-            echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=book&action=default' />";
+            break;
         }
         break;
 
@@ -94,8 +136,8 @@ switch ($action) {
         $book = new BookModel();
 
         // kiểm tra sách mượn và sách trả để tiến hành cho mượn tiếp hoặc không 
-        $issetBorrowingStudent = $book->totalBorrowingByStudent($_SESSION['masv']);
-        $totalBorrow = $issetBorrowingStudent['tongmuon'];
+        $totalBorrow = $book->totalBorrowingByStudent($_SESSION['masv']);
+
 
         if ($totalBorrow < $limitBorrowBook  && ($totalBorrow + count($_SESSION['books'])) < $limitBorrowBook) {
             if (isset($_SERVER['REQUEST_METHOD']) == "post") {
@@ -215,11 +257,19 @@ switch ($action) {
 
 
     case "deletebook":
-        $masach = $_GET["id"];
-        $b = new BookModel();
-        $b->deleteBook($masach);
-        echo "<script> alert('Deleted id = " . $masach . " success'); </script>";
-        // echo '<script> alert("Delete success!!!"); </script>';
-        echo "<meta http-equiv='refresh' content='0;url=./index.php?controller=book&action=default' />";
+        if (isset($_GET["id"])) {
+            $masach = $_GET["id"];
+            $book = new BookModel();
+            $issetBook = $book->getBookID($masach);
+
+            // xóa sách đồng thời xóa luôn file ảnh trong thư mục
+            $file_img = "../public/image/$issetBook[anhbia]";
+            $book->deleteBook($masach);
+            unlink($file_img);
+
+            echo "<script> alert('Deleted id = " . $masach . " success'); </script>";
+            // echo '<script> alert("Delete success!!!"); </script>';
+            echo '<meta http-equiv="refresh" content="0;URL=' . $_SERVER['HTTP_REFERER'] . '">';
+        }
         break;
 }

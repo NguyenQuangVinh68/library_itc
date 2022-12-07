@@ -1,4 +1,4 @@
-<div class="container my-5">
+<div class="container my-5 d-flex align-items-center justify-content-center">
     <div class="login">
         <div class="card border-0 shadow p-5">
             <h3 class=" text-center mb-4">Đăng nhập</h3>

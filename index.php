@@ -42,13 +42,13 @@ session_start();
 <body>
     <div id="app">
         <?php
-        include_once "./src/views/include/header.php";
+        include "./src/views/include/header.php";
         $controller = 'home';
         if (isset($_GET['controller'])) {
             $controller = $_GET['controller'];
         }
         include "./src/controllers/" . $controller . ".php";
-        include_once "./src/views/include/footer.php";
+        include "./src/views/include/footer.php";
         ?>
     </div>
     <script src="./src/assets/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>

@@ -84,7 +84,7 @@ error_reporting(E_ALL);
             <tr>
                 <td>Bộ sưu tập</td>
                 <td>
-                    <select name="bosutap" class="form-select">
+                    <select name="bosuutap" class="form-select">
                         <?php
                         $selectedKhoa = "";
                         if (isset($bosuutap) && $bosuutap != "") {
@@ -117,7 +117,9 @@ error_reporting(E_ALL);
             </tr>
             <tr>
                 <td>Ảnh bìa (link ảnh)</td>
-                <td> <input autocomplete="off" type="text" class="form-control" name="anhbia" value="<?php if (isset($masach)) echo $anhbia; ?>" /></td>
+                <td><input type="file" name="anhbia" id="anhbia" class="form-control"></td>
+                <!-- <td> <input autocomplete="off" type="text" class="form-control" name="anhbia" value="<?php #if (isset($masach)) echo $anhbia; 
+                                                                                                            ?>" /></td> -->
             </tr>
             <tr>
                 <td>Thông tin xuất bản</td>

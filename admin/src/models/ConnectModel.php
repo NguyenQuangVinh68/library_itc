@@ -1,9 +1,9 @@
 <?php
 class ConnectModel
 {
+    var $db = null;
     public function __construct()
     {
-        $db = array();
         $dsn = 'mysql:host=localhost;dbname=library';
         $user = 'root';
         $pass = '';
@@ -40,7 +40,7 @@ class ConnectModel
         $keys = implode(",", array_keys($data));
         $values = ":" . implode(", :", array_keys($data));
 
-        $sql = "INSERT INTO $table($keys) VALUE($values)";
+        $sql = "INSERT INTO $table($keys) VALUES ($values)";
         $statement = $this->db->prepare($sql);
 
         foreach ($data as $key => $value) {

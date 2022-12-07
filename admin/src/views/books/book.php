@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 ?>
 
-<div class="container mt-5">
+<div class="container mt-5" style="overflow-x: auto;font-size:13px;">
     <h3 class="my-5 text-center">TẤT CẢ SÁCH TRONG THƯ VIỆN</h3>
     <table class="table table-borderless table-hover">
         <thead class="table-success fw-bold">
@@ -31,13 +31,13 @@ error_reporting(E_ALL);
             ?>
                 <tr>
                     <td><?php echo $set['masach']; ?></td>
-                    <td><?php echo $set['nhande']; ?></td>
+                    <td style="width:20%;"><?php echo $set['nhande']; ?></td>
                     <td><?php echo $set['tacgia']; ?></td>
                     <td><?php echo $set['theloai']; ?></td>
                     <td><?php echo $set['bosuutap']; ?></td>
                     <td><?php echo $set['chuyennganh']; ?></td>
-                    <td><?php echo $set['thongtinxb']; ?></td>
                     <td><img src="<?php echo $set['anhbia']; ?>" alt="" class="w-75"></td>
+                    <td><?php echo $set['thongtinxb']; ?></td>
                     <td><?php echo $set['vitri']; ?></td>
                     <td><?php echo $set['soluong']; ?></td>
                     <td><?php echo $set['gia']; ?></td>

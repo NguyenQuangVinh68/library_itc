@@ -52,13 +52,17 @@ class CommentModel
 
     public function averageStar($bookid)
     {
+        $sum = 0;
         $data = $this->getStarById($bookid);
         $data = $data->fetchAll();
 
-        $sum = 0;
-        foreach ($data as $key => $value) {
-            $sum += (int)($value['danhgia']);
+        if (count($data) > 0) {
+            foreach ($data as $key => $value) {
+                $sum += (int)($value['danhgia']);
+            }
+            echo ($sum / count($data));
+        } else {
+            echo $sum;
         }
-        echo ($sum / count($data));
     }
 }

@@ -31,7 +31,7 @@
             </tbody>
 
         </table>
-        <input type="button" class="btn btn-warning d-flex ms-auto" onClick="history.go(-1);" value="Trở lại">
+        <a href="index.php?controller=history" class="btn btn-warning float-end ">Trở lại</a>
     </div>
 <?php else : ?>
     <div class="text-center alert-danger p-4 ">

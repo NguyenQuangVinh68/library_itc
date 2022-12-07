@@ -14,7 +14,7 @@ if ($set) :
                     </div>
                     <div class="col-lg-9 col-md-9 ">
                         <h5 class="titlebook"><?php echo $set['nhande']; ?></h5>
-                        <div id="ave_start"></div>
+                        <div id="ave_start" class="p-0 mb-2"></div>
                         <div class="bookdetail_information">
                             <p><b>Thông tin xuất bản: </b><span><?php echo $set['thongtinxb']; ?></span></p>
                             <p><b>Tác giả: </b><span><?php echo $set['tacgia']; ?></span></p>
@@ -68,19 +68,21 @@ if ($set) :
     <h1 class="mt-5 text-center">Not found</h1>
 <?php endif; ?>
 
-<style>
-    .bookdetail_information b {
-        font-weight: 900;
-    }
 
-    @media only screen and (max-width:390px) {
-        .img_bookdetail {
-            display: flex;
-            justify-content: center;
-        }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 
-        .img_bookdetail img {
-            width: 50% !important;
-        }
-    }
-</style>
+
+<script>
+    $(function() {
+        $("#ave_start").rateYo({
+            starWidth: "30px",
+            normalFill: "#A0A0A0",
+            readOnly: true,
+            rating: <?php
+                    $comment = new CommentModel();
+                    if (isset($_GET['id'])) {
+                        $comment->averageStar($_GET['id']);
+                    } ?>
+        })
+    });
+</script>

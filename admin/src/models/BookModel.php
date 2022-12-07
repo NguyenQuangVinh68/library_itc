@@ -21,21 +21,21 @@ class BookModel
         return $db->getInstance($sql);
     }
 
-    function insertBookByCSV($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia, $soluongmuon)
+    function insertBookByCSV($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia)
     {
         $db = new ConnectModel();
         $query = "INSERT INTO sach(masach, nhande, tacgia, theloai, bosuutap, chuyennganh, anhbia, thongtinxb, vitri, soluong, gia,soluongmuon) 
-        VALUES ($masach, '$nhande', '$tacgia', '$theloai', '$bosuutap', '$chuyennganh', '$anhbia', '$thongtinxb', '$vitri', $soluong, $gia,$soluongmuon)";
+        VALUES ($masach, '$nhande', '$tacgia', '$theloai', '$bosuutap', '$chuyennganh', '$anhbia', '$thongtinxb', '$vitri', $soluong, $gia)";
         $result = $db->exec($query);
         return $result;
     }
 
 
-    public function importBook($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia)
+    public function insertBook($table, $data)
     {
         $db = new ConnectModel();
-        $query = "INSERT INTO sach(masach, nhande, tacgia, theloai, bosuutap, chuyennganh, anhbia, thongtinxb, vitri, soluong, gia) VALUES (null, '$nhande', '$tacgia', '$theloai', '$bosuutap', '$chuyennganh', '$anhbia', '$thongtinxb', '$vitri', $soluong, $gia)";
-        $db->exec($query);
+        // $query = "INSERT INTO sach(masach, nhande, tacgia, theloai, bosuutap, chuyennganh, anhbia, thongtinxb, vitri, soluong, gia) VALUES (null, '$nhande', '$tacgia', '$theloai', '$bosuutap', '$chuyennganh', '$anhbia', '$thongtinxb', '$vitri', $soluong, $gia)";
+        return $db->insert($table, $data);
     }
 
     public function getBookID($masach)
@@ -111,7 +111,8 @@ class BookModel
                 WHERE muon.mamuon NOT IN (SELECT mamuon FROM danhsachtra) 
                 OR muon.masach NOT IN (SELECT masach FROM danhsachtra)
                 GROUP BY muon.masv DESC";
-        return $db->getInstance($sql);
+        $result = $db->getInstance($sql);
+        return $result['tongmuon'] ?? 0;
     }
 
     public function getBorrowByCodeStudent($codeStudent)

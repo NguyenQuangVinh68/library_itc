@@ -7,11 +7,10 @@ if (isset($_GET["action"])) {
 
 switch ($action) {
     case 'default':
-
         $books = new BookModel();
         $result = $books->getBookByMonth();
         $data = $result->fetchAll();
-        include_once("./src/views/thongke/index.php");
+        include "./src/views/thongke/index.php";
         break;
     case 'luachon':
         include "./src/views/thongke/form.php";
@@ -36,7 +35,7 @@ switch ($action) {
                 $monthEnd = 12;
             }
 
-            $thongke = new ThongKeModel();
+            $thongke = new ThongkeModel();
             $result = $thongke->thongKeBookBorrowByQuy($monthStart, $monthEnd, $nam, $loai);
             include "./src/views/thongke/view.php";
         }
@@ -47,7 +46,7 @@ switch ($action) {
             $nam = $_POST['nam'];
             $loai = $_POST['loai'];
 
-            $thongke = new ThongKeModel();
+            $thongke = new ThongkeModel();
             $result = $thongke->thongKeBookBorrowByMonth($thang, $nam, $loai);
             include "./src/views/thongke/view.php";
         }

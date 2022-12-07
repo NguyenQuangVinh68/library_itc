@@ -9,11 +9,11 @@ if (isset($_GET["action"])) {
 
 switch ($action) {
     case 'default':
-        include_once("./src/views/category/index.php");
+        include "./src/views/category/index.php";
         break;
 
     case 'addcategory':
-        include_once("./src/views/category/editcategory.php");
+        include "./src/views/category/editcategory.php";
         break;
 
     case 'add_action':
@@ -32,7 +32,7 @@ switch ($action) {
         break;
 
     case 'editcategory':
-        include_once("./src/views/category/editcategory.php");
+        include "./src/views/category/editcategory.php";
         break;
 
     case 'edit_action':

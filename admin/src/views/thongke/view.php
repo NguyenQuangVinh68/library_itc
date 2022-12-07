@@ -66,7 +66,7 @@
                         ?>
                             <tr>
                                 <td style="width:100px !important"><?php echo $value['masach'] ?></td>
-                                <td><?php echo $value['nhande'] ?></td>
+                                <td class="w-75"><?php echo $value['nhande'] ?></td>
                                 <td><?php echo $value['soluong'] ?></td>
                             </tr>
                         <?php endforeach; ?>

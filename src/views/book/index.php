@@ -32,10 +32,11 @@
             </div>
         </div>
         <hr>
-
     <?php
     endwhile;
     ?>
+
+    <?php ?>
 </div>
 
 <style>

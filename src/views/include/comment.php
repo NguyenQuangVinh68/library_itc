@@ -119,9 +119,24 @@
         box-shadow: none;
         border: 2px solid #000;
     }
+
+    /* view detail */
+    .bookdetail_information b {
+        font-weight: 900;
+    }
+
+    @media only screen and (max-width:390px) {
+        .img_bookdetail {
+            display: flex;
+            justify-content: center;
+        }
+
+        .img_bookdetail img {
+            width: 50% !important;
+        }
+    }
 </style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 
 <script>
     $(function() {
@@ -135,19 +150,6 @@
             }
         });
     });
-
-    $(function() {
-        $("#ave_start").rateYo({
-            starWidth: "30px",
-            normalFill: "#A0A0A0",
-            readOnly: true,
-            rating: <?php
-                    $comment = new CommentModel();
-                    if (isset($_GET['id'])) {
-                        $comment->averageStar($_GET['id']);
-                    } ?>
-        })
-    })
 
 
     const showContainers = document.querySelectorAll(".show-replies");

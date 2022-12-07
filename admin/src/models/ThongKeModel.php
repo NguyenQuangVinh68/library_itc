@@ -1,5 +1,5 @@
 <?php
-class ThongKeModel
+class ThongkeModel
 {
     public function __construct()
     {

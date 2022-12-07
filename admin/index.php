@@ -20,45 +20,27 @@ session_start();
             font-family: 'JetBrains Mono', monospace;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="src/assets/css/bootstrap.css">
-    <link rel="stylesheet" href="src/assets/vendors/iconly/bold.css">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="./src/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./src/assets/vendors/iconly/bold.css">
 
-    <link rel="stylesheet" href="src/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="src/assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="src/assets/css/app.css">
-    <link rel="stylesheet" href="src/assets/css/style.css">
-    <link rel="shortcut icon" href="src/assets/images/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./src/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="./src/assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="./src/assets/css/app.css">
+    <!-- <link rel="stylesheet" href="./src/assets/css/style.css"> -->
+    <link rel="shortcut icon" href="./src/assets/images/favicon.svg" type="image/x-icon">
 
 
     <title>Admin Library</title>
 </head>
 
 <body>
-    <?php
-    if (!isset($_SESSION['admin'])) :
-    ?>
-        <?php
-        include "./src/views/login/login.php";
-
-        $ctrl = 'dashboard';
-        if (isset($_GET['controller'])) {
-            $ctrl = $_GET['controller'];
-        }
-        include "./src/controllers/" . $ctrl . ".php";
-
-    else :
-        ?>
-
-
+    <?php if (isset($_SESSION['admin'])) : ?>
         <div id="app" class="w-100">
             <!-- Header left -->
-            <?php include_once("./src/views/include/header.php"); ?>
+            <?php include "./src/views/include/header.php"; ?>
             <!-- Main -->
             <div id="main">
-                <!-- Header top -->
-                <?php include_once("./src/views/include/header-top.php"); ?>
-
                 <?php
                 $ctrl = 'dashboard';
                 if (isset($_GET['controller'])) {
@@ -68,16 +50,25 @@ session_start();
                 ?>
             </div>
         </div>
+    <?php else : ?>
+        <?php
+        $ctrl = 'login';
+        if (isset($_GET['controller'])) {
+            $ctrl = $_GET['controller'];
+        }
+        include "./src/controllers/" . $ctrl . ".php";
+        ?>
+
+
     <?php endif; ?>
 
-    <script src="src/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="src/assets/js/bootstrap.bundle.min.js"></script>
+    <script src=" ./src/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js">
+    </script>
+    <script src="./src/assets/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.7/sweetalert2.all.min.js"></script>
-    <script src="src/assets/vendors/apexcharts/apexcharts.js"></script>
-    <script src="src/assets/js/pages/dashboard.js"></script>
-
     <script src="src/assets/js/main.js"></script>
+
     <script>
         function confirmation(controller, action, masach) {
             Swal.fire({
