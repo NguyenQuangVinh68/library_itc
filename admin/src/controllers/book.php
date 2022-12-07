@@ -10,6 +10,32 @@ switch ($action) {
     case "importbooks":
         include "./src/views/books/importbooks.php";
         break;
+    case "search":
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $book = new BookModel();
+            $text_search = $_POST['text_search'];
+            $result = $book->getBookByName($text_search);
+            include "./src/views/books/book.php";
+        }
+        break;
+
+    case "theloai":
+        if (isset($_GET['name_category'])) {
+            $book = new BookModel();
+            $theloai = $_GET['name_category'];
+            $result =  $book->getBookByCategory($theloai);
+            include "./src/views/books/book.php";
+        }
+        break;
+
+    case "tacgia":
+        if (isset($_GET['name_author'])) {
+            $book = new BookModel();
+            $tacgia = $_GET['name_author'];
+            $result =  $book->getBookByAuthor($tacgia);
+            include "./src/views/books/book.php";
+        }
+        break;
     case "importbooks_action":
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $file = $_FILES['file']['tmp_name'];

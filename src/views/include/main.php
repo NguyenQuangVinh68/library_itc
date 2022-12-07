@@ -6,8 +6,7 @@
             <div class="d-flex justify-content-center align-items-center ">
                 <form action="index.php?controller=book&action=onsearch" method="post" class="d-flex align-items-center w-100 bg-white  px-3 rounded  form-search">
                     <div class="py-2 w-50  border-end">
-                        <input type="hidden" name="column_search" id="column_search">
-                        <select class="form-select border-0 border-end-2 w-100 " aria-label="Default select example" id="option_search">
+                        <select class="form-select border-0 border-end-2 w-100 " aria-label="Default select example" name="column_search">
                             <option value="nhande">Nhan đề sách</option>
                             <option value="tacgia">Tác giả</option>
                             <option value="theloai">Thể loại</option>
@@ -318,10 +317,4 @@
             ],
         });
     });
-
-    var a = document.getElementById("option_search")
-    a.addEventListener("click", () => {
-        console.log(a.value);
-        document.getElementById("column_search").value = a.value;
-    })
 </script>

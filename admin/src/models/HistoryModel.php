@@ -126,7 +126,10 @@ class HistoryModel
     public function getListLated()
     {
         $db = new ConnectModel();
-        $sql = "select sv.masv, sv.tensv, c.nhande, d.ngaymuon, d.ngaytra from danhsachmuon d, chitietmuon c, sinhvien sv where d.mamuon = c.mamuon and d.masv = sv.masv";
+        $sql = "SELECT sv.masv, sv.tensv, c.nhande, d.ngaymuon, d.ngaytra 
+                FROM danhsachmuon d, chitietmuon c, sinhvien sv 
+                WHERE d.mamuon = c.mamuon 
+                AND d.masv = sv.masv";
         $result = $db->getList($sql);
         return $result;
     }

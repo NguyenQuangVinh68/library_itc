@@ -17,7 +17,7 @@ switch ($action) {
                 $start = ($page - 1) * $limit;
             } else {
                 $start = 0;
-                $_GET['page'] = 1;  
+                $_GET['page'] = 1;
             }
 
             $result = $book->getBookByCategoryLimit($table, $name_category, $start,  $limit);

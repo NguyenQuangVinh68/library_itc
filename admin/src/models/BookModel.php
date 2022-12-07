@@ -13,6 +13,21 @@ class BookModel
         $result = $db->getList($sql);
         return $result;
     }
+    public function getAllBookLimit($start, $limit)
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT * FROM sach LIMIT $start,$limit";
+        $result = $db->getList($sql);
+        return $result;
+    }
+
+    public function getBookByName($nhande)
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT * FROM sach WHERE nhande LIKE '%$nhande%'";
+        $result = $db->getList($sql);
+        return $result;
+    }
 
     public function getBookById($masach)
     {
@@ -20,6 +35,32 @@ class BookModel
         $sql = "SELECT masach, nhande, tacgia,anhbia FROM sach WHERE masach = '$masach' AND soluong > 0";
         return $db->getInstance($sql);
     }
+
+
+    public function getBookByAuthor($author)
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT *  FROM sach WHERE tacgia = '$author'";
+        $result = $db->getList($sql);
+        return $result;
+    }
+
+    public function getBookByCategory($category)
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT *  FROM sach WHERE theloai = '$category'";
+        $result = $db->getList($sql);
+        return $result;
+    }
+
+    public function getAllAuthorBook()
+    {
+        $db = new ConnectModel();
+        $sql = "SELECT DISTINCT tacgia FROM sach ";
+        $result = $db->getList($sql);
+        return $result;
+    }
+
 
     function insertBookByCSV($masach, $nhande, $tacgia, $theloai, $bosuutap, $chuyennganh, $anhbia, $thongtinxb, $vitri, $soluong, $gia)
     {
